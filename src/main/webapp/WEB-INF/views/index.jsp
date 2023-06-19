@@ -2,8 +2,6 @@
 <%@include file="include/header.jsp"%>
 
 
-
-
 <style>
 
         #movemove.visible1 {
