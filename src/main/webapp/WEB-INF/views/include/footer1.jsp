@@ -13,19 +13,12 @@
 	<!-- 공지사항-->
 	<div class="area_notice">
 		<div>						
-			
-			
-			
-			<div class="btn_topWrap main scroll" style="display: block;"><!-- 1210 main 클래스 추가 -->
-				<div class="inner">
-                          <a href="javascript:;" class="floatingShare" style="display: none;">sns 공유</a>
-					<a href="javascript:;" class="btn_topMove2" id="movemove">위로이동</a>
-				</div>
-			</div>
-			
-			
-			
-			
+			 <div class="btn_topWrap main scroll" style="display: block;">
+        <div class="inner">
+            <a href="javascript:;" class="floatingShare" style="display: none;">sns 공유</a>
+            <a href="javascript:;" class="btn_topMove2 app" onclick="scrollToTop()">위로이동</a>
+        </div>
+    </div>		
 			<div class="sel_area">
                 <div class="sel_member">
                     <select title="관광정보 선택" id="relation2">
@@ -206,4 +199,6 @@
 		
 	</div>
 </footer>
+<script src="resources/js/footer.js">
 
+</script>
