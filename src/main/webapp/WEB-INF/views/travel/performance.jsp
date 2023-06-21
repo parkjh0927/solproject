@@ -146,7 +146,7 @@
 				<div class="inner">
 					<p class="blind">전국축제</p>
 					<ul class="tab_area">
-						<li class="active"><h1>전국축제</h1></li>
+						<li class="active"><h1>전국행사</h1></li>
 						<!-- 활성시 class="active" -->
 					</ul>
 					<div class="blind">검색영역</div>
@@ -419,11 +419,7 @@
 								role="application">
 								<!-- class="active" 추가시 활성 -->
 								<p class="blind">축제일순 리스트</p>
-								<ul class="other_festival_ul" id="fstvlList">
-									<li>
-										
-									</li>
-								</ul>
+								<ul class="other_festival_ul" id="fstvlList"></ul>
 							</div>
 							<!--// 축제일순 -->
 							<!-- 인기순 -->

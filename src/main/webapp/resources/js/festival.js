@@ -42,36 +42,6 @@ document.querySelector("#searchButton").addEventListener("click", () => {
     .catch((error) => console.log(error));
 });
 
-// 위시리스트 추가를 클릭 시
-// 검색 결과를 자바스크립트 객체로 생성
-// fetch() + post
-document.querySelector("#wishButton").addEventListener("click", () => {
-  const wishItem = {
-    title: document.querySelector("#wish_title").innerHTML,
-    category: document.querySelector("#wish_category").innerHTML,
-    address: document.querySelector("#wish_address").innerHTML,
-    roadAddress: document.querySelector("#wish_road_address").innerHTML,
-    homePageLink: document.querySelector("#wish_link").href,
-    imageLink: document.querySelector("#wish_image").src,
-  };
-
-  fetch("/api/restaurant", {
-    method: "post",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(wishItem),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      // 위시리스트 추가 후 동시에 올려짐
-      showList();
-    })
-    .catch((error) => console.log(error));
-});
-showList();
-
 // wishList 가져오기
 function showList() {
   fetch("/api/restaurant/all")
