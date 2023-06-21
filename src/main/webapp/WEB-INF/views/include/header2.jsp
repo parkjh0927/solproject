@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 
 <head><script src="https://www.youtube.com/player_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/0c9b5d20/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" async="" src="https://1330chat.visitkorea.or.kr/ttalk/js/ttalkDev.js" charset="UTF-8"></script>
@@ -76,8 +77,8 @@
   }
   .login-btn {
     display: inline-block;
-    width: 50px;
-    height: 31px;
+    width: 40px;
+    height: 35px;
     background-image: url(../resources/images/common/icon_header_profile2.png);
     text-indent: -9999px;
     background-repeat: no-repeat;
@@ -143,11 +144,11 @@
               <li><a class="dropdown-item" href="#">자유 게시판</a></li>
             </ul>
           </li>
-         <c:if test="${authDTO != null }">
+         <security:authorize access="isAuthenticated()">
 	          <li class="nav-item">
 	            <a class="nav-link" href="#">마이페이지</a>
 	          </li>
-          </c:if>
+          </security:authorize>
           <li class="nav-item">
             <a class="nav-link" href="#">여행지도</a>
           </li>
@@ -155,9 +156,18 @@
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="search-sub" type="submit">Search</button>
-          <button class="login-btn" type="button">로그인</button>
-
         </form>
+          
+          <security:authorize access="!isAuthenticated()">          
+          	<a href="/member/login" class="login-btn" type="button">로그인</a>
+          </security:authorize>
+          <security:authorize access="isAuthenticated()">
+          	<form action="/logout" method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+          		<button class="login-btn" type="submit">로그아웃</button>				
+			</form>          
+          </security:authorize>
+
       </div>
     </div>
   </nav>
