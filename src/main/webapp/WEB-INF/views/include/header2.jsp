@@ -146,7 +146,7 @@
           </li>
          <security:authorize access="isAuthenticated()">
 	          <li class="nav-item">
-	            <a class="nav-link" href="#">마이페이지</a>
+	            <a class="nav-link" href="/member/myPage">마이페이지</a>
 	          </li>
           </security:authorize>
           <li class="nav-item">
