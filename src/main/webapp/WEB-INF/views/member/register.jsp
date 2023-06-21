@@ -11,24 +11,23 @@
 	
 
 <body>
-	  <div class="container">
-	    <div class="input-form-backgroud row">
-	      <div class="input-form col-md-12 mx-auto">
-	        
-	       <form class="validation-form registerForm" novalidate method="post" action="" >
-	        <div class="col">	        
-	        	<h4 class="mb-3 center">회원가입</h4>
-	        </div>
+	 <div class="container">
+	   <div class="input-form-backgroud row">
+	    <div class="input-form col-md-12 mx-auto">
+      
+	    <form class="validation-form registerForm" novalidate method="post" action="" >
+	       <div class="col">	        
+	         <h4 class="mb-3 center">회원가입</h4>
+	       </div>
 	        
 	        <br>
           	
-	           <div class="col-md-6 mb-3">
-	              <label for="userid">아이디</label>
+	        <div class="col-md-6 mb-3">
+	           <label for="userid">아이디</label>
 	           <div class="row">
-    			  <div class="col">
-    			  <!-- 알파벳 대소문자, 숫자로 이루어진 4~12자리 아이디 -->
-		              <input type="text" class="form-control" id="userid" placeholder="아이디" name="userid" required
-		              pattern="^[a-zA-Z0-9]{4,12}$">
+    		   <div class="col">   			  
+		          <input type="text" class="form-control" id="userid" placeholder="알파벳 대소문자, 숫자로 이루어진 4~12자리" 
+		          	name="userid" required pattern="^[a-zA-Z0-9]{4,12}$">
 		              <div class="invalid-feedback">
 		                아이디를 확인해주세요.
 		              </div>             	
@@ -42,9 +41,8 @@
                        
             <div class="col-md-6 mb-3">
               <label for="password">비밀번호</label>
-              <!-- 알파벳,숫자,특수문자가 하나이상씩 포함된 5~12자리 비밀번호 -->
-	              <input type="text" class="form-control" id="password" placeholder="비밀번호" name="password" required
-	              pattern="^(?=.*[A-za-z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{5,12}$">
+	              <input type="text" class="form-control" id="password" placeholder="알파벳,숫자,특수문자가 하나이상씩 포함된 5~12자리" 
+	              	name="password" required pattern="^(?=.*[A-za-z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{5,12}$">
 	              <div class="invalid-feedback">
 	                비밀번호를 확인해주세요.
 	              </div>
@@ -52,7 +50,7 @@
           
 	          <div class="col-md-6 mb-3">
 	            <label for="email">이메일</label>
-	            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+	            <input type="email" class="form-control" id="email" name="email" placeholder="you@gmail.com" required>
 	            <div class="invalid-feedback">
 	              이메일을 확인해주세요.
 	            </div>
@@ -62,7 +60,7 @@
 	            <label for="postcode">우편번호</label>
 	          <div class="row">
 		           <div class="col">
-		            	<input type="text" class="form-control" id="postcode" name="postcode" placeholder="우편번호">   
+		            	<input type="text" class="form-control" id="postcode" name="postcode" placeholder="우편번호" required>   
 		           </div>
 		           <div class="col">
 			           <input type="button" onclick="exDaumPostcode()" value="우편번호 찾기">        
@@ -72,11 +70,11 @@
           
 	          <div class="col-md-6 mb-3">
 	            <label for="address">주소</label>
-	            <input type="text" class="form-control" id="address" name="address" placeholder="주소">           
+	            <input type="text" class="form-control" id="address" name="address" placeholder="주소" required>           
 	          </div>
 	
 	          <div class="col-md-6 mb-3">
-	            <label for="address2">상세주소<span class="text-muted"></span></label>
+	            <label for="address2">상세주소<span class="text-muted">(선택사항)</span></label>
 	            <input type="text" class="form-control" id="address2" name="address2" placeholder="상세주소">
 	          </div>
 

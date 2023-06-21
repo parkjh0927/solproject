@@ -33,13 +33,13 @@ public class SecurityController {
 		log.info("회원가입 폼 요청");
 	}	
 	
-	// 회원가입 성공 시 index 이동
+	// 회원가입 성공 시 login 이동
 	//          실패 시 register 이동
 	@PostMapping("/register")
 	public String registerPost(MemberDTO dto) {
 		log.info("회원가입 요청 " +dto);
 		
-		String path = service.register(dto) ? "redirect:/" : "/member/register";
+		String path = service.register(dto) ? "redirect:/member/login" : "/member/register";
 		return path;
 	}
 	
