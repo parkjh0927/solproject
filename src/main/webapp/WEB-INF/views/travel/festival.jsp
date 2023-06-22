@@ -46,7 +46,8 @@
 	href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.css'>
 <link rel='stylesheet'
 	href='https://unpkg.com/video.js/dist/video-js.min.css'>
-<script src="../resources/js/jquery-3.3.1.min.js"></script>
+	
+<script src="../resources/js/jquery-3.3.1.min.js"></script>    
 <script src="../resources/js/greensock/gsap.min.js"></script>
 <script
 	src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.js'></script>
@@ -58,7 +59,6 @@
 	<!-- header -->
 	<header class="header_black" role="banner">
 		<div class="inner">
-
 
 
 			<a class="homepage_link" href="javascript:history.go(-1);">메인 홈으로 <span class="block_pd">
@@ -176,8 +176,8 @@
 									</select>
 								</div>
 								<div class="select_box select_area">
-									<label for="searchArea">지역 선택</label> <select name="searchArea"
-										id="searchArea" title="지역 선택">
+									<label for="searchArea">지역 선택</label> 
+									<select name="searchArea" id="searchArea" title="지역 선택">
 										<option value="">지역</option>
 
 										<option value="1">서울</option>
@@ -300,7 +300,6 @@
 							</a>
 							</li>
 
-
 							<li class="visual visual3 active">
 								<!-- class="active" 추가시 활성 --> <a href="#"
 								style="background-image: url('https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/06/12/c420cd6f-f9ed-4cdc-b235-47443aece351.jpg');"
@@ -390,8 +389,8 @@
 			</section>
 			<!--// 비주얼 배너 -->
 
+
 			<!-- 축제 리스트 -->
-			<button id="test1">시험용</button>
 			<section class="other_list type2" role="region">
 				<div class="inner">
 					<div class="other_festival" role="application">
@@ -404,70 +403,30 @@
 							<p>찾으시는 축제를 다시 검색해 주세요</p>
 						</div>
 						<!-- //검색 결과 없음 -->
-
-						<div class="festival_ul_top" id="festival_ul_top"
-							style="display: none;">
-							<ul class="tab_area">
-								<li id="tabFstvlList" class="active"><button>축제일순</button></li>
-								<!-- class="active" 추가시 활성 -->
-								<li id="tabFstvlLikeOrderList"><button>인기순</button></li>
-							</ul>
-						</div>
 						<div class="tab_cont_area">
 							<!-- 축제일순 -->
-							<div class="tab_cont active" aria-expanded="true"
-								role="application">
+							<div class="tab_cont active" aria-expanded="true" role="application">
 								<!-- class="active" 추가시 활성 -->
 								<p class="blind">축제일순 리스트</p>
-								<ul class="other_festival_ul" id="fstvlList">
-									<li>
-										
-									</li>
-								</ul>
+								<ul class="other_festival_ul" id="fstvlList"></ul>
 							</div>
-							<!--// 축제일순 -->
-							<!-- 인기순 -->
-							<div class="tab_cont" aria-expanded="false" role="application">
-								<p class="blind">인기순 리스트</p>
-								<ul class="other_festival_ul" id="fstvlLikeOrderList"></ul>
-							</div>
-							<!--// 인기순 -->
-
-							<!-- 더보기 button -->
-							<button class="list_more_btn" style="display: none;" id="btnMore"
-								onclick="javascript:;">더보기 (0/0)</button>
-							<!-- //더보기 button -->
+							<!-- 더보기 버튼 -->
+							<button class="list_more_btn" id="loadMoreButton">더보기</button>
+							<!-- //더보기 버튼 -->
 						</div>
-
 					</div>
 				</div>
 			</section>
-			<!--// 축제 리스트 -->
-
-			<div class="loading">
-				<div class="loading_start" aria-live="assertive" role="alert">
-					<div class="blind">please wait while we gather your
-						information, Loading...</div>
-					<img src="../resources/img/loading.svg" alt="로딩 이미지">
-				</div>
-			</div>
 		</div>
-
 	</main>
 	<!--// main -->
-
+	
+	
 	<!-- footer -->
 	<footer role="contentinfo" id="footer">
 		<div class="footer_inner">
 			<div class="top_util">
 				<ul class="top_util_ul">
-
-
-
-
-
-
-
 
 
 
@@ -491,28 +450,12 @@
 
 
 
-
-
-
-
-
-						<li>우)26464 강원도 원주시 세계로 10</li>
-						<li>TEL : <a href="tel:033-738-3000">033-738-3000</a></li>
-						<li>사업자등록번호 : 202-81-50707</li>
-						<li>통신판매업신고 : 제2009-서울중구-1234호</li>
 					</ul>
 				</address>
 			</div>
 			<div class="footer_bottom">
 				<span class="copyright">&copy; 한국관광공사</span>
 				<ul class="family_f_logo">
-
-
-
-
-
-
-
 
 
 
@@ -532,10 +475,8 @@
 	<!--// footer -->
 </body>
 </html>
-
-
 	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-	<script src="../resources/js/test1.js"></script>
+	<script src="../resources/js/festival.js"></script>
     <script>
         var visualSwiper;
         // 검색 swiper
@@ -573,7 +514,7 @@
             }
             return false;
         });
-
+        
         function slideWid(){
             var $slide = $('.swiper-container .swiper-slide');
             var $slideLen = $slide.length;
@@ -791,27 +732,6 @@
 				rowNum : 0
 				, totalCnt : 0
 		};
-
-		function fn_search(startIdx){
-
-			if(isLoading) return;
-
-			var searchType = 'A';
-			if($('#tabFstvlLikeOrderList').hasClass('active')){
-				searchType = 'B';
-			}
-
-			if(gfn_chkNvl(startIdx) || startIdx == 0){
-				startIdx = 0;
-			}
-
-			var param = {
-				startIdx : startIdx
-				, searchType : searchType
-				, searchDate : $('#searchDate').val()
-				, searchArea : $('#searchArea').val()
-				, searchCate : $('#searchCate').val()
-			};
 
 			var imgOnErrorStr = 'onerror="this.src=\'/kfes/resources/img/default_list.png\';"';
 			isLoading = true;
@@ -1081,7 +1001,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- 가장 하단에 실행되도록 넣어 주세요 -->
-
 <script type="text/javascript" charset="UTF-8">
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({

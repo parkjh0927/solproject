@@ -19,13 +19,13 @@ public class TravelController {
 
 	@GetMapping("/festival")
 	public void feslistGet() {
-		log.info("축제 페이지 요청");
+		log.info("festival");
 
 	}
 
 	@GetMapping("/performance")
 	public void perlistGet() {
-		log.info("축제 페이지 요청");
+		log.info("performance");
 
 	}
 }

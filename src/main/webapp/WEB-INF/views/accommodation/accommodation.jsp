@@ -890,7 +890,7 @@
 
 
 
-<script src="../resources/js/click.js"></script>
+<script src="../resources/js/accommodation.js"></script>
 
 <!-- 구글 옵티마이즈 스크립트, 긴급한 변동사항 등에 활용 -->
 <script src="https://www.googleoptimize.com/optimize.js?id=OPT-5JVS3BG"></script>
