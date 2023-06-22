@@ -27,4 +27,20 @@
       -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
     }
+    
+    
+    #username::placeholder, #password::placeholder {
+	  font-size: 12px; 
+	}
+    
+    
+    /* 중복아이디 검사 */
+    .id_input_ok{
+    	color : green;
+    	display : none;
+    }
+    .id_input_no{
+    	color : red;
+    	display : none;
+    }
  

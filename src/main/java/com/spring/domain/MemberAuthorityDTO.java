@@ -9,6 +9,6 @@ import lombok.ToString;
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter @ToString
 public class MemberAuthorityDTO {
-	private String userid;
+	private String username;
 	private String authority;
 }

@@ -1,6 +1,8 @@
 package com.spring.controller;
 
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -8,10 +10,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 import com.spring.domain.MemberDTO;
 import com.spring.service.MemberService;
@@ -42,16 +45,13 @@ public class SecurityController {
 		String path = service.register(dto) ? "redirect:/member/login" : "/member/register";
 		return path;
 	}
-	
-	
+		
 	// 로그인
 	@GetMapping("/login")
 	public void loginGet() {
 		log.info("로그인 폼 요청 ");		
 	}
-	
-			
-
+				
 	
 	
 	@GetMapping("/login-error")
@@ -60,7 +60,7 @@ public class SecurityController {
 		return "/member/login"; 
 	}
 	
-	@GetMapping("/access-denied")
+	@GetMapping("/denied")
 	public String accessDenied() {
 		return "/member/denied";
 	}	
@@ -71,25 +71,59 @@ public class SecurityController {
 		return SecurityContextHolder.getContext().getAuthentication(); 
 	}
 
-
+	
+	
+	
+	
 	// 중복 아이디 점검
-	@PostMapping("/dupId")
+	@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST) // /member/memberIdChk에 대한 POST 메서드를 처리
 	@ResponseBody //컨트롤러 작업이 완료될때 결과값으로 리턴시킴 (뷰 리졸버를 동작시키지 않음) 
-	public String dupIdCheck(String userid) {
-		log.info("중복 아이디 체크 "+userid);
-			
-		boolean idCheck = service.dupId(userid);
-			
-		if(idCheck) {
-			return "true";  // 	/WEB-INF/views/true.jsp
-		} else {
-			return "false";  // 	/WEB-INF/views/false.jsp
-		}
+	public void memberIdChkPost(String username) throws Exception {	
+		log.info("memberIdChk() 진입");							
 	}
 
 
-
-
+	// 마이페이지 보여주기
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/myPage")	
+    public void myPageGet(Principal principal, Model model) {
+		
+        // log.info("마이페이지 요청 유저아이디: "+principal.getName());
+        String username=principal.getName();
+        
+        MemberDTO dto = service.read(username);
+        model.addAttribute("dto",dto);
+		
+        log.info("마이페이지 요청 유저아이디: "+dto.getUsername());
+        log.info("마이페이지 요청 비번: "+dto.getPassword());
+        log.info("마이페이지 요청 메일: "+dto.getEmail());
+        log.info("마이페이지 요청 우편: "+dto.getPostcode());
+        log.info("마이페이지 요청 주소: "+dto.getAddress());
+        log.info("마이페이지 요청 주소2: "+dto.getAddress2());
+		
+    }
+	
+	// 회원 정보 수정 폼
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/modify")
+	public void modifyGet(Principal principal, Model model) {
+		log.info("회원정보 수정 폼 요청 ");	
+		String username=principal.getName();
+        
+        MemberDTO dto = service.read(username);
+        model.addAttribute("dto",dto);
+						
+	}
+	
+	// 회원 정보 수정
+	@PostMapping("/modify")
+	public String modifyPost(MemberDTO dto) {
+		log.info("회원 정보 수정 " +dto);
+		
+		String path = service.modify(dto) ? "redirect:/member/myPage" : "/member/myPage";
+		return path;
+	}
+	
 
 }
 

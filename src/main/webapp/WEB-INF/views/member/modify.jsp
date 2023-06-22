@@ -50,7 +50,7 @@
 	   <div class="input-form-backgroud row">
 	    <div class="input-form col-md-12 mx-auto">
       
-	    <form class="myPageForm" method="get" action="" >
+	    <form class="modifyForm" method="post" action="/member/modify" >
 	       <div class="col">	        
 	         <h4 class="mb-3 center">마이페이지</h4>
 	       </div>
@@ -61,30 +61,40 @@
 	           <label for="username">아이디</label>	            			  
 		       <input type="text" class="form-control" id="username" name="username" value="${dto.username}" readonly>
 		    </div>	            
+               
                        
-            <div class="col-md-8 mb-3">
-              <label for="password">비밀번호</label>
-	          <input type="text" class="form-control" id="password" name="password" value="****" readonly>	              
-            </div>
+            <div class="col-md-10 mb-3">
+	           <label for="password">비밀번호</label>
+	           <div class="row">
+    		   <div class="col">   			  
+		          <input type="text" class="form-control" id="password" name="password" value="****" readonly>		                          	
+	              </div>             	
+			    		<div class="col-md-6">
+			      			<button type="button" class="btn btn-danger">비밀번호 변경</button>
+			    		</div>			    				    	
+	            </div>
+	            </div>
+            
+            
           
 	          <div class="col-md-8 mb-3">
 	            <label for="email">이메일</label>
-	            <input type="email" class="form-control" id="email" name="email" value="${dto.email}" readonly>	            
+	            <input type="email" class="form-control" id="email" name="email" value="${dto.email}">	            
 	          </div>
 
 	          <div class="col-md-8 mb-3">
 	            <label for="postcode">우편번호</label>
-		        <input type="text" class="form-control" id="postcode" name="postcode" value="${dto.postcode}" readonly>   		        
+		        <input type="text" class="form-control" id="postcode" name="postcode" value="${dto.postcode}">   		        
 	          </div>
           
 	          <div class="col-md-8 mb-3">
 	            <label for="address">주소</label>
-	            <input type="text" class="form-control" id="address" name="address" value="${dto.address}" readonly>           
+	            <input type="text" class="form-control" id="address" name="address" value="${dto.address}">           
 	          </div>
 	
 	          <div class="col-md-8 mb-3">
 	            <label for="address2">상세주소<span class="text-muted">(선택사항)</span></label>
-	            <input type="text" class="form-control" id="address2" name="address2" value="${dto.address2}" readonly>
+	            <input type="text" class="form-control" id="address2" name="address2" value="${dto.address2}">
 	          </div>
 
 
@@ -94,7 +104,9 @@
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   
                     
-			<a href="/member/modify" class="btn btn-info">수정</a>
+			<button type="submit" class="btn btn-info">수정</button>
+			<button type="button" class="btn btn-info">취소</button>
+			<button type="button" class="btn btn-danger">탈퇴</button>
 				
 			<!-- <button type="button" class="btn btn-secondary">홈</button> -->
           
@@ -111,7 +123,7 @@
 	
 
 
-<!-- <script src="../resources/js/memRegister.js"></script> -->
+<script src="../resources/js/memModify.js"></script>
 
 <%@ include file="../include/footer1.jsp" %>
 

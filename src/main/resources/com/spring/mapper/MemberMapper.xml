@@ -4,19 +4,19 @@
 
 	<!-- 회원가입 -->
 	<insert id="register">
-		insert into member(userid,password,email,postcode,address,address2) 
-		values(#{userid},#{password},#{email},#{postcode,jdbcType=INTEGER},#{address,jdbcType=VARCHAR},#{address2,jdbcType=VARCHAR})
+		insert into member(username,password,email,postcode,address,address2) 
+		values(#{username},#{password},#{email},#{postcode,jdbcType=INTEGER},#{address,jdbcType=VARCHAR},#{address2,jdbcType=VARCHAR})
 	</insert>
 	
 	<insert id="registerAuth">
-		insert into member_auth(userid,authority) 
-		values(#{userid},#{authority})
+		insert into member_auth(username,authority) 
+		values(#{username},#{authority})
 	</insert>
 
 	
 	<!-- 회원조회 : 로그인 -->
 	<resultMap type="com.spring.domain.MemberDTO" id="memberDTO">
-		<id property="userid" column="userid"/>
+		<id property="username" column="username"/>
 		<result property="password" column="password"/>
 		<result property="email" column="email"/>
 		<result property="postcode" column="postcode"/>
@@ -27,27 +27,39 @@
 	</resultMap>
 	
 	<resultMap type="com.spring.domain.MemberAuthorityDTO" id="authorities">
-		<result property="userid" column="userid"/>
+		<result property="username" column="username"/>
 		<result property="authority" column="authority"/>
 	</resultMap>
 	
 	<select id="read" resultMap="memberDTO">
-		select s1.userid,password,enabled,authority
-		from member s1 left outer join member_auth s2 on s1.userid = s2.userid
-		where s1.userid = #{userid}	
+		select *
+		from member s1 left outer join member_auth s2 on s1.username = s2.username
+		where s1.username = #{username}	
 	</select>
 	
 	
 		
 	<!-- 중복 아이디 체크	 -->
 	<select id="dupId" resultType="java.lang.Integer">
-		select count(*) from member where userid=#{userid}
+		select count(*) from member where username=#{username}
 	</select>
+	
+	
+	<!-- 회원정보 수정 -->
+	<update id="modify">
+		update member set email=#{email},postcode=#{postcode},address=#{address},address2=#{address2}
+		 where username=#{username}
+	</update>
+	
+	<!-- 비밀번호 수정 -->
+	<update id="changePwd">
+		update member set password=#{newPassword} where username=#{username}
+	</update>
 	
 	
 	<!-- 회원탈퇴 -->
 	<delete id="leave">
-		delete from member where userid=#{userid}
+		delete from member where username=#{username}
 	</delete>
 	
 	

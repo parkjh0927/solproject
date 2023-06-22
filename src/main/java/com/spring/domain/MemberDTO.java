@@ -12,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter @ToString
 public class MemberDTO {
-	private String userid;
+	private String username;
 	private String password;
 	private String email;
 	

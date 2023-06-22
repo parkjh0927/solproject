@@ -7,8 +7,11 @@ public interface MemberMapper {
 	public int register(MemberDTO dto);
 	public int registerAuth(MemberAuthorityDTO dto);
 	
-	public MemberDTO read(String userid);
+	public MemberDTO read(String username);
 	
-	public int dupId(String userid);
-	public int leave(String userid);
+	public int dupId(String username);
+	public int modify(MemberDTO dto);
+	
+	
+	public int leave(String username);
 }

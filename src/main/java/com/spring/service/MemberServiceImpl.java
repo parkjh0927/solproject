@@ -1,5 +1,7 @@
 package com.spring.service;
 
+import java.lang.reflect.Member;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,18 +31,27 @@ public class MemberServiceImpl implements MemberService {
 		boolean result = mapper.register(dto) == 1;
 		
 		// 회원권한
-		mapper.registerAuth(new MemberAuthorityDTO(dto.getUserid(), "ROLE_USER"));
-		//mapper.registerAuth(new MemberAuthorityDTO(dto.getUserid(), "ROLE_ADMIN"));
+		mapper.registerAuth(new MemberAuthorityDTO(dto.getUsername(), "ROLE_USER"));
+		//mapper.registerAuth(new MemberAuthorityDTO(dto.getUsername(), "ROLE_ADMIN"));
 		
 		return result;		
+	}
+	
+
+	@Override
+    public MemberDTO read(String userid) {		
+        return mapper.read(userid);       
+    }
+
+
+	@Override
+	public boolean modify(MemberDTO dto) {
+		return mapper.modify(dto)==1? true:false;
 	}
 
 	
 	
-	@Override
-	public boolean dupId(String userid) {
-		return mapper.dupId(userid)==0? true:false;
-	}
+
 
 
 }

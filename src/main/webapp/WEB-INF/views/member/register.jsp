@@ -22,24 +22,16 @@
 	        
 	        <br>
           	
-	        <div class="col-md-6 mb-3">
-	           <label for="userid">아이디</label>
-	           <div class="row">
-    		   <div class="col">   			  
-		          <input type="text" class="form-control" id="userid" placeholder="알파벳 대소문자, 숫자로 이루어진 4~12자리" 
-		          	name="userid" required pattern="^[a-zA-Z0-9]{4,12}$">
-		              <div class="invalid-feedback">
-		                아이디를 확인해주세요.
-		              </div>             	
-	              </div>             	
-			    		<div class="col-2">
-			      			<button type="button" class="btn btn-danger">check</button>
-			    		</div>			    				    	
-	            </div>
-	            </div>
-	            
+	        <div class="col-md-8 mb-3">
+	           <label for="username">아이디</label>	            			  
+		          <input type="text" class="form-control id_input" id="username" placeholder="알파벳 대소문자, 숫자로 이루어진 4~12자리" 
+		          	name="username" required pattern="^[a-zA-Z0-9]{4,12}$">
+		              <div class="invalid-feedback"></div>             		                         	
+			    	<span class="id_input_ok">사용 가능한 아이디입니다.</span>		    				    	
+			    	<span class="id_input_no">이미 존재하는 아이디입니다.</span>		    				    		            
+	        </div>	            
                        
-            <div class="col-md-6 mb-3">
+            <div class="col-md-8 mb-3">
               <label for="password">비밀번호</label>
 	              <input type="text" class="form-control" id="password" placeholder="알파벳,숫자,특수문자가 하나이상씩 포함된 5~12자리" 
 	              	name="password" required pattern="^(?=.*[A-za-z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{5,12}$">
@@ -48,7 +40,7 @@
 	              </div>
             </div>
           
-	          <div class="col-md-6 mb-3">
+	          <div class="col-md-8 mb-3">
 	            <label for="email">이메일</label>
 	            <input type="email" class="form-control" id="email" name="email" placeholder="you@gmail.com" required>
 	            <div class="invalid-feedback">
@@ -56,7 +48,7 @@
 	            </div>
 	          </div>
 
-	          <div class="col-md-6 mb-3">
+	          <div class="col-md-8 mb-3">
 	            <label for="postcode">우편번호</label>
 	          <div class="row">
 		           <div class="col">
@@ -68,16 +60,15 @@
 	          </div>
 	          </div>
           
-	          <div class="col-md-6 mb-3">
+	          <div class="col-md-8 mb-3">
 	            <label for="address">주소</label>
 	            <input type="text" class="form-control" id="address" name="address" placeholder="주소" required>           
 	          </div>
 	
-	          <div class="col-md-6 mb-3">
+	          <div class="col-md-8 mb-3">
 	            <label for="address2">상세주소<span class="text-muted">(선택사항)</span></label>
 	            <input type="text" class="form-control" id="address2" name="address2" placeholder="상세주소">
 	          </div>
-
 
 
           <br>
@@ -90,6 +81,7 @@
           </div>
           
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                  
           
           <div class="col">
           	<button class="btn btn-primary btn-lg" type="submit">가입하기</button>

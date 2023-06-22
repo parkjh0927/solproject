@@ -21,7 +21,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 		log.info("접근 제한 핸들러..............");
 		
 		// response 객체에 정보를 담거나 에러 페이지로 이동
-		response.sendRedirect("/security/access-denied");
+		response.sendRedirect("/member/denied");
 
 	}
 
