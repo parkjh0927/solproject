@@ -3,7 +3,7 @@
 
  
 
-<<<<<<< HEAD
+
 
 
 <style>
@@ -60,13 +60,10 @@
 
 
 
-<!-- 관광 -->
 
-<div class="main_curation_area">
-=======
 		<!-- 관광 -->
 		<div class="main_curation_area" >
->>>>>>> refs/heads/master
+
 				<h2><a href="javascript:randomCrMain();"></a></h2>
 				<div class="cont_wrap">
 					

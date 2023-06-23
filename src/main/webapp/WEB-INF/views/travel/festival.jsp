@@ -61,7 +61,7 @@
 		<div class="inner">
 
 
-			<a class="homepage_link" href="javascript:history.go(-1);">메인 홈으로 <span class="block_pd">
+			<a class="homepage_link" href="/">메인 홈으로 <span class="block_pd">
 			</span> 바로가기
 			</a>
 
