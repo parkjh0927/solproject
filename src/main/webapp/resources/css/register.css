@@ -35,10 +35,6 @@
     
     
     /* 중복아이디 검사 */
-    .id_input_ok{
-    	color : green;
-    	display : none;
-    }
     .id_input_no{
     	color : red;
     	display : none;

@@ -44,11 +44,9 @@ $(".id_input").on("propertychange change keyup paste input", function () {
     success: function (result) {
       console.log("성공여부" + result);
       if (result != "fail") {
-        $(".id_input_ok").css("display", "inline-block");
         $(".id_input_no").css("display", "none");
       } else {
         $(".id_input_no").css("display", "inline-block");
-        $(".id_input_ok").css("display", "none");
       }
     },
     error: function (xhr, status, error) {

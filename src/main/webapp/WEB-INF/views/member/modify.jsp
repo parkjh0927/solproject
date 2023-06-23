@@ -113,11 +113,11 @@
           
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   
-                    
-			<button type="submit" class="btn btn-default">수정하기</button>
-			<button type="button" class="btn btn-info">홈으로</button>
+          <div class="col">           
+			<button type="submit" class="btn btn-info">수정하기</button>
+			<a href="/" class="btn btn-primary">홈으로</a>
 			<button type="button" class="btn btn-danger" onclick="removeMember();">탈퇴하기</button>
-				
+   		  </div>	
 			
         </form>
       </div>

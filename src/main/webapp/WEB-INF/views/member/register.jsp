@@ -19,7 +19,7 @@
 	   <div class="input-form-backgroud row">
 	    <div class="input-form col-md-12 mx-auto">
       
-	    <form class="validation-form registerForm" novalidate method="post" action="" >
+	    <form class="validation-form registerForm" method="post" action="" >
 	       <div class="col">	        
 	         <h4 class="mb-3 center">회원가입</h4>
 	       </div>
@@ -30,9 +30,8 @@
 	           <label for="username">아이디</label>	            			  
 		          <input type="text" class="form-control id_input" id="username" placeholder="알파벳 대소문자, 숫자로 이루어진 4~12자리" 
 		          	name="username" required pattern="^[a-zA-Z0-9]{4,12}$">
-		              <div class="invalid-feedback"></div>             		                         	
-			    	<span class="id_input_ok">사용 가능한 아이디입니다.</span>		    				    	
-			    	<span class="id_input_no">이미 존재하는 아이디입니다.</span>			    				    	   				    		            
+		              <div class="invalid-feedback"></div>	    				    	
+			    	<span class="id_input_no">이미 사용중인 아이디입니다.</span>			    				    	   				    		            
 	        </div>	            	        
  
                        
@@ -53,7 +52,7 @@
 	            </div>
 	          </div>
 
-	          <div class="col-md-8 mb-3">
+	          <div class="col-md-10 mb-3">
 	            <label for="postcode">우편번호</label>
 	          <div class="row">
 		           <div class="col">
@@ -85,6 +84,8 @@
 	          </div>
           </div>
           
+          <br>
+          
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   
           
@@ -98,10 +99,12 @@
   </div>
 	    
 </body>
+
 	
 
 <script src="../resources/js/memRegister.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 
 <%@ include file="../include/footer1.jsp" %>
 
