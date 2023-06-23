@@ -177,7 +177,7 @@
 								</div>
 								<div class="select_box select_area">
 									<label for="searchArea">지역 선택</label> 
-									<select name="searchArea" id="searchArea" title="지역 선택">
+									<select name="	" id="searchArea" title="지역 선택">
 										<option value="">지역</option>
 
 										<option value="1">서울</option>
@@ -216,35 +216,11 @@
 
 									</select>
 								</div>
-								<div class="select_box select_cate"
-									style="background-image: url(../resources/img/cate_ico.svg)";>
-									<label for="searchCate">카테고리 선택</label> <select
-										name="searchCate" id="searchCate" title="카테고리 선택">
-										<option value=>카테고리</option>
-
-										<option value="공연"
-											tagUrl="https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/02/02/54978b43-9a87-4eee-bf1b-26a9e7232de8.png">공연</option>
-
-										<option value="문화관광"
-											tagUrl="https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/02/02/cabb0053-4d18-405e-b1ac-c0628cb0e28b.png">문화관광</option>
-
-										<option value="자연"
-											tagUrl="https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/02/02/738020ae-b5c8-4bbb-becc-b2c86bafd5a2.png">자연</option>
-
-										<option value="환경"
-											tagUrl="https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/02/02/e5889481-fa7a-4736-98f5-6bba2189a715.png">환경</option>
-
-										<option value="꽃"
-											tagUrl="https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/02/02/738020ae-b5c8-4bbb-becc-b2c86bafd5a2.png">꽃</option>
-
-										<option value="가족과함께"
-											tagUrl="https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/02/02/cabb0053-4d18-405e-b1ac-c0628cb0e28b.png">가족과함께</option>
-
-									</select>
-								</div>
+								
+								
 								<div class="btn_box">
-									<button class="btn_search" id="btnSearch"
-										onclick="javascript:void(0);">
+									<button class="btn_search" id="btnSearch">
+										<!-- onclick="javascript:void(0);"> -->
 										<span>검색</span>
 									</button>
 								</div>
