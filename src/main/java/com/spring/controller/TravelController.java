@@ -23,9 +23,9 @@ public class TravelController {
 
 	}
 
-	@GetMapping("/performance")
-	public void perlistGet() {
-		log.info("performance");
+	@GetMapping("/fedetail")
+	public void fedetailGet() {
+		log.info("fedetail");
 
 	}
 }

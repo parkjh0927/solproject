@@ -1,8 +1,26 @@
+//준형 작성
+startDate = 20230101
+endDate = 20231231
+areaCode = ""
+document.querySelector("#btnSearch").addEventListener("click", () =>{
+  startDate = "2023"+document.getElementById("searchDate").value+"01"
+  endDate = "2023"+document.getElementById("searchDate").value+"31"
+  areaCode = document.getElementById("searchArea").value
+  document.querySelector("#fstvlList").innerHTML = ""
+  start()
+})
+
+
+
+
+
+
+//준형 작성
 let page = 1;
 const pageSize = 12;
 
 function fetchData() {
-  const url = `https://apis.data.go.kr/B551011/KorService1/searchFestival1?numOfRows=${pageSize}&pageNo=${page}&MobileOS=AND&MobileApp=SolTour&_type=json&arrange=R&eventStartDate=20230101&serviceKey=XQa%2FASRtG5fdnoXmCcOAnCDgWeQrvUNGpQZLKr10Wa7YyOOZXFTm0sB7i%2FwvFvAUSmuQdj89r5ay%2BfTA7ASTIw%3D%3D`;
+  const url = `https://apis.data.go.kr/B551011/KorService1/searchFestival1?numOfRows=${pageSize}&pageNo=${page}&MobileOS=AND&MobileApp=SolTour&_type=json&arrange=R&eventStartDate=${startDate}&eventEndDate=${endDate}&areaCode=${areaCode}&serviceKey=XQa%2FASRtG5fdnoXmCcOAnCDgWeQrvUNGpQZLKr10Wa7YyOOZXFTm0sB7i%2FwvFvAUSmuQdj89r5ay%2BfTA7ASTIw%3D%3D`;
 
   return fetch(url)
     .then((response) => {
@@ -55,9 +73,7 @@ function showItems(items) {
 
 function loadMore() {
   page++; // 페이지 번호를 증가시킴
-  fetchData()
-    .then((items) => showItems(items))
-    .catch((error) => console.log(error));
+  start()
 }
 
 // 더보기 버튼 클릭 이벤트 설정
@@ -65,9 +81,16 @@ const loadMoreButton = document.querySelector("#loadMoreButton");
 loadMoreButton.addEventListener("click", loadMore);
 
 // 초기 데이터 로드
-fetchData()
+
+
+function start(){
+  fetchData()
   .then((items) => showItems(items))
 
   .catch((error) => console.log(error));
+
+}
+
+start()
 
 

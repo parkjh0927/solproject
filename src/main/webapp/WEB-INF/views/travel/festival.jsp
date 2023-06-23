@@ -177,7 +177,7 @@
 								</div>
 								<div class="select_box select_area">
 									<label for="searchArea">지역 선택</label> 
-									<select name="searchArea" id="searchArea" title="지역 선택">
+									<select name="	" id="searchArea" title="지역 선택">
 										<option value="">지역</option>
 
 										<option value="1">서울</option>
@@ -216,9 +216,10 @@
 
 									</select>
 								</div>
+	
 								<div class="btn_box">
-									<button class="btn_search" id="btnSearch"
-										onclick="javascript:void(0);">
+									<button class="btn_search" id="btnSearch">
+										<!-- onclick="javascript:void(0);"> -->
 										<span>검색</span>
 									</button>
 								</div>
