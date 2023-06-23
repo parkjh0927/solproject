@@ -22,6 +22,7 @@ function locData(land){
             let item = data.response.body.items.item;
             let n=data.response.body.numOfRows
             i = 0;
+            str2 += '<option value="">시/군/구 선택</option>';
             item.forEach((data) => {
                 if (i < n) {
                     str2 += '<option value="' + data.code + '">' + data.name + '</option>';
