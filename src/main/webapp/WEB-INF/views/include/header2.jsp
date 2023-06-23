@@ -121,10 +121,8 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="/travel/festival" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              여행 정보
-            </a>
+          <li class="nav-item">
+            <a class="nav-link" href="/travel/festival">여행 정보</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/accommodation/accommodation">숙박 정보</a>
