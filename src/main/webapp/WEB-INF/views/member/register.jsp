@@ -6,7 +6,34 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
-	<link rel="stylesheet" href="../resources/css/register.css" type="text/css"/>
+<link rel="stylesheet" href="../resources/css/register.css" type="text/css"/>
+	
+<style>
+
+	#username::placeholder, #password::placeholder, #confirmPassword::placeholder {
+	  font-size: 12px; 
+	}
+    
+    
+    /* 중복아이디 검사 */
+    .id_input_no{
+    	color : red;
+    	display : none;
+    }
+    
+    /* 비밀번호 확인 */
+    .confirmPW_no{
+    	color : red;
+    	display : none;
+    }
+    .confirmPW_ok{
+    	color : green;
+    	display : none;
+    }
+
+</style>	
+	
+	
 	
  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
@@ -30,26 +57,32 @@
 	           <label for="username">아이디</label>	            			  
 		          <input type="text" class="form-control id_input" id="username" placeholder="알파벳 대소문자, 숫자로 이루어진 4~12자리" 
 		          	name="username" required pattern="^[a-zA-Z0-9]{4,12}$">
-		              <div class="invalid-feedback"></div>	    				    	
-			    	<span class="id_input_no">이미 사용중인 아이디입니다.</span>			    				    	   				    		            
+		          <div class="invalid-feedback"></div>
+		          <span class="id_input_no">이미 사용중인 아이디입니다.</span>			    				    	   				    		            
 	        </div>	            	        
  
                        
             <div class="col-md-8 mb-3">
               <label for="password">비밀번호</label>
-	              <input type="text" class="form-control" id="password" placeholder="알파벳,숫자,특수문자가 하나이상씩 포함된 5~12자리" 
+	              <input type="password" class="form-control" id="password" placeholder="알파벳,숫자,특수문자가 하나이상씩 포함된 5~12자리" 
 	              	name="password" required pattern="^(?=.*[A-za-z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{5,12}$">
-	              <div class="invalid-feedback">
-	                비밀번호를 확인해주세요.
-	              </div>
+	              <div class="invalid-feedback"></div>
             </div>
+            
+            <div class="col-md-8 mb-3">
+              <label for="confirmPassword">비밀번호 확인</label>
+	              <input type="password" class="form-control pwd_input" id="confirmPassword" placeholder="동일한 비밀번호를 입력해주세요" 
+	              	name="confirmPassword" required pattern="^(?=.*[A-za-z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{5,12}$">
+	              <div class="invalid-feedback"></div>
+	              <span class="confirmPW_no">비밀번호가 일치하지 않습니다.</span>
+	              <span class="confirmPW_ok">비밀번호가 일치합니다.</span>
+            </div>
+          
           
 	          <div class="col-md-8 mb-3">
 	            <label for="email">이메일</label>
 	            <input type="email" class="form-control" id="email" name="email" placeholder="you@gmail.com" required>
-	            <div class="invalid-feedback">
-	              이메일을 확인해주세요.
-	            </div>
+	            <div class="invalid-feedback"></div>
 	          </div>
 
 	          <div class="col-md-10 mb-3">

@@ -14,22 +14,21 @@ regForm.addEventListener("submit", (e) => {
 });
 
 /**
- * 아이디 중복검사
+ * 아이디 중복검사 (비동기식)
  */
 //csrf 토큰 첨부
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
 
-//propertychange, change, keyup, paste, input 이벤트가 발생할 때마다
-$(".id_input").on("propertychange change keyup paste input", function () {
-  console.log("keyup 테스트");
+//keyup, paste, input 이벤트가 발생할 때마다 실행
+$(".id_input").on("keyup paste input", function () {
+  console.log("아이디 중복검사 keyup 테스트");
 
   var username = $(".id_input").val(); // .id_input에 입력되는 값
   var data = { username: username }; // '컨트롤에 넘길 데이터이름' : '데이터(.id_input에 입력되는 값)'
 
   // 빈칸일땐 글씨 안뜨게
   if (username.length === 0) {
-    $(".id_input_ok").css("display", "none");
     $(".id_input_no").css("display", "none");
     return;
   }
@@ -39,13 +38,16 @@ $(".id_input").on("propertychange change keyup paste input", function () {
     url: "/member/memberIdChk",
     data: data,
     beforeSend: function (xhr) {
+      // 토큰 전송
       xhr.setRequestHeader(header, token);
     },
     success: function (result) {
       console.log("성공여부" + result);
       if (result != "fail") {
+        // 사용가능한 아이디일때
         $(".id_input_no").css("display", "none");
       } else {
+        // 중복된 아이디일때
         $(".id_input_no").css("display", "inline-block");
       }
     },
@@ -53,6 +55,24 @@ $(".id_input").on("propertychange change keyup paste input", function () {
       console.log(status, error);
     },
   });
+});
+
+// 비밀번호 재확인 (비동기식)
+$(".pwd_input").on("keyup paste input", function () {
+  console.log("비밀번호 검사 keyup 테스트");
+
+  var inputed = $("#password").val();
+  var reinputed = $("#confirmPassword").val();
+
+  if (inputed == reinputed) {
+    //비번 일치시
+    $(".confirmPW_no").css("display", "none");
+    $(".confirmPW_ok").css("display", "inline-block");
+  } else if (inputed != reinputed || reinputed == "") {
+    // 비번 불일치시
+    $(".confirmPW_ok").css("display", "none");
+    $(".confirmPW_no").css("display", "inline-block");
+  }
 });
 
 /**
