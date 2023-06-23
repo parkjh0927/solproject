@@ -16,7 +16,7 @@ public class MemberDTO {
 	private String password;
 	private String email;
 	
-	private int postcode;
+	private String postcode;
 	private String address;
 	private String address2;
 	

@@ -16,10 +16,9 @@ regForm.addEventListener("submit", (e) => {
 /**
  * 아이디 중복검사
  */
-//ajaxSend는 Ajax요청을 보내기전 호출되는 메서드
-$(document).ajaxSend(function (e, xhr, options) {
-  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-});
+//csrf 토큰 첨부
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
 
 //propertychange, change, keyup, paste, input 이벤트가 발생할 때마다
 $(".id_input").on("propertychange change keyup paste input", function () {
@@ -27,10 +26,34 @@ $(".id_input").on("propertychange change keyup paste input", function () {
 
   var username = $(".id_input").val(); // .id_input에 입력되는 값
   var data = { username: username }; // '컨트롤에 넘길 데이터이름' : '데이터(.id_input에 입력되는 값)'
+
+  // 빈칸일땐 글씨 안뜨게
+  if (username.length === 0) {
+    $(".id_input_ok").css("display", "none");
+    $(".id_input_no").css("display", "none");
+    return;
+  }
+
   $.ajax({
     type: "post",
     url: "/member/memberIdChk",
     data: data,
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader(header, token);
+    },
+    success: function (result) {
+      console.log("성공여부" + result);
+      if (result != "fail") {
+        $(".id_input_ok").css("display", "inline-block");
+        $(".id_input_no").css("display", "none");
+      } else {
+        $(".id_input_no").css("display", "inline-block");
+        $(".id_input_ok").css("display", "none");
+      }
+    },
+    error: function (xhr, status, error) {
+      console.log(status, error);
+    },
   });
 });
 

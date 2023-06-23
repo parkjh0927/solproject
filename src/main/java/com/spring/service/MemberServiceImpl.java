@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.domain.LeaveDTO;
 import com.spring.domain.MemberAuthorityDTO;
 import com.spring.domain.MemberDTO;
 import com.spring.mapper.MemberMapper;
@@ -39,8 +40,8 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
-    public MemberDTO read(String userid) {		
-        return mapper.read(userid);       
+    public MemberDTO read(String username) {		
+        return mapper.read(username);       
     }
 
 
@@ -48,6 +49,33 @@ public class MemberServiceImpl implements MemberService {
 	public boolean modify(MemberDTO dto) {
 		return mapper.modify(dto)==1? true:false;
 	}
+
+
+	@Override
+	public boolean leave(LeaveDTO leaveDTO) {
+			
+		MemberDTO dto = mapper.read(leaveDTO.getUsername());
+		
+		// matches(암호화하기 전 코드, db에 암호화된 코드)
+		if(encoder.matches(leaveDTO.getCheckPassword(), dto.getPassword())) {
+			return true;			
+		} 		
+		return false;
+				
+	}
+
+
+	@Override
+	public boolean idCheck(String username) {
+		
+		return mapper.idCheck(username)==1? true:false;
+	}
+
+
+	
+
+
+	
 
 	
 	

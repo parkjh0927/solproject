@@ -13,13 +13,6 @@ import com.spring.mapper.MemberMapper;
 import lombok.extern.slf4j.Slf4j;
 
 
-/*    
- * 
- *   UserDetails(인터페이스)  <-------- User(클래스) <------ CustomUser 
- */
-
-
-
 @Service
 @Slf4j
 public class CustomUserDetailService implements UserDetailsService {

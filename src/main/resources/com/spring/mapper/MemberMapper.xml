@@ -5,7 +5,7 @@
 	<!-- 회원가입 -->
 	<insert id="register">
 		insert into member(username,password,email,postcode,address,address2) 
-		values(#{username},#{password},#{email},#{postcode,jdbcType=INTEGER},#{address,jdbcType=VARCHAR},#{address2,jdbcType=VARCHAR})
+		values(#{username},#{password},#{email},#{postcode},#{address},#{address2,jdbcType=VARCHAR})
 	</insert>
 	
 	<insert id="registerAuth">
@@ -40,7 +40,7 @@
 	
 		
 	<!-- 중복 아이디 체크	 -->
-	<select id="dupId" resultType="java.lang.Integer">
+	<select id="idCheck" resultType="java.lang.Integer">
 		select count(*) from member where username=#{username}
 	</select>
 	

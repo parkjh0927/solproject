@@ -67,7 +67,7 @@
 	           <label for="password">비밀번호</label>
 	           <div class="row">
     		   <div class="col">   			  
-		          <input type="text" class="form-control" id="password" name="password" value="****" readonly>		                          	
+		          <input type="password" class="form-control" id="password" name="password" value="${dto.password}" readonly>		                          	
 	              </div>             	
 			    		<div class="col-md-6">
 			      			<button type="button" class="btn btn-danger">비밀번호 변경</button>
@@ -79,17 +79,27 @@
           
 	          <div class="col-md-8 mb-3">
 	            <label for="email">이메일</label>
-	            <input type="email" class="form-control" id="email" name="email" value="${dto.email}">	            
+	            <input type="email" class="form-control" id="email" name="email" value="${dto.email}" required>
+		            <div class="invalid-feedback">
+		              이메일을 확인해주세요.
+		            </div>
 	          </div>
 
-	          <div class="col-md-8 mb-3">
+	          <div class="col-md-12 mb-3">
 	            <label for="postcode">우편번호</label>
-		        <input type="text" class="form-control" id="postcode" name="postcode" value="${dto.postcode}">   		        
-	          </div>
+	            <div class="row">
+		        <div class="col">
+		        	<input type="text" class="form-control" id="postcode" name="postcode" value="${dto.postcode}" required>
+		        </div>
+		           <div class="col-md-7 mb-3">
+			           <input type="button" onclick="exDaumPostcode()" value="우편번호 찾기">        
+			       </div>
+		        </div>
+	          	</div>
           
 	          <div class="col-md-8 mb-3">
 	            <label for="address">주소</label>
-	            <input type="text" class="form-control" id="address" name="address" value="${dto.address}">           
+	            <input type="text" class="form-control" id="address" name="address" value="${dto.address}" required>
 	          </div>
 	
 	          <div class="col-md-8 mb-3">
@@ -104,15 +114,11 @@
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   
                     
-			<button type="submit" class="btn btn-info">수정</button>
-			<button type="button" class="btn btn-info">취소</button>
-			<button type="button" class="btn btn-danger">탈퇴</button>
+			<button type="submit" class="btn btn-default">수정하기</button>
+			<button type="button" class="btn btn-info">홈으로</button>
+			<button type="button" class="btn btn-danger" onclick="removeMember();">탈퇴하기</button>
 				
-			<!-- <button type="button" class="btn btn-secondary">홈</button> -->
-          
-          <!-- <div class="col">
-          	<button class="btn btn-primary btn-lg" type="submit">가입하기</button>
-          </div> -->
+			
         </form>
       </div>
     </div>
@@ -122,8 +128,9 @@
 </body>
 	
 
-
-<script src="../resources/js/memModify.js"></script>
+<script src="../resources/js/memRegister.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="../resources/js/memRemove.js"></script>
 
 <%@ include file="../include/footer1.jsp" %>
 

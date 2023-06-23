@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
 	<link rel="stylesheet" href="../resources/css/register.css" type="text/css"/>
+	
+ <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+ <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+ 
 </head>
 	
 
@@ -28,8 +32,9 @@
 		          	name="username" required pattern="^[a-zA-Z0-9]{4,12}$">
 		              <div class="invalid-feedback"></div>             		                         	
 			    	<span class="id_input_ok">사용 가능한 아이디입니다.</span>		    				    	
-			    	<span class="id_input_no">이미 존재하는 아이디입니다.</span>		    				    		            
-	        </div>	            
+			    	<span class="id_input_no">이미 존재하는 아이디입니다.</span>			    				    	   				    		            
+	        </div>	            	        
+ 
                        
             <div class="col-md-8 mb-3">
               <label for="password">비밀번호</label>
@@ -95,12 +100,10 @@
 </body>
 	
 
-
 <script src="../resources/js/memRegister.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <%@ include file="../include/footer1.jsp" %>
-
 
 
 

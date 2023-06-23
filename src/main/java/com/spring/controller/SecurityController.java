@@ -3,6 +3,8 @@ package com.spring.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.domain.LeaveDTO;
 import com.spring.domain.MemberDTO;
 import com.spring.service.MemberService;
 
@@ -78,10 +81,19 @@ public class SecurityController {
 	// 중복 아이디 점검
 	@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST) // /member/memberIdChk에 대한 POST 메서드를 처리
 	@ResponseBody //컨트롤러 작업이 완료될때 결과값으로 리턴시킴 (뷰 리졸버를 동작시키지 않음) 
-	public void memberIdChkPost(String username) throws Exception {	
-		log.info("memberIdChk() 진입");							
+	public String memberIdChkPost(String username) throws Exception {	
+		log.info("memberIdChk() 진입");	
+		
+		boolean result = service.idCheck(username);
+		if(result) {			
+			return "fail";	// 중복 아이디가 존재			
+		} else {			
+			return "success";	// 중복 없음			
+		}	
 	}
 
+	
+	
 
 	// 마이페이지 보여주기
 	@PreAuthorize("isAuthenticated()")
@@ -94,16 +106,16 @@ public class SecurityController {
         MemberDTO dto = service.read(username);
         model.addAttribute("dto",dto);
 		
-        log.info("마이페이지 요청 유저아이디: "+dto.getUsername());
-        log.info("마이페이지 요청 비번: "+dto.getPassword());
-        log.info("마이페이지 요청 메일: "+dto.getEmail());
-        log.info("마이페이지 요청 우편: "+dto.getPostcode());
-        log.info("마이페이지 요청 주소: "+dto.getAddress());
-        log.info("마이페이지 요청 주소2: "+dto.getAddress2());
+//        log.info("마이페이지 요청 유저아이디: "+dto.getUsername());
+//        log.info("마이페이지 요청 비번: "+dto.getPassword());
+//        log.info("마이페이지 요청 메일: "+dto.getEmail());
+//        log.info("마이페이지 요청 우편: "+dto.getPostcode());
+//        log.info("마이페이지 요청 주소: "+dto.getAddress());
+//        log.info("마이페이지 요청 주소2: "+dto.getAddress2());
 		
     }
 	
-	// 회원 정보 수정 폼
+	// 회원 정보 수정 폼 보여주기
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/modify")
 	public void modifyGet(Principal principal, Model model) {
@@ -111,10 +123,9 @@ public class SecurityController {
 		String username=principal.getName();
         
         MemberDTO dto = service.read(username);
-        model.addAttribute("dto",dto);
-						
+        model.addAttribute("dto",dto);						
 	}
-	
+			
 	// 회원 정보 수정
 	@PostMapping("/modify")
 	public String modifyPost(MemberDTO dto) {
@@ -123,6 +134,35 @@ public class SecurityController {
 		String path = service.modify(dto) ? "redirect:/member/myPage" : "/member/myPage";
 		return path;
 	}
+	
+	
+	// 회원 탈퇴 폼 보여주기
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/leave")
+	public void leaveGet(Principal principal, Model model) {
+		log.info("회원 탈퇴 페이지 요청");		
+		String username=principal.getName();
+        
+        MemberDTO dto = service.read(username);
+        model.addAttribute("dto",dto);
+	}
+	
+	// 회원 탈퇴
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/leave")
+	public String leavePost(LeaveDTO leaveDTO, HttpSession session) {
+		log.info("회원 탈퇴 요청"+leaveDTO);
+						
+		if(service.leave(leaveDTO)) {
+			session.invalidate();
+			SecurityContextHolder.clearContext();	//시큐리티에 저장된 데이터 삭제
+			return "redirect:/";
+		}
+		return "redirect:/member/leave";
+	}
+	
+	
+	
 	
 
 }

@@ -50,9 +50,9 @@
 	   <div class="input-form-backgroud row">
 	    <div class="input-form col-md-12 mx-auto">
       
-	    <form class="myPageForm" method="get" action="" >
+	    <form class="leaveForm" method="post" action="/member/leave" >
 	       <div class="col">	        
-	         <h4 class="mb-3 center">마이페이지</h4>
+	         <h4 class="mb-3 center">회원탈퇴</h4>
 	       </div>
 	        
 	        <br>
@@ -61,43 +61,22 @@
 	           <label for="username">아이디</label>	            			  
 		       <input type="text" class="form-control" id="username" name="username" value="${dto.username}" readonly>
 		    </div>	            
-                       
+                                     
             <div class="col-md-8 mb-3">
-              <label for="password">비밀번호</label>
-	          <input type="password" class="form-control" id="password" name="password" value="${dto.password}" readonly>	              
-            </div>
-          
-	          <div class="col-md-8 mb-3">
-	            <label for="email">이메일</label>
-	            <input type="email" class="form-control" id="email" name="email" value="${dto.email}" readonly>	            
-	          </div>
-
-	          <div class="col-md-8 mb-3">
-	            <label for="postcode">우편번호</label>
-		        <input type="text" class="form-control" id="postcode" name="postcode" value="${dto.postcode}" readonly>   		        
-	          </div>
-          
-	          <div class="col-md-8 mb-3">
-	            <label for="address">주소</label>
-	            <input type="text" class="form-control" id="address" name="address" value="${dto.address}" readonly>           
-	          </div>
-	
-	          <div class="col-md-8 mb-3">
-	            <label for="address2">상세주소<span class="text-muted">(선택사항)</span></label>
-	            <input type="text" class="form-control" id="address2" name="address2" value="${dto.address2}" readonly>
-	          </div>
-
-
-          <br>
-          
+	           <label for="checkPassword">비밀번호 확인</label>	           		  
+		       <input type="password" class="form-control" id="checkPassword" name="checkPassword">
+	        </div>
+            
+                     
           
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   
-           <div class="col">
-           		<a href="/member/modify" class="btn btn-info">정보수정</a>         
-           		<a href="/member/leave" class="btn btn-danger">회원탈퇴</a>
-           </div>         
-				
+          
+			<div class="col">
+           		<a href="/member/myPage" class="btn btn-info">취소하기</a>
+           		<button type="button" class="btn btn-danger">탈퇴하기</button>
+           </div>    
+							
 			
         </form>
       </div>
@@ -108,6 +87,7 @@
 </body>
 	
 
+<script src="../resources/js/memRemove.js"></script>
 
 
 <%@ include file="../include/footer1.jsp" %>
