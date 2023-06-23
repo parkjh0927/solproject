@@ -9,23 +9,18 @@ import com.spring.service.TravelService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("travel")
+@RequestMapping("accommodation")
 @Controller
 @Slf4j
-public class TravelController {
+public class AccomController {
 
-	@Autowired
-	private TravelService service;
 
-	@GetMapping("/festival")
+
+	@GetMapping("/accommodation")
 	public void feslistGet() {
-		log.info("festival");
+		log.info("accommodation");
 
 	}
 
-	@GetMapping("/performance")
-	public void perlistGet() {
-		log.info("performance");
 
-	}
 }

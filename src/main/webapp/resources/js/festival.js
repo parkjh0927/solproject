@@ -67,4 +67,7 @@ loadMoreButton.addEventListener("click", loadMore);
 // 초기 데이터 로드
 fetchData()
   .then((items) => showItems(items))
+
   .catch((error) => console.log(error));
+
+

@@ -46,19 +46,21 @@
 	href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.css'>
 <link rel='stylesheet'
 	href='https://unpkg.com/video.js/dist/video-js.min.css'>
-	
-<script src="../resources/js/jquery-3.3.1.min.js"></script>    
+<script src="../resources/js/jquery-3.3.1.min.js"></script>
 <script src="../resources/js/greensock/gsap.min.js"></script>
 <script
 	src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.js'></script>
 <script src="../resources/js/lottie-player.js"></script>
 <script src="../resources/js/common.js"></script>
 <script src="../resources/js/lib/comm.js"></script>
+<!-- <script src="../resources/js/test222.js"></script> -->
+
 </head>
 <body>
 	<!-- header -->
 	<header class="header_black" role="banner">
 		<div class="inner">
+
 
 
 			<a class="homepage_link" href="javascript:history.go(-1);">메인 홈으로 <span class="block_pd">
@@ -138,6 +140,7 @@
 	</header>
 	<!--// header -->
 
+
 	<!-- main -->
 	<main role="main">
 		<div class="wrap">
@@ -146,9 +149,10 @@
 				<div class="inner">
 					<p class="blind">전국축제</p>
 					<ul class="tab_area">
-						<li class="active"><h1>전국축제</h1></li>
+						<li class="active"><h1>전국숙소</h1></li>
 						<!-- 활성시 class="active" -->
 					</ul>
+					
 					<div class="blind">검색영역</div>
 					<form name="festivalSearch" id="festivalSearch"
 						class="festival_search" onsubmit="return false;">
@@ -156,64 +160,36 @@
 							<legend class="blind">축제 검색</legend>
 							<div class="search_box_wrap">
 								<div class="select_box select_date">
-									<label for="searchDate">시기 선택</label> <select name="searchDate"
-										id="searchDate" title="시기 선택">
-										<option value="">시기</option>
-										<option value="A">개최중</option>
-										<option value="B">개최예정</option>
-										<option value="01">01월</option>
-										<option value="02">02월</option>
-										<option value="03">03월</option>
-										<option value="04">04월</option>
-										<option value="05">05월</option>
-										<option value="06">06월</option>
-										<option value="07">07월</option>
-										<option value="08">08월</option>
-										<option value="09">09월</option>
-										<option value="10">10월</option>
-										<option value="11">11월</option>
-										<option value="12">12월</option>
+									<label for="searchDate">지역 선택</label> <select name="searchDate"
+										id="searchLand" title="시기 선택">
+										
+										<option value="">지역 선택</option>
+										<option value="1">서울</option>
+										<option value="2">인천</option>
+										<option value="3">대전</option>
+										<option value="4">대구</option>
+										<option value="5">광주</option>
+										<option value="6">부산</option>
+										<option value="7">울산</option>
+										<option value="8">제주특별자치시</option>
+										<option value="31">경기도</option>
+										<option value="32">강원특별자치도</option>
+										<option value="33">충청북도</option>
+										<option value="34">충청남도</option>
+										<option value="35">경상북도</option>
+										<option value="36">경상남도</option>
+										<option value="37">전라북도</option>
+										<option value="38">전라남도</option>
+										<option value="39">제주도</option>
 									</select>
 								</div>
+								
+								
+								
 								<div class="select_box select_area">
-									<label for="searchArea">지역 선택</label> 
-									<select name="searchArea" id="searchArea" title="지역 선택">
-										<option value="">지역</option>
-
-										<option value="1">서울</option>
-
-										<option value="2">인천</option>
-
-										<option value="3">대전</option>
-
-										<option value="4">대구</option>
-
-										<option value="5">광주</option>
-
-										<option value="6">부산</option>
-
-										<option value="7">울산</option>
-
-										<option value="8">세종시</option>
-
-										<option value="31">경기도</option>
-
-										<option value="32">강원도</option>
-
-										<option value="33">충청북도</option>
-
-										<option value="34">충청남도</option>
-
-										<option value="35">경상북도</option>
-
-										<option value="36">경상남도</option>
-
-										<option value="37">전라북도</option>
-
-										<option value="38">전라남도</option>
-
-										<option value="39">제주도</option>
-
+									<label for="searchArea">시/군/구 선택</label> <select name="searchArea"
+										id="searchArea" title="지역 선택">
+										<option value="">시/군/구 선택</option>
 									</select>
 								</div>
 								<div class="btn_box">
@@ -228,7 +204,6 @@
 				</div>
 			</section>
 			<!--// 검색 -->
-
 			<!-- 비주얼 배너 -->
 			<section class="visual_wrap" role="region">
 				<div class="inner">
@@ -273,6 +248,7 @@
 									</div>
 							</a>
 							</li>
+
 
 							<li class="visual visual3 active">
 								<!-- class="active" 추가시 활성 --> <a href="#"
@@ -363,7 +339,6 @@
 			</section>
 			<!--// 비주얼 배너 -->
 
-
 			<!-- 축제 리스트 -->
 			<section class="other_list type2" role="region">
 				<div class="inner">
@@ -377,13 +352,25 @@
 							<p>찾으시는 축제를 다시 검색해 주세요</p>
 						</div>
 						<!-- //검색 결과 없음 -->
+
+						<div class="festival_ul_top" id="festival_ul_top"
+							style="display: none;">
+							<ul class="tab_area">
+								<li id="tabFstvlList" class="active"><button>축제일순</button></li>
+								<!-- class="active" 추가시 활성 -->
+								<li id="tabFstvlLikeOrderList"><button>인기순</button></li>
+							</ul>
+						</div>
 						<div class="tab_cont_area">
+						
 							<!-- 축제일순 -->
-							<div class="tab_cont active" aria-expanded="true" role="application">
+							<div class="tab_cont active" aria-expanded="true"
+								role="application">
 								<!-- class="active" 추가시 활성 -->
 								<p class="blind">축제일순 리스트</p>
 								<ul class="other_festival_ul" id="fstvlList"></ul>
 							</div>
+							<!--// 축제일순 -->
 							<!-- 더보기 버튼 -->
 							<button class="list_more_btn" id="loadMoreButton">더보기</button>
 							<!-- //더보기 버튼 -->
@@ -391,16 +378,32 @@
 					</div>
 				</div>
 			</section>
+			<!--// 축제 리스트 -->
+			
+			<div class="loading">
+				<div class="loading_start" aria-live="assertive" role="alert">
+					<div class="blind">please wait while we gather your
+						information, Loading...</div>
+					<!-- <img src="../resources/img/loading.svg" alt="로딩 이미지"> -->
+				</div>
+			</div>
 		</div>
+
 	</main>
 	<!--// main -->
-	
-	
+
 	<!-- footer -->
 	<footer role="contentinfo" id="footer">
 		<div class="footer_inner">
 			<div class="top_util">
 				<ul class="top_util_ul">
+
+
+
+
+
+
+
 
 
 
@@ -424,12 +427,28 @@
 
 
 
+
+
+
+
+
+						<li>우)26464 강원도 원주시 세계로 10</li>
+						<li>TEL : <a href="tel:033-738-3000">033-738-3000</a></li>
+						<li>사업자등록번호 : 202-81-50707</li>
+						<li>통신판매업신고 : 제2009-서울중구-1234호</li>
 					</ul>
 				</address>
 			</div>
 			<div class="footer_bottom">
 				<span class="copyright">&copy; 한국관광공사</span>
 				<ul class="family_f_logo">
+
+
+
+
+
+
+
 
 
 
@@ -449,8 +468,9 @@
 	<!--// footer -->
 </body>
 </html>
+
+
 	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-	<script src="../resources/js/festival.js"></script>
     <script>
         var visualSwiper;
         // 검색 swiper
@@ -488,7 +508,7 @@
             }
             return false;
         });
-        
+
         function slideWid(){
             var $slide = $('.swiper-container .swiper-slide');
             var $slideLen = $slide.length;
@@ -707,6 +727,27 @@
 				, totalCnt : 0
 		};
 
+		function fn_search(startIdx){
+
+			if(isLoading) return;
+
+			var searchType = 'A';
+			if($('#tabFstvlLikeOrderList').hasClass('active')){
+				searchType = 'B';
+			}
+
+			if(gfn_chkNvl(startIdx) || startIdx == 0){
+				startIdx = 0;
+			}
+
+			var param = {
+				startIdx : startIdx
+				, searchType : searchType
+				, searchDate : $('#searchDate').val()
+				, searchArea : $('#searchArea').val()
+				, searchCate : $('#searchCate').val()
+			};
+
 			var imgOnErrorStr = 'onerror="this.src=\'/kfes/resources/img/default_list.png\';"';
 			isLoading = true;
 			gfn_callPostJsonData("/kfes/list/selectWntyFstvlList.do", param, function(res){
@@ -813,8 +854,7 @@
 
 
 
-
-
+<script src="../resources/js/accommodation.js"></script>
 
 <!-- 구글 옵티마이즈 스크립트, 긴급한 변동사항 등에 활용 -->
 <script src="https://www.googleoptimize.com/optimize.js?id=OPT-5JVS3BG"></script>
@@ -884,6 +924,7 @@
 	});
 
 </script>
+
 
 <script type="text/javascript">
     var otd_nm = "";
@@ -975,6 +1016,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- 가장 하단에 실행되도록 넣어 주세요 -->
+
 <script type="text/javascript" charset="UTF-8">
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
