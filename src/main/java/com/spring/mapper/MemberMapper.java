@@ -1,9 +1,9 @@
 package com.spring.mapper;
 
 
-import com.spring.domain.LeaveDTO;
 import com.spring.domain.MemberAuthorityDTO;
 import com.spring.domain.MemberDTO;
+import com.spring.domain.PasswordDTO;
 
 public interface MemberMapper {
 	public int register(MemberDTO dto);
@@ -13,7 +13,6 @@ public interface MemberMapper {
 	
 	public int idCheck(String username);
 	public int modify(MemberDTO dto);
-	
-	
-	public int leave(LeaveDTO leaveDTO);
+	public int changePwd(PasswordDTO passwordDTO);	
+	public int leave(String username);
 }

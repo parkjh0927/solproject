@@ -7,39 +7,7 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-<style>
-	body {
-      min-height: 100vh;
-
-      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
-      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
-      
-      padding-top: 100px; /* 헤더의 높이만큼 메인 컨텐츠를 아래로 밀어줌 */
-    }
-
-    .input-form {
-      max-width: 680px;
-
-      margin-top: 80px;
-      padding: 32px;
-
-      background: #fff;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-    }
-
-</style>
-
-
+<link rel="stylesheet" href="../resources/css/register.css" type="text/css"/>
 
 
 </head>
@@ -70,7 +38,7 @@
 		          <input type="password" class="form-control" id="password" name="password" value="${dto.password}" readonly>		                          	
 	              </div>             	
 			    		<div class="col-md-6">
-			      			<button type="button" class="btn btn-danger">비밀번호 변경</button>
+			      			<a href="/member/changePwd" class="btn btn-danger">비밀번호 변경</a>
 			    		</div>			    				    	
 	            </div>
 	            </div>
@@ -116,7 +84,7 @@
           <div class="col">           
 			<button type="submit" class="btn btn-info">수정하기</button>
 			<a href="/" class="btn btn-primary">홈으로</a>
-			<button type="button" class="btn btn-danger" onclick="removeMember();">탈퇴하기</button>
+			<button type="button" class="btn btn-danger leaveBtn" onclick="removeMember();">탈퇴하기</button>
    		  </div>	
 			
         </form>
@@ -128,7 +96,7 @@
 </body>
 	
 
-<script src="../resources/js/memRegister.js"></script>
+<script src="../resources/js/memModify.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="../resources/js/memRemove.js"></script>
 

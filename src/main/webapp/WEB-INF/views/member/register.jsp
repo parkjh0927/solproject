@@ -14,7 +14,6 @@
 	  font-size: 12px; 
 	}
     
-    
     /* 중복아이디 검사 */
     .id_input_no{
     	color : red;
@@ -33,13 +32,11 @@
 
 </style>	
 	
-	
-	
  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
  
 </head>
-	
+	          
 
 <body>
 	 <div class="container">
@@ -128,20 +125,16 @@
         </form>
       </div>
     </div>
-    
   </div>
 	    
 </body>
-
-	
+    
 
 <script src="../resources/js/memRegister.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 <%@ include file="../include/footer1.jsp" %>
-
-
 
 
 

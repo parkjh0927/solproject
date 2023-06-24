@@ -1,7 +1,7 @@
 /**
  * 탈퇴 확인 알림창
  */
-document.querySelector(".btn-danger").addEventListener("click", (e) => {
+document.querySelector(".leaveBtn").addEventListener("click", (e) => {
   e.preventDefault();
 
   const password = document.querySelector("#checkPassword");

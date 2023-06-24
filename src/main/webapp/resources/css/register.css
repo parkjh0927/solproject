@@ -29,14 +29,5 @@
     }
     
     
-    #username::placeholder, #password::placeholder {
-	  font-size: 12px; 
-	}
     
-    
-    /* 중복아이디 검사 */
-    .id_input_no{
-    	color : red;
-    	display : none;
-    }
  

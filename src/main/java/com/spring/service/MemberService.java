@@ -4,6 +4,7 @@ package com.spring.service;
 
 import com.spring.domain.LeaveDTO;
 import com.spring.domain.MemberDTO;
+import com.spring.domain.PasswordDTO;
 
 public interface MemberService {
 	//회원가입
@@ -16,6 +17,8 @@ public interface MemberService {
 	public boolean modify(MemberDTO dto);	
 	//회원탈퇴
 	public boolean leave(LeaveDTO leaveDTO);
+	//비번수정
+	public boolean changePwd(PasswordDTO passwordDTO);	
 	
 	
 }

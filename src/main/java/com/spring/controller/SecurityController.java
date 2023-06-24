@@ -12,14 +12,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.LeaveDTO;
 import com.spring.domain.MemberDTO;
+import com.spring.domain.PasswordDTO;
 import com.spring.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -111,8 +112,7 @@ public class SecurityController {
 //        log.info("마이페이지 요청 메일: "+dto.getEmail());
 //        log.info("마이페이지 요청 우편: "+dto.getPostcode());
 //        log.info("마이페이지 요청 주소: "+dto.getAddress());
-//        log.info("마이페이지 요청 주소2: "+dto.getAddress2());
-		
+//        log.info("마이페이지 요청 주소2: "+dto.getAddress2());		
     }
 	
 	// 회원 정보 수정 폼 보여주기
@@ -150,19 +150,44 @@ public class SecurityController {
 	// 회원 탈퇴
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/leave")
-	public String leavePost(LeaveDTO leaveDTO, HttpSession session) {
+	public String leavePost(LeaveDTO leaveDTO, HttpSession session, RedirectAttributes redirectAttributes) {
 		log.info("회원 탈퇴 요청"+leaveDTO);
 						
 		if(service.leave(leaveDTO)) {
 			session.invalidate();
-			SecurityContextHolder.clearContext();	//시큐리티에 저장된 데이터 삭제
+			SecurityContextHolder.clearContext();	//시큐리티의 세션 초기화
 			return "redirect:/";
 		}
+		redirectAttributes.addFlashAttribute("failMessage", "비밀번호가 일치하지 않습니다.");
 		return "redirect:/member/leave";
 	}
 	
 	
+	// 비밀번호 변경 폼 보여주기
+	@GetMapping("/changePwd")
+	public void changePwdGet(Principal principal, Model model) {
+		log.info("비밀번호 변경 페이지 요청");
+		String username = principal.getName();
+        
+        MemberDTO dto = service.read(username);
+        model.addAttribute("dto",dto);
+	}	
 	
+	// 비밀번호 변경
+	@PostMapping("/changePwd")
+	public String changePwdPost(PasswordDTO passwordDTO, HttpSession session, RedirectAttributes redirectAttributes) {
+		log.info("비밀번호 변경 요청" +passwordDTO);
+		
+		if(passwordDTO.passwordEquals()) { // 새비번과 새비번확인이 일치하는지 확인			
+			if(service.changePwd(passwordDTO)) { // 기존비번이 일치하는지 확인
+				session.invalidate();
+				SecurityContextHolder.clearContext();
+				return "redirect:/member/login";
+			}			
+		}
+		redirectAttributes.addFlashAttribute("failMessage", "비밀번호가 일치하지 않습니다.");
+		return "redirect:/member/changePwd";		
+	}	
 	
 
 }

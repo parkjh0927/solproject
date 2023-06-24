@@ -1,10 +1,18 @@
 /**
  * 회원가입 유효성검사
- * 필수요소 비어있으면 폼 막기
+ * 필수요소 비어있거나/형식에 맞지않으면 폼 제출 막기
  */
 const regForm = document.querySelector(".registerForm");
 
 regForm.addEventListener("submit", (e) => {
+  const Pwd = document.getElementById("password").value;
+  const conPwd = document.getElementById("confirmPassword").value;
+
+  if (Pwd !== conPwd) {
+    e.preventDefault();
+    e.stopPropagation();
+    confirmPassword.focus();
+  }
   if (!regForm.checkValidity()) {
     e.preventDefault();
     e.stopPropagation();
@@ -68,7 +76,7 @@ $(".pwd_input").on("keyup paste input", function () {
     //비번 일치시
     $(".confirmPW_no").css("display", "none");
     $(".confirmPW_ok").css("display", "inline-block");
-  } else if (inputed != reinputed || reinputed == "") {
+  } else if (inputed !== reinputed || reinputed === "") {
     // 비번 불일치시
     $(".confirmPW_ok").css("display", "none");
     $(".confirmPW_no").css("display", "inline-block");

@@ -7,20 +7,10 @@
 </head>
 	
 	
-	<!-- 
-		spring security 로그인 페이지 규칙
-		
-		1) post 방식으로, action="/login" 지정
-		2) 아이디를 입력 받은 요소의 이름은 반드시 username이어야 함
-		3) 비밀번호를 입력 받는 요소의 이름은 반드시 password이어야 함 
-		4) post 방식으로 가는 모든 폼 안에는 csrf토큰 값이 포함되어있어야 함
-		
-	 -->
-	
 <main> 	
 <body>  	
   	
-  	<div id="login">
+  <div id="login">
 
   <h1><strong>Welcome.</strong> Please login.</h1>
 
