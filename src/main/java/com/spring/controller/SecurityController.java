@@ -34,6 +34,8 @@ public class SecurityController {
 	private MemberService service;
 	
 	
+	
+	
 	// 회원가입
 	@GetMapping("/register")
 	public void registerGet() {
@@ -178,8 +180,8 @@ public class SecurityController {
 	public String changePwdPost(PasswordDTO passwordDTO, HttpSession session, RedirectAttributes redirectAttributes) {
 		log.info("비밀번호 변경 요청" +passwordDTO);
 		
-		if(passwordDTO.passwordEquals()) { // 새비번과 새비번확인이 일치하는지 확인			
-			if(service.changePwd(passwordDTO)) { // 기존비번이 일치하는지 확인
+		if(passwordDTO.passwordEquals()) { // 새비번과 새비번확인이 일치하는 경우	
+			if(service.changePwd(passwordDTO)) { 
 				session.invalidate();
 				SecurityContextHolder.clearContext();
 				return "redirect:/member/login";
@@ -188,6 +190,39 @@ public class SecurityController {
 		redirectAttributes.addFlashAttribute("failMessage", "비밀번호가 일치하지 않습니다.");
 		return "redirect:/member/changePwd";		
 	}	
+	
+	// 비번찾기 폼 보여주기
+	@GetMapping("/findPwd")
+	public void findPwdGet() {
+		log.info("비번찾기 폼 요청 ");		
+	}
+	
+	// 메일전송
+	@PostMapping("/findPwd")
+	public String findPwdPost(MemberDTO dto, RedirectAttributes redirectAttributes) {
+		MemberDTO memberDto = service.read(dto.getUsername());
+		log.info("비번찾기 " +dto);
+		
+		if (memberDto != null) { // 비밀번호 재설정을 위한 아이디가 존재하는 경우
+	        if (service.findPwd(memberDto)) {
+	            // 비밀번호 재설정 성공
+	            redirectAttributes.addFlashAttribute("successMessage", "임시비밀번호가 발송되었습니다");
+	        } else {
+	            // 비밀번호 재설정 실패
+	            redirectAttributes.addFlashAttribute("failMessage", "임시 비밀번호 발송에 실패했습니다");
+	        }
+	    } else {
+	        // 입력한 아이디가 존재하지 않는 경우
+	        redirectAttributes.addFlashAttribute("failMessage", "아이디가 존재하지 않습니다");
+	    }
+	    return "redirect:/member/findPwd";
+	}
+
+	
+	
+	
+	
+	
 	
 
 }

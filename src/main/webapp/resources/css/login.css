@@ -29,7 +29,8 @@ body {
   line-height: 1.5;
   margin: 0;
   min-height: 100vh;
-  place-items: center;
+  place-items: center; 
+	padding-top: 100px; /* 헤더의 높이만큼 메인 컨텐츠를 아래로 밀어줌 */
 }
 
 a { text-decoration: none; }
@@ -46,12 +47,13 @@ strong {
 
 .uppercase { text-transform: uppercase; }
 
+
+
 /* ---------- LOGIN ---------- */
 
 #login {
 	margin: 50px auto;
 	width: 300px;
-	padding-top: 100px; /* 헤더의 높이만큼 메인 컨텐츠를 아래로 밀어줌 */
 }
 
 
@@ -104,49 +106,3 @@ form fieldset a:hover { text-decoration: underline; }
 	width: 50px;
 }
 
-.facebook-before {
-	background: #0064ab;
-	border-radius: 3px 0px 0px 3px;
-	color: #f4f4f4;
-	display: block;
-	float: left;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	width: 50px;
-}
-
-.facebook {
-	background: #0079ce;
-	border: none;
-	border-radius: 0px 3px 3px 0px;
-	color: #f4f4f4;
-	cursor: pointer;
-	height: 50px;
-	text-transform: uppercase;
-	width: 250px;
-}
-
-.twitter-before {
-	background: #189bcb;
-	border-radius: 3px 0px 0px 3px;
-	color: #f4f4f4;
-	display: block;
-	float: left;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	width: 50px;
-}
-
-
-.twitter {
-	background: #1bb2e9;
-	border: none;
-	border-radius: 0px 3px 3px 0px;
-	color: #f4f4f4;
-	cursor: pointer;
-	height: 50px;
-	text-transform: uppercase;
-	width: 250px;
-}

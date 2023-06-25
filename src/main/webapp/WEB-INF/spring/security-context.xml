@@ -5,11 +5,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
-	<!--  
-		인증 : 현재 사용자가 누구인지 확인하는 과정
-		       아이디/암호를 이용해서 인증을 주로 처리(폼 로그인 방식)	
-	-->
 	
 	<bean id="customLoginSuccessHandler" class="com.spring.handler.CustomLoginSuccessHandler"/>
 	<bean id="customAccessDeniedHandler" class="com.spring.handler.CustomAccessDeniedHandler"/>
@@ -35,10 +30,7 @@
 		<!-- logout post 시 -->		
 		<security:logout invalidate-session="true"  delete-cookies="remember-me,JSESSION_ID"
 			logout-success-url="/"/>
-				
-		
-		<security:intercept-url pattern="/member/**" access="permitAll" />
-    			
+						
 		
 	</security:http>
 	

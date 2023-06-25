@@ -28,7 +28,7 @@
 				</label>
 		</div>
 
-      <p><a href="#">Forgot Password?</a></p>
+      <p><a href="/member/findPwd">비밀번호를 잊으셨나요?</a></p>
 
       <p><input type="submit" value="Login"></p>
 
@@ -41,7 +41,7 @@
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				
 				<div class="sign-up">
-					계정이 없으신가요? <a href="/member/register">회원가입</a>
+					계정이 없으신가요? <a href="/member/register"><strong>회원가입</strong></a>
 				</div>
 
   </form>

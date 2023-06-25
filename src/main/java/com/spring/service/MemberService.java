@@ -19,6 +19,8 @@ public interface MemberService {
 	public boolean leave(LeaveDTO leaveDTO);
 	//비번수정
 	public boolean changePwd(PasswordDTO passwordDTO);	
+	//비번찾기
+	public boolean findPwd(MemberDTO dto);	
 	
 	
 }
