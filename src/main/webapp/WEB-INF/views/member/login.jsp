@@ -43,14 +43,10 @@
 
   <p><span class="btn-round">or</span></p>
   
-   <div id="naver_id_login" style="text-align: center">
-         <a href="${naverUrl }"><img width="223" 
-         src="../resources/images/btnG.png" /></a>
- </div>
  
  <!-- 카카오 로그인 -->
 <div class="col-lg-12 text-center mt-3">
-   <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=040ad7bc8137ca9e8bcc14ee58633e1c&redirect_uri=http://localhost:9091/member/kakaoLogin&response_type=code">
+   <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=040ad7bc8137ca9e8bcc14ee58633e1c&redirect_uri=http://localhost:9091/kakaoLogin&response_type=code">
     <img alt="카카오로그인" src="../resources/images/common/kakao_login.png">
    </a>
 </div>

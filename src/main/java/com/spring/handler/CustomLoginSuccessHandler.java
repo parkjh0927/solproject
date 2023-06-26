@@ -21,14 +21,12 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		// 로그인 사용자의 권한 확인
-		// ROLE_ADMIN 이라면 adminpage 이동, ROLE_USER 라면 index 이동
 		
 		
 		List<String> roleNames = new ArrayList<String>();
 		authentication.getAuthorities().forEach(auth -> roleNames.add(auth.getAuthority()));		
 		
 		if(roleNames.contains("ROLE_ADMIN")) {
-			response.sendRedirect("/security/adminpage");
 			return;
 		}
 		if(roleNames.contains("ROLE_USER")) {

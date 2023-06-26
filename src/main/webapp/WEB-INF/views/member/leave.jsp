@@ -34,8 +34,8 @@
 		       <input type="password" class="form-control" id="checkPassword" name="checkPassword">
 	        </div>
             
+          <!-- 알림 메시지 출력 부분, failMessage가 존재할 때에만 출력 --> 
            <div class="col">
-             <!-- 알림 메시지 출력 부분, failMessage가 존재할 때에만 출력 --> 
 				<c:if test="${not empty failMessage}">
 				    <div class="alert alert-danger col-md-8 mb-3" role="alert">
 				        <span>${failMessage}</span>
@@ -49,7 +49,7 @@
           
 			<div class="col">
            		<a href="/member/myPage" class="btn btn-info">취소하기</a>
-           		<button type="button" class="btn btn-danger">탈퇴하기</button>
+           		<button type="button" class="btn btn-danger leaveBtn">탈퇴하기</button>
            </div>    
 							
 			

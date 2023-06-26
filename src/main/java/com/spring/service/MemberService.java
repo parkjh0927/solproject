@@ -23,4 +23,5 @@ public interface MemberService {
 	public boolean findPwd(MemberDTO dto);	
 	
 	
+	
 }

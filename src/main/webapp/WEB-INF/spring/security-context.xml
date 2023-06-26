@@ -13,30 +13,24 @@
 	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 
-	<security:http>
-		<!-- remember-me 활성화
-		     data-source-ref="ds" : 토큰 값을 db 에 저장
-		     token-validity-seconds : 토큰 유효 시간
-		<security:remember-me data-source-ref="ds" token-validity-seconds="604800"/>
-		 -->
+	<security:http>	
 		
 		<!-- 폼 로그인 인증 방식 -->
 		<security:form-login login-page="/member/login" authentication-failure-url="/member/login-error" 
-						authentication-success-handler-ref="customLoginSuccessHandler"/>
+			authentication-success-handler-ref="customLoginSuccessHandler"/>
 				
-		<!-- 403 페이지 대신에 커스텀 접근 제한 페이지 -->		
+		<!-- 커스텀 접근 제한 페이지 -->		
 		<security:access-denied-handler ref="customAccessDeniedHandler"/>
 		
 		<!-- logout post 시 -->		
 		<security:logout invalidate-session="true"  delete-cookies="remember-me,JSESSION_ID"
 			logout-success-url="/"/>
-						
-		
+								
 	</security:http>
 	
 	
 	
-	<!-- 비밀번호 암호화 -->
+	<!-- Spring Security의 인증 관리자가 해당 암호화 기법을 사용하여 비밀번호를 암호화하고 검증 -->
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="customUserDetailService">
 			<security:password-encoder ref="encoder"/>

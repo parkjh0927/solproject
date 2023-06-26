@@ -11,7 +11,7 @@
 	
 <style>
 
-	.changePwdForm::placeholder {
+	.form-control::placeholder {
 	  font-size: 12px; 
 	}
        

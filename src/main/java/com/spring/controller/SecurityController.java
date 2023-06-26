@@ -2,22 +2,29 @@ package com.spring.controller;
 
 
 import java.security.Principal;
+import java.util.Arrays;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.CustomUser;
 import com.spring.domain.LeaveDTO;
 import com.spring.domain.MemberDTO;
 import com.spring.domain.PasswordDTO;
@@ -33,7 +40,8 @@ public class SecurityController {
 	@Autowired
 	private MemberService service;
 	
-	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	
 	// 회원가입
@@ -129,6 +137,7 @@ public class SecurityController {
 	}
 			
 	// 회원 정보 수정
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/modify")
 	public String modifyPost(MemberDTO dto) {
 		log.info("회원 정보 수정 " +dto);
@@ -150,7 +159,6 @@ public class SecurityController {
 	}
 	
 	// 회원 탈퇴
-	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/leave")
 	public String leavePost(LeaveDTO leaveDTO, HttpSession session, RedirectAttributes redirectAttributes) {
 		log.info("회원 탈퇴 요청"+leaveDTO);
@@ -166,6 +174,7 @@ public class SecurityController {
 	
 	
 	// 비밀번호 변경 폼 보여주기
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/changePwd")
 	public void changePwdGet(Principal principal, Model model) {
 		log.info("비밀번호 변경 페이지 요청");
@@ -176,6 +185,7 @@ public class SecurityController {
 	}	
 	
 	// 비밀번호 변경
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/changePwd")
 	public String changePwdPost(PasswordDTO passwordDTO, HttpSession session, RedirectAttributes redirectAttributes) {
 		log.info("비밀번호 변경 요청" +passwordDTO);
@@ -218,8 +228,6 @@ public class SecurityController {
 	    return "redirect:/member/findPwd";
 	}
 
-	
-	
 	
 	
 	
