@@ -21,12 +21,7 @@
       <p><input type="text" required id="username" placeholder="아이디" name="username"></p>
 
       <p><input type="password" required id="exampleInputPassword1" placeholder="비밀번호" name="password"></p>
-      
-      	<div class="checkbox mb-3">
-				<label>
-				    <input type="checkbox" name="remember-me"> Remember me
-				</label>
-		</div>
+            	
 
       <p><a href="/member/findPwd">비밀번호를 잊으셨나요?</a></p>
 
@@ -53,9 +48,11 @@
          src="../resources/images/btnG.png" /></a>
  </div>
  
- <div class="col-lg-12 text-center mt-3">
-    <button class="btn btn-block waves-effect waves-light btn-rounded btn-outline-info mb-3">로그인하기</button>
-    <img alt="카카오로그인" src="${pageContext.request.contextPath}/resources/assets/img/kakao_login_medium_wide.png" onclick="loginWithKakao()">
+ <!-- 카카오 로그인 -->
+<div class="col-lg-12 text-center mt-3">
+   <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=040ad7bc8137ca9e8bcc14ee58633e1c&redirect_uri=http://localhost:9091/member/kakaoLogin&response_type=code">
+    <img alt="카카오로그인" src="../resources/images/common/kakao_login.png">
+   </a>
 </div>
 
 
@@ -68,20 +65,7 @@
 </body>     
 </main>
 
-<!-- 카카오 로그인 -->
-<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        Kakao.init('d90216ec0aa34f3775074991e9c34f2b');
-        Kakao.isInitialized();
-    });
 
-    function loginWithKakao() {
-        Kakao.Auth.authorize({ 
-        redirectUri: 'http://localhost:9091/kakao_callback' 
-        }); // 등록한 리다이렉트uri 입력
-    }
-</script>	
 
 <%@ include file="../include/footer1.jsp" %>
 

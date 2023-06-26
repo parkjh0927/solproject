@@ -66,18 +66,18 @@
 
   .login-btn {
     display: inline-block;
-    width: 31px;
-    height: 31px;
-    background-image: url(resource/images/common/icon_header_profile1.png);
+    width: 35px;
+    height: 35px;
+    background-image: url(../resources/images/common/icon_header_profile1.png);
     text-indent: -9999px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
   }
-  .login-btn {
+  .logout-btn {
     display: inline-block;
-    width: 40px;
+    width: 35px;
     height: 35px;
     background-image: url(../resources/images/common/icon_header_profile2.png);
     text-indent: -9999px;
@@ -144,7 +144,7 @@
               <li><a class="dropdown-item" href="#">자유 게시판</a></li>
             </ul>
           </li>
-         <security:authorize access="isAuthenticated()">
+          <security:authorize access="isAuthenticated()">
 	          <li class="nav-item">
 	            <a class="nav-link" href="/member/myPage">마이페이지</a>
 	          </li>
@@ -158,15 +158,18 @@
           <button class="search-sub" type="submit">Search</button>
         </form>
           
-          <security:authorize access="!isAuthenticated()">          
-          	<a href="/member/login" class="login-btn" type="button">로그인</a>
-          </security:authorize>
-          <security:authorize access="isAuthenticated()">
-          	<form action="/logout" method="post">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-          		<button class="login-btn" type="submit">로그아웃</button>				
-			</form>          
-          </security:authorize>
+              	﻿
+		<security:authorize access="!isAuthenticated()">
+			<a href="/member/login" class="login-btn">로그인</a>
+		</security:authorize>
+		<security:authorize access="isAuthenticated()">
+			<form action="/logout" method="post">
+			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			 <button class="logout-btn" type="submit">로그아웃</button>
+			</form>
+		</security:authorize>
+
+﻿      
 
       </div>
     </div>
@@ -174,3 +177,14 @@
 </div>
 
 </header>
+
+
+<script src="../resources/js/logIcon.js"></script>
+<script>	
+
+// 로그인 여부 확인
+var isAuthenticated = <%= request.getRemoteUser() != null %>;
+
+</script>
+
+
