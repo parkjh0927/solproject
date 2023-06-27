@@ -16,7 +16,7 @@ public class BoardController {
 
 
 
-	@GetMapping("/main")
+	@GetMapping("/list")
 	public void feslistGet() {
 		log.info("게시판/공지사항");
 

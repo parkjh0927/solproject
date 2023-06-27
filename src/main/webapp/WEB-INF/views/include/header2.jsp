@@ -132,7 +132,7 @@
               게시판
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/board/main">공지사항</a></li>
+              <li><a class="dropdown-item" href="/board/list">공지사항</a></li>
               <li><a class="dropdown-item" href="#">Q & A</a></li>
               <li><a class="dropdown-item" href="#">자유 게시판</a></li>
             </ul>
