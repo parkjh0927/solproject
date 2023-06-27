@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 
 <head><script src="https://www.youtube.com/player_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/0c9b5d20/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" async="" src="https://1330chat.visitkorea.or.kr/ttalk/js/ttalkDev.js" charset="UTF-8"></script>
@@ -74,6 +76,7 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
+    margin-left: 20px;
   }
   .logout-btn {
     display: inline-block;
@@ -85,7 +88,9 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
+    margin-left: 20px;
 	}
+    
 	.search-sub{
      display: inline-block;
     width: 50px;
@@ -122,8 +127,10 @@
     text-align: center;
   	}
 }
+	.navbar-nav{
+	margin-right: 80px;
+	}
 </style>
-
 
 
 <title>sol 투어</title>
@@ -152,19 +159,20 @@
               여행 정보
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">축제</a></li>
-              <li><a class="dropdown-item" href="#">공연</a></li>
+              <li><a class="dropdown-item" href="/travel/festival">축제</a></li>
+
+              <li><a class="dropdown-item" href='<c:url value="/travel/destination"/>'>여행지</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">숙박 정보</a>
+            <a class="nav-link" href="/accommodation/accommodation">숙박 정보</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               게시판
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">공지사항</a></li>
+              <li><a class="dropdown-item" href="/board/list">공지사항</a></li>
               <li><a class="dropdown-item" href="#">Q & A</a></li>
               <li><a class="dropdown-item" href="#">자유 게시판</a></li>
             </ul>
@@ -174,15 +182,16 @@
 	            <a class="nav-link" href="/member/myPage">마이페이지</a>
 	          </li>
           </security:authorize>
+	            
           <li class="nav-item">
             <a class="nav-link" href="#">여행지도</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" id="search123">
+          <input class="form-control me-2" id="inputse" type="search" placeholder="Search" aria-label="Search" name="search" action='<c:url value="/travel/destination"/>'>
           <button class="search-sub" type="submit">Search</button>
         </form>
-          
+
               	﻿
 		<security:authorize access="!isAuthenticated()">
 			<a href="/member/login" class="login-btn">로그인</a>
@@ -201,7 +210,6 @@
   </nav>
 </div>
 
-
 <!-- 모달 창 -->
 <div id="logoutModal" class="logoutModal">
   <div class="logoutModal-content">
@@ -212,13 +220,15 @@
     </div>
   </div>
 </div>
+
 </header>
 
 
-<script src="../resources/js/logIcon.js"></script>
 <script>	
 // 시큐리티 로그인 여부 확인
 var isAuthenticated = <%= request.getRemoteUser() != null %>;
 </script>
 
+<script src="../resources/js/logIcon.js"></script>
+<script src="/resources/js/header.js"></script>
 

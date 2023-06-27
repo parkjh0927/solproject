@@ -199,6 +199,6 @@
 		
 	</div>
 </footer>
-<script src="resources/js/footer.js">
+<script src="../resources/js/footer.js">
 
 </script>
