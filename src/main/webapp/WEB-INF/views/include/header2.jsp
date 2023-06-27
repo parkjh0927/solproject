@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <head><script src="https://www.youtube.com/player_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/0c9b5d20/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" async="" src="https://1330chat.visitkorea.or.kr/ttalk/js/ttalkDev.js" charset="UTF-8"></script>
@@ -76,14 +77,16 @@
   }
   .login-btn {
     display: inline-block;
-    width: 50px;
-    height: 31px;
+    width: 52px;
+    height: 35px;
     background-image: url(../resources/images/common/icon_header_profile2.png);
     text-indent: -9999px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
+    margin-left: 20px;
+    
 }
 	.search-sub{
      display: inline-block;
@@ -96,8 +99,10 @@
     background-position: 50% 50% !important;
     border-radius: 100%;
 }
+	.navbar-nav{
+	margin-right: 80px;
+	}
 </style>
-
 
 
 <title>sol 투어</title>
@@ -112,7 +117,7 @@
 <div style="background-color: #f8f9fa;">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-size: 1.4rem;">
     <div class="container">
-      <a class="navbar-brand" href="/" style="font-size: 1.9rem;">SOL 투어</a>
+      <a class="navbar-brand" href="#" style="font-size: 1.9rem;">SOL 투어</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -121,8 +126,14 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/travel/festival">여행 정보</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              여행 정보
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/travel/festival">축제</a></li>
+              <li><a class="dropdown-item" href='<c:url value="/travel/destination"/>'>여행지</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/accommodation/accommodation">숙박 정보</a>
@@ -132,7 +143,7 @@
               게시판
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/board/main">공지사항</a></li>
+              <li><a class="dropdown-item" href="/board/list">공지사항</a></li>
               <li><a class="dropdown-item" href="#">Q & A</a></li>
               <li><a class="dropdown-item" href="#">자유 게시판</a></li>
             </ul>
@@ -140,21 +151,24 @@
          <c:if test="${authDTO != null }">
 	          <li class="nav-item">
 	            <a class="nav-link" href="#">마이페이지</a>
-	          </li>
+	          </li>   
           </c:if>
           <li class="nav-item">
             <a class="nav-link" href="#">여행지도</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" id="search123">
+          <input class="form-control me-2" id="inputse" type="search" placeholder="Search" aria-label="Search" name="search" action='<c:url value="/travel/destination"/>'>
           <button class="search-sub" type="submit">Search</button>
+        </form>
+        <form action="">
           <button class="login-btn" type="button">로그인</button>
-
         </form>
       </div>
     </div>
   </nav>
 </div>
+  
+</header>  
 
-</header>
+<script src="/resources/js/header.js"></script>
