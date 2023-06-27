@@ -21,10 +21,30 @@ window.addEventListener("DOMContentLoaded", function () {
   // 로그아웃 버튼 클릭시 알림창
   if (logoutBtn) {
     logoutBtn.addEventListener("click", function (event) {
-      var confirmed = confirm("로그아웃 하시겠습니까?");
-      if (!confirmed) {
-        event.preventDefault(); // 로그아웃 이벤트 취소
-      }
+      event.preventDefault(); // 로그아웃 이벤트 취소
+      showModal("로그아웃 하시겠습니까?");
     });
+  }
+
+  function showModal(message) {
+    const modalContent = document.querySelector(".logoutModal-content");
+    const modal = document.querySelector(".logoutModal");
+    modalContent.querySelector("p").textContent = message;
+    modal.style.display = "block";
+
+    document
+      .querySelector(".logoutConfirmBtn")
+      .addEventListener("click", function () {
+        // 확인 버튼을 클릭한 경우 로그아웃 처리
+        document.querySelector(".logoutForm").submit();
+        modal.style.display = "none";
+      });
+
+    document
+      .querySelector(".logoutCancelBtn")
+      .addEventListener("click", function () {
+        // 취소 버튼을 클릭한 경우 창 닫기
+        modal.style.display = "none";
+      });
   }
 });

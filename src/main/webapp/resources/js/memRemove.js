@@ -1,53 +1,37 @@
 /**
- * 탈퇴 확인 알림창
+ * 탈퇴 확인 모달창
  */
-document.querySelector(".leaveBtn").addEventListener("click", (e) => {
-  e.preventDefault();
 
-  const password = document.querySelector("#checkPassword");
-  if (password.value.trim() === "") {
-    alert("비밀번호를 입력해주세요.");
-    return;
-  }
-  if (confirm("정말 탈퇴하시겠습니까?")) {
-    // 폼 전송
-    document.querySelector(".leaveForm").submit();
+const checkPassword = document.getElementById("checkPassword");
+const leaveForm = document.querySelector(".leaveForm");
+const leaveBtn = document.querySelector(".leaveBtn");
+const confirmBtn = document.querySelector(".confirmBtn");
+const cancelBtn = document.querySelector(".cancelBtn");
+const modal = document.getElementById("myModal");
+
+leaveBtn.addEventListener("click", function () {
+  if (checkPassword.value === "") {
+    showModal("비밀번호를 입력해주세요.");
+  } else {
+    showModal("정말 탈퇴하시겠습니까?");
   }
 });
 
-// // 모달 창 열기
-// function openModal() {
-//   var modal = document.getElementById("myModal");
-//   modal.style.display = "block";
-// }
+function showModal(message) {
+  const modalContent = document.querySelector(".modal-content");
+  modalContent.querySelector("p").textContent = message;
+  modal.style.display = "block";
 
-// // 모달 창 닫기
-// function closeModal() {
-//   var modal = document.getElementById("myModal");
-//   modal.style.display = "none";
-// }
+  // 비밀번호가 비어있지 않을 때, 확인버튼을 누르면 폼 제출
+  confirmBtn.addEventListener("click", function () {
+    if (checkPassword.value !== "") {
+      leaveForm.submit();
+    }
+    modal.style.display = "none";
+  });
 
-// // 확인 버튼 클릭 시
-// function confirmLeave() {
-//   const password = document.querySelector("#checkPassword");
-//   if (password.value.trim() === "") {
-//     alert("비밀번호를 입력해주세요.");
-//     return;
-//   }
-//   if (confirm("정말 탈퇴하시겠습니까?")) {
-//     // 폼 전송
-//     document.querySelector(".leaveForm").submit();
-//   }
-// }
-
-// // 모달 창 열기 버튼 클릭 시
-// var leaveBtn = document.querySelector(".leaveBtn");
-// leaveBtn.onclick = function () {
-//   openModal();
-// };
-
-// // 모달 창 닫기 버튼 클릭 시
-// var closeBtn = document.querySelector(".close");
-// closeBtn.onclick = function () {
-//   closeModal();
-// };
+  // 취소버튼 누르면 모달창 닫기
+  cancelBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+}

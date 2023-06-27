@@ -85,7 +85,7 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
-}
+	}
 	.search-sub{
      display: inline-block;
     width: 50px;
@@ -96,6 +96,31 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
+	}
+    
+    .logoutModal {
+      display: none;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: auto;      
+    } 
+    .logoutModal-content {
+      margin: 15% auto;
+      padding: 20px;
+      width: 450px;
+      border: 1px solid #888;
+      border-radius: 10px;
+      background-color: #fefefe;
+      text-align: center;
+    }
+    .logoutModal-content p {
+	  font-size: 18px; 
+	}    
+    .logoutModal-buttons {
+    margin-top: 20px;
+    text-align: center;
+  	}
 }
 </style>
 
@@ -163,7 +188,7 @@
 			<a href="/member/login" class="login-btn">로그인</a>
 		</security:authorize>
 		<security:authorize access="isAuthenticated()">
-			<form action="/logout" method="post">
+			<form class="logoutForm" action="/logout" method="post">
 			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			 <button class="logout-btn" type="submit">로그아웃</button>
 			</form>
@@ -176,15 +201,24 @@
   </nav>
 </div>
 
+
+<!-- 모달 창 -->
+<div id="logoutModal" class="logoutModal">
+  <div class="logoutModal-content">
+    <p></p>
+    <div class="logoutModal-buttons">
+      <button class="btn btn-danger logoutConfirmBtn">확인</button>
+      <button class="btn btn-secondary logoutCancelBtn">취소</button>
+    </div>
+  </div>
+</div>
 </header>
 
 
 <script src="../resources/js/logIcon.js"></script>
 <script>	
-
-// 로그인 여부 확인
+// 시큐리티 로그인 여부 확인
 var isAuthenticated = <%= request.getRemoteUser() != null %>;
-
 </script>
 
 

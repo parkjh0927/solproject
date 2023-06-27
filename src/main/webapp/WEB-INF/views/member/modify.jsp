@@ -83,8 +83,7 @@
                   
           <div class="col">           
 			<button type="submit" class="btn btn-info">수정하기</button>
-			<a href="/" class="btn btn-primary">홈으로</a>
-			<!-- <button type="button" class="btn btn-danger leaveBtn" onclick="removeMember();">탈퇴하기</button> -->
+			<a href="/member/myPage" class="btn btn-primary">취소하기</a>
    		  </div>	
 			
         </form>
@@ -98,7 +97,6 @@
 
 <script src="../resources/js/memModify.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!-- <script src="../resources/js/memRemove.js"></script> -->
 
 <%@ include file="../include/footer1.jsp" %>
 
