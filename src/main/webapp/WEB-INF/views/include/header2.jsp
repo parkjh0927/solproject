@@ -132,6 +132,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/travel/festival">축제</a></li>
+
               <li><a class="dropdown-item" href='<c:url value="/travel/destination"/>'>여행지</a></li>
             </ul>
           </li>

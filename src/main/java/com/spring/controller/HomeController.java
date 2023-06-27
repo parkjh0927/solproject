@@ -26,11 +26,5 @@ public class HomeController {
 		
 		return "index";
 	}
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String home1() {
-//		logger.info("index");		
-//		
-//		return "modify";
-//	}
 	
 }

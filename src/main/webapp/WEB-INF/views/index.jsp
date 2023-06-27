@@ -9,7 +9,9 @@
 		<!-- 관광 -->
 		<div class="main_curation_area" >
 				<h2><a href="javascript:randomCrMain();"></a></h2>
+
 				<div class="cont_wrap">
+
 					          
   
 					<div class="tab_cont active" id="tabMenu01"><!-- 핫플 -->
