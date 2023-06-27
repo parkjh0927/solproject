@@ -50,7 +50,7 @@
 	        
 	        <div class="wishlist-container">
 		        <span class="wishlist-title">찜 목록 보러가기</span>
-		        <button class="wishlist-btn" type="button" onclick="logoutKakao()"></button>
+		        <button class="wishlist-btn" type="button"></button>
 	        </div>
 	        
 	        <br>
@@ -105,11 +105,6 @@
 	    
 </body>
 	
-<script>
-function logoutKakao() {
-	window.location.href = 'https://kauth.kakao.com/oauth/logout?client_id=040ad7bc8137ca9e8bcc14ee58633e1c&logout_redirect_uri=http://localhost:9091/kakaoLogout';
-}
-</script>
 
 
 <%@ include file="../include/footer1.jsp" %>

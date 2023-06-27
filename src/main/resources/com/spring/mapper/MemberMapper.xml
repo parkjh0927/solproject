@@ -5,7 +5,7 @@
 	<!-- 회원가입 -->
 	<insert id="register">
 		insert into member(username,password,email,postcode,address,address2) 
-		values(#{username},#{password},#{email},#{postcode},#{address},#{address2,jdbcType=VARCHAR})
+		values(#{username},#{password},#{email},#{postcode,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{address2,jdbcType=VARCHAR})
 	</insert>
 	
 	<insert id="registerAuth">

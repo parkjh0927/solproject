@@ -70,7 +70,7 @@ public class SecurityController {
 	
 	@GetMapping("/login-error")
 	public String loginError(Model model) {
-		model.addAttribute("error", "아이디나 비밀번호를 확인해 주세요");
+		model.addAttribute("error", "<span style=\"color: red;\">아이디나 비밀번호를 확인해 주세요</span>");
 		return "/member/login"; 
 	}
 	
@@ -84,10 +84,7 @@ public class SecurityController {
 	public Authentication auth() {		
 		return SecurityContextHolder.getContext().getAuthentication(); 
 	}
-
-	
-	
-	
+		
 	
 	// 중복 아이디 점검
 	@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST) // /member/memberIdChk에 대한 POST 메서드를 처리
@@ -102,8 +99,6 @@ public class SecurityController {
 			return "success";	// 중복 없음			
 		}	
 	}
-
-	
 	
 
 	// 마이페이지 보여주기
@@ -124,6 +119,7 @@ public class SecurityController {
 //        log.info("마이페이지 요청 주소: "+dto.getAddress());
 //        log.info("마이페이지 요청 주소2: "+dto.getAddress2());		
     }
+
 	
 	// 회원 정보 수정 폼 보여주기
 	@PreAuthorize("isAuthenticated()")
@@ -146,6 +142,7 @@ public class SecurityController {
 		return path;
 	}
 	
+
 	
 	// 회원 탈퇴 폼 보여주기
 	@PreAuthorize("isAuthenticated()")
@@ -200,6 +197,7 @@ public class SecurityController {
 		redirectAttributes.addFlashAttribute("failMessage", "비밀번호가 일치하지 않습니다.");
 		return "redirect:/member/changePwd";		
 	}	
+
 	
 	// 비번찾기 폼 보여주기
 	@GetMapping("/findPwd")
@@ -207,7 +205,7 @@ public class SecurityController {
 		log.info("비번찾기 폼 요청 ");		
 	}
 	
-	// 메일전송
+	// 비번찾기 메일전송
 	@PostMapping("/findPwd")
 	public String findPwdPost(MemberDTO dto, RedirectAttributes redirectAttributes) {
 		MemberDTO memberDto = service.read(dto.getUsername());

@@ -27,22 +27,19 @@ public class SnsLoginService {
 		String reqURL = "https://kauth.kakao.com/oauth/token";
 
 		try {
-			URL url = new URL(reqURL);
-            
+			URL url = new URL(reqURL);            
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			// POST 요청을 위해 기본값이 false인 setDoOutput을 true로
-            
+	
+			//HttpURLConnection 설정 값 셋팅 - POST 요청을 위해 setDoOutput을 true로
 			conn.setRequestMethod("POST");
 			conn.setDoOutput(true);
-			// POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
-            
+			
+			// POST 요청에 필요한 파라미터 - buffer 스트림으로 객체 값 셋팅 후 요청            
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			StringBuilder sb = new StringBuilder();
-			sb.append("grant_type=authorization_code");
-            
-			sb.append("&client_id=040ad7bc8137ca9e8bcc14ee58633e1c"); //본인이 발급받은 key
-			sb.append("&redirect_uri=http://localhost:9091/kakaoLogin"); // 본인이 설정한 주소
-            
+			sb.append("grant_type=authorization_code");            
+			sb.append("&client_id=040ad7bc8137ca9e8bcc14ee58633e1c"); // 본인이 발급받은 key
+			sb.append("&redirect_uri=http://localhost:9091/kakaoLogin"); // 본인이 설정한 주소            
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
 			bw.flush();
@@ -51,7 +48,7 @@ public class SnsLoginService {
 			int responseCode = conn.getResponseCode();
 			System.out.println("responseCode : " + responseCode);
             
-			// 요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
+			// 요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기 - RETURN 값 result 변수에 저장
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line = "";
 			String result = "";
@@ -64,6 +61,7 @@ public class SnsLoginService {
 			// JSON 문자열 파싱
 			JsonElement element = JsonParser.parseString(result);
             
+			// 토큰 값 저장 및 리턴
 			access_Token = element.getAsJsonObject().get("access_token").getAsString();
 			refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
             
@@ -82,7 +80,7 @@ public class SnsLoginService {
 	
 	public HashMap<String, Object> getUserInfo(String access_Token) {
 		// 요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
-		HashMap<String, Object> userInfo = new HashMap<String, Object>();
+		HashMap<String, Object> userInfo = new HashMap<>();
 		String reqURL = "https://kapi.kakao.com/v2/user/me";
 		try {
 			URL url = new URL(reqURL);
@@ -110,6 +108,7 @@ public class SnsLoginService {
 			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
+			// 카카오에서 닉네임과 아이디 가져오기
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
 
@@ -125,47 +124,6 @@ public class SnsLoginService {
 
 	
 	
-
-//	private final String logoutURL = "https://kapi.kakao.com/v1/user/unlink";
-//	
-//	public void logout(String access_Token) {
-//		try {
-//			URL url = new URL(logoutURL);
-//			
-//			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//			conn.setRequestMethod("POST");
-//			conn.setRequestProperty("Authorization", "Bearer " + access_Token);
-//			
-//			conn.disconnect();
-//		} catch (MalformedURLException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
-	
-//	private final String logoutURL = "https://kauth.kakao.com/oauth/logout";
-//
-//	public void logout(String access_Token) {
-//	    try {
-//	        String clientId = "040ad7bc8137ca9e8bcc14ee58633e1c"; // 카카오 애플리케이션의 클라이언트 ID로 교체해야 합니다
-//	        String redirectUri = "http://localhost:9091/kakaoLogout"; // 로그아웃 후 리디렉션될 URI로 교체해야 합니다
-//
-//	        String logoutUrl = logoutURL + "?client_id=" + clientId + "&logout_redirect_uri=" + redirectUri;
-//	        URL url = new URL(logoutUrl);
-//
-//	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//	        conn.setRequestMethod("GET");
-//
-//	        conn.disconnect();
-//	    } catch (MalformedURLException e) {
-//	        e.printStackTrace();
-//	    } catch (IOException e) {
-//	        e.printStackTrace();
-//	    }
-//	}
-
 
 	
 

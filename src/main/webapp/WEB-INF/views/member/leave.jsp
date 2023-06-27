@@ -50,16 +50,16 @@
 			<div class="col">
            		<a href="/member/myPage" class="btn btn-info">취소하기</a>
            		<button type="button" class="btn btn-danger leaveBtn">탈퇴하기</button>
-           </div>    
-							
+           </div>    							
 			
         </form>
       </div>
     </div>
-    
-  </div>
+      </div>
+
 	    
 </body>
+	
 	
 
 <script src="../resources/js/memRemove.js"></script>

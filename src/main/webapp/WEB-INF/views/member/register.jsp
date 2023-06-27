@@ -83,10 +83,10 @@
 	          </div>
 
 	          <div class="col-md-10 mb-3">
-	            <label for="postcode">우편번호</label>
+	            <label for="postcode">우편번호<span class="text-muted">(선택사항)</span></label>
 	          <div class="row">
 		           <div class="col">
-		            	<input type="text" class="form-control" id="postcode" name="postcode" placeholder="우편번호" required>   
+		            	<input type="text" class="form-control" id="postcode" name="postcode" placeholder="우편번호">   
 		           </div>
 		           <div class="col">
 			           <input type="button" onclick="exDaumPostcode()" value="우편번호 찾기">        
@@ -95,8 +95,8 @@
 	          </div>
           
 	          <div class="col-md-8 mb-3">
-	            <label for="address">주소</label>
-	            <input type="text" class="form-control" id="address" name="address" placeholder="주소" required>           
+	            <label for="address">주소<span class="text-muted">(선택사항)</span></label>
+	            <input type="text" class="form-control" id="address" name="address" placeholder="주소">           
 	          </div>
 	
 	          <div class="col-md-8 mb-3">
