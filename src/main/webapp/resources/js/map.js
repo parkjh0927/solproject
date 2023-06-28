@@ -519,7 +519,7 @@ search_btn.addEventListener("click", () => {
               : "<div style='overflow:visible; text-align: center;'>" +
                 realTitle +
                 "</div><img src='../resources/img/prepare.png' style='height:250px;width:auto;'/>";
-            console.log("iwContent : ", iwContent);
+            
 
             infowindow.setContent(iwContent);
             infowindow.open(map, element);
@@ -542,7 +542,6 @@ search_btn.addEventListener("click", () => {
             if (!selectedMarker || selectedMarker !== element) {
               // 클릭된 마커 객체가 null이 아니면
               // 클릭된 마커의 이미지를 기본 이미지로 변경하고
-              console.log(selectedMarker, "selectedmarker");
               !!selectedMarker && selectedMarker.setImage(testMarker.getImage());
 
               // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
