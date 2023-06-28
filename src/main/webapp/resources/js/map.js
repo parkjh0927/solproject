@@ -519,7 +519,6 @@ search_btn.addEventListener("click", () => {
               : "<div style='overflow:visible; text-align: center;'>" +
                 realTitle +
                 "</div><img src='../resources/img/prepare.png' style='height:250px;width:auto;'/>";
-            
 
             infowindow.setContent(iwContent);
             infowindow.open(map, element);
