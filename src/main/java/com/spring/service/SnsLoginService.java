@@ -20,7 +20,7 @@ import com.google.gson.JsonParser;
 public class SnsLoginService {
 	
 	
-	
+	// 카카오 토큰
 	public String getAccessToken(String authorize_code) {
 		String access_Token = "";
 		String refresh_Token = "";
@@ -77,12 +77,13 @@ public class SnsLoginService {
 	}
 
 
-	
+	// 카카오 사용자정보
 	public HashMap<String, Object> getUserInfo(String access_Token) {
-		// 요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
+		// 요청하는 클라이언트마다 가진 정보가 다를 수 있기 때문에 HashMap타입으로 선언 - userInfo에 사용자 정보를 담음
 		HashMap<String, Object> userInfo = new HashMap<>();
 		String reqURL = "https://kapi.kakao.com/v2/user/me";
 		try {
+			// URL에 HTTP 연결
 			URL url = new URL(reqURL);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
@@ -93,8 +94,10 @@ public class SnsLoginService {
 			int responseCode = conn.getResponseCode();
 			System.out.println("responseCode : " + responseCode);
 
+			// 연결 객체로부터 응답 데이터를 읽기 위해 BufferedReader를 생성
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
+			// 응답 데이터를 줄 단위로 읽어와서 문자열로 합침
 			String line = "";
 			String result = "";
 
@@ -103,15 +106,16 @@ public class SnsLoginService {
 			}
 			System.out.println("response body : " + result);
 
+			// 응답 데이터를 JSON 형식으로 파싱
 			JsonElement element = JsonParser.parseString(result);
 
+			// 파싱된 JSON 데이터에서 닉네임과 이메일을 추출
 			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
-
-			// 카카오에서 닉네임과 아이디 가져오기
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
-
+			
+			// 추출한 닉네임과 이메일을 userInfo 객체에 저장
 			userInfo.put("nickname", nickname);
 			userInfo.put("email", email);
 

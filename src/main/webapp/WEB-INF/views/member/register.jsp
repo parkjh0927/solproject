@@ -19,6 +19,10 @@
     	color : red;
     	display : none;
     }
+    .id_input_ok{
+    	color : green;
+    	display : none;
+    }
     
     /* 비밀번호 확인 */
     .confirmPW_no{
@@ -56,12 +60,13 @@
 		          	name="username" required pattern="^[a-zA-Z0-9]{4,12}$">
 		          <div class="invalid-feedback"></div>
 		          <span class="id_input_no">이미 사용중인 아이디입니다.</span>			    				    	   				    		            
+		          <span class="id_input_ok">사용 가능한 아이디입니다.</span>			    				    	   				    		            
 	        </div>	            	        
  
                        
             <div class="col-md-8 mb-3">
               <label for="password">비밀번호</label>
-	              <input type="password" class="form-control" id="password" placeholder="알파벳,숫자,특수문자가 하나이상씩 포함된 5~12자리" 
+	              <input type="password" class="form-control" id="password" placeholder="알파벳,숫자,특수문자가 하나 이상씩 포함된 5~12자리" 
 	              	name="password" required pattern="^(?=.*[A-za-z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{5,12}$">
 	              <div class="invalid-feedback"></div>
             </div>
@@ -135,6 +140,5 @@
 
 
 <%@ include file="../include/footer1.jsp" %>
-
 
 

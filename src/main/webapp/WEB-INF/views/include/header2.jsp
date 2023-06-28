@@ -116,7 +116,7 @@
       width: 450px;
       border: 1px solid #888;
       border-radius: 10px;
-      background-color: #fefefe;
+      background-color: #f5f5f5;
       text-align: center;
     }
     .logoutModal-content p {
@@ -177,11 +177,18 @@
               <li><a class="dropdown-item" href="#">자유 게시판</a></li>
             </ul>
           </li>
-          <security:authorize access="isAuthenticated()">
-	          <li class="nav-item">
-	            <a class="nav-link" href="/member/myPage">마이페이지</a>
-	          </li>
-          </security:authorize>
+          
+        <security:authorize access="isAuthenticated()">          
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              마이페이지
+            </a>
+	            <ul class="dropdown-menu">
+	              <li><a class="dropdown-item" href="/member/myPage">내 정보</a></li>
+	              <li><a class="dropdown-item" href='<c:url value="#"/>'>찜 목록</a></li>
+	            </ul>
+          </li>          
+        </security:authorize>
 	            
           <li class="nav-item">
             <a class="nav-link" href="#">여행지도</a>

@@ -38,6 +38,7 @@ $(".id_input").on("keyup paste input", function () {
   // 빈칸일땐 글씨 안뜨게
   if (username.length === 0) {
     $(".id_input_no").css("display", "none");
+    $(".id_input_ok").css("display", "none");
     return;
   }
 
@@ -51,12 +52,17 @@ $(".id_input").on("keyup paste input", function () {
     },
     success: function (result) {
       console.log("성공여부" + result);
-      if (result != "fail") {
+      if (result != "fail" && /^[a-zA-Z0-9]{4,12}$/.test(username)) {
         // 사용가능한 아이디일때
         $(".id_input_no").css("display", "none");
-      } else {
+        $(".id_input_ok").css("display", "inline-block");
+      } else if (result == "fail") {
         // 중복된 아이디일때
         $(".id_input_no").css("display", "inline-block");
+        $(".id_input_ok").css("display", "none");
+      } else if (!/^[a-zA-Z0-9]{4,12}$/.test(username)) {
+        // 유효성 만족하지 않을때
+        $(".id_input_ok").css("display", "none");
       }
     },
     error: function (xhr, status, error) {

@@ -4,6 +4,8 @@
 <%@ include file="../include/header2.jsp" %>
 <head>
 	<link rel="stylesheet" href="../resources/css/login.css" type="text/css"/>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 	
 	
@@ -49,6 +51,9 @@
    <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=040ad7bc8137ca9e8bcc14ee58633e1c&redirect_uri=http://localhost:9091/kakaoLogin&response_type=code">
     <img alt="카카오로그인" src="../resources/images/common/kakao_login.png">
    </a>
+<div id="naver_id_login"></div>
+</div>
+
 </div>
 
 
@@ -61,8 +66,14 @@
 </body>     
 </main>
 
-
-
+<script type="text/javascript">
+        var naver_id_login = new naver_id_login("T5au66dpnNZuT0_5qsZR", "http://localhost:9091/naverCallback");
+        var state = naver_id_login.getUniqState();
+        naver_id_login.setButton("green", 3,40);
+        naver_id_login.setDomain("http://localhost:9091");
+        naver_id_login.setState(state);
+        naver_id_login.init_naver_id_login();
+</script>
 <%@ include file="../include/footer1.jsp" %>
 
 

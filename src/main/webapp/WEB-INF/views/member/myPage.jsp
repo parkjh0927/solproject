@@ -20,17 +20,6 @@
     vertical-align: middle;
   }
   
-.wishlist-btn {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    background-image: url(../resources/images/common/icon_mypage.png);
-    text-indent: -9999px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50% !important;
-	vertical-align: middle;
-  }
 
 </style>
 
@@ -48,10 +37,6 @@
 	         <h4 class="mb-3 center">내 정보</h4>
 	       </div>
 	        
-	        <div class="wishlist-container">
-		        <span class="wishlist-title">찜 목록 보러가기</span>
-		        <button class="wishlist-btn" type="button"></button>
-	        </div>
 	        
 	        <br>
           	
