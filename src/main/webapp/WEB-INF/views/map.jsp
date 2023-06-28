@@ -1,171 +1,145 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="include/header2.jsp"%>
 
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>여행지도</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="../resources/css/map.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<!-- 구글 font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+<body>
 
-
-<div style="width: 350px; position: absolute; left: 10px; top: 90px;">
-
-	<div style="font-size: x-large; font-weight: 900;">
-
-		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-			<li class="nav-item" role="presentation"
-				style="width: 110px; margin-bottom: 10px" id="test1">
-				<button class="nav-link active" id="pills-home-tab"
-					data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
-					role="tab" aria-controls="pills-home" aria-selected="true">검색</button>
-			</li>
-			<li class="nav-item" role="presentation"
-				style="width: 130px; margin-bottom: 10px" id="test2">
-				<button class="nav-link" id="pills-profile-tab"
-					data-bs-toggle="pill" data-bs-target="#pills-profile" type="button"
-					role="tab" aria-controls="pills-profile" aria-selected="false">관광지</button>
-			</li>
-			<li class="nav-item" role="presentation"
-				style="width: 110px; margin-bottom: 10px" id="test3">
-				<button class="nav-link" id="pills-contact-tab"
-					data-bs-toggle="pill" data-bs-target="#pills-contact" type="button"
-					role="tab" aria-controls="pills-contact" aria-selected="false">숙박</button>
-			</li>
-		</ul>
-	</div>
-
-
-	<div class="tab-content" id="pills-tabContent">
-		<div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-			aria-labelledby="pills-home-tab" tabindex="0">
-			
-			<ul>
-				<select class="form-select" id="all-code">
-					<option value="all">전국zz</option>
-					<option value="1">서울특별시</option>
-					<option value="6">부산광역시</option>
-					<option value="4">대구광역시</option>
-					<option value="2">인천광역시</option>
-					<option value="5">광주광역시</option>
-					<option value="3">대전광역시</option>
-					<option value="7">울산광역시</option>
-					<option value="8">세종특별자치시</option>
-					<option value="31">경기도</option>
-					<option value="32">강원도</option>
-					<option value="33">충청북도</option>
-					<option value="34">충청남도</option>
-					<option value="37">전라북도</option>
-					<option value="38">전라남도</option>
-					<option value="35">경상북도</option>
-					<option value="36">경상남도</option>
-					<option value="39">제주도</option>
-				</select>
-				<input id="keyword" type="text"></input>
-				<button type="button" id="btn-all" style="border:solid;background-color: aqua;">선택</button>
-			</ul>
-			
-			<div id="aco1"></div>
-			
-		</div>
-		<div class="tab-pane fade" id="pills-profile" role="tabpanel"
-			aria-labelledby="pills-profile-tab" tabindex="0">
-			
-			<ul>
-				<select class="form-select" id="festival-code">
-					<option value="1">서울특별시</option>
-					<option value="6">부산광역시</option>
-					<option value="4">대구광역시</option>
-					<option value="2">인천광역시</option>
-					<option value="5">광주광역시</option>
-					<option value="3">대전광역시</option>
-					<option value="7">울산광역시</option>
-					<option value="8">세종특별자치시</option>
-					<option value="31">경기도</option>
-					<option value="32">강원도</option>
-					<option value="33">충청북도</option>
-					<option value="34">충청남도</option>
-					<option value="37">전라북도</option>
-					<option value="38">전라남도</option>
-					<option value="35">경상북도</option>
-					<option value="36">경상남도</option>
-					<option value="39">제주도</option>
-				</select>
-				<button type="button" id="btn-festival"style="border:solid;background-color: aqua;">선택</button>
-			</ul>
-			<div id="aco2"></div>
-		</div>
-		<div class="tab-pane fade" id="pills-contact" role="tabpanel"
-			aria-labelledby="pills-contact-tab" tabindex="0">
-			
-			<ul>
-				<select class="form-select" id="address-code">
-					<option value="1">서울특별시</option>
-					<option value="6">부산광역시</option>
-					<option value="4">대구광역시</option>
-					<option value="2">인천광역시</option>
-					<option value="5">광주광역시</option>
-					<option value="3">대전광역시</option>
-					<option value="7">울산광역시</option>
-					<option value="8">세종특별자치시</option>
-					<option value="31">경기도</option>
-					<option value="32">강원도</option>
-					<option value="33">충청북도</option>
-					<option value="34">충청남도</option>
-					<option value="37">전라북도</option>
-					<option value="38">전라남도</option>
-					<option value="35">경상북도</option>
-					<option value="36">경상남도</option>
-					<option value="39">제주도</option>
-				</select>
-				<button type="button" id="btn-aco"style="border:solid;background-color: aqua;">선택</button>
-				
-			</ul>
-			<div id="aco3"></div>
+<!-- 지도 모달 창 시작 -->
+<button type="button" id="btn-modal" class="btn btn-primary"
+	data-bs-toggle="modal" data-bs-target="#exampleModal" hidden></button>
+	
+<div class="modal fade" id="exampleModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body" id="modal-content">2</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" id="modal-like">상세페이지 보기</button>
+			</div>
 		</div>
 	</div>
+</div>
 
+<!-- 지도 모달 창 종료 -->
+    <!-- 사이드바	사이드바	사이드바	사이드바		사이드바	사이드바	사이드바	사이드바 -->
+	<div class="left-side-bar">
+      <div>
+        <span>여행지 목록</span>
+      </div>
 
+      <ul id="side-content">
+       
+      </ul>
+    </div>
+    <!-- 사이드바 -->
+<nav class="navbar navbar-expand bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">홈으로</a>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button type='button' class="nav-link active" aria-current="page" id='toggleSidebar'>결과목록보기</button>
+        </li>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="search-option">
+            조회옵션
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" id="search-festival">행사지역 조회</a></li>
+            <li><a class="dropdown-item" href="#" id="search-bed">숙박시설 조회</a></li>
+            <li><a class="dropdown-item" href="#" id="search-keyword">검색조회</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+      
+      <form class="d-flex" role="search" id="search-form">
+	        <select class="form-select form-select-sm" hidden aria-label=".form-select-sm example"  id="address-code">
+			    <option selected class="select-1" value="null" id="address-select">지역</option>
+			    <option value="all" >전국</option>
+			    <option value="1">서울특별시</option>
+				<option value="6">부산광역시</option>
+				<option value="4">대구광역시</option>
+				<option value="2">인천광역시</option>
+				<option value="5">광주광역시</option>
+				<option value="3">대전광역시</option>
+				<option value="7">울산광역시</option>
+				<option value="8">세종특별자치시</option>
+				<option value="31">경기도</option>
+				<option value="32">강원도</option>
+				<option value="33">충청북도</option>
+				<option value="34">충청남도</option>
+				<option value="37">전라북도</option>
+				<option value="38">전라남도</option>
+				<option value="35">경상북도</option>
+				<option value="36">경상남도</option>
+				<option value="39">제주도</option>
+			</select>
+
+	        <select class="form-select form-select-sm" hidden aria-label=".form-select-sm example" id="type-code">
+			    <option selected class="select-1" value="null">검색타입</option>
+				<option value="all">전체</option>
+				<option value="12">관광지</option>
+				<option value="14">문화시설</option>
+				<option value="15">축제,공연,행사</option>
+				<option value="28">레포츠</option>
+				<option value="32">숙박</option>
+				<option value="38">쇼핑</option>
+				<option value="39">음식점</option>
+			</select>
+			<input class="form-control me-2" type="date" data-placeholder="시작 날짜 선택" hidden id="select-date" required aria-required="true"></input>
+        <input class="form-control me-2" type="search" placeholder="검색어" aria-label="Search" hidden id='search-text'>
+        <!-- <button class="btn btn-outline-success search-type" type="button" hidden id='search-btn'><img src="../resources/images/common/btn_header_search.png"></img></button> -->
+        <button class="search-type" id='search-btn' type="button" hidden><img src="../resources/images/common/btn_header_search.png"></img></button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div id='icon'>
+	<ul id='icon-ul'>
+		<li hidden id="icon-1" type='button'><img src = "../resources/images/map/관광지.png"></img> 관광지</li>
+		<li hidden id="icon-2" type='button'><img src = "../resources/images/map/문화시설.png"></img> 문화시설</li>
+		<li hidden id="icon-3" type='button'><img src = "../resources/images/map/행사.png"></img>  행사</li>
+		<li hidden id="icon-4" type='button'><img src = "../resources/images/map/레포츠.png"></img>  레포츠</li>
+		<li hidden id="icon-5" type='button'><img src = "../resources/images/map/숙박.png"></img>  숙박</li>
+		<li hidden id="icon-6" type='button'><img src = "../resources/images/map/쇼핑.png"></img>  쇼핑</li>
+		<li hidden id="icon-7" type='button'><img src = "../resources/images/map/음식점.png"></img>  음식점</li>
+	</ul>
 </div>
 
 
-
 <div id="map"
-	style="width: 1800px; height: 950px; position: absolute; z-index: 3; left: 350px; top: 90px; border: solid 3px; border-radius: 1%;"></div>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebf0ba5544aa141eea8890b45c9b2e4f"></script>
-<script>
-	var container = document.getElementById('map');
-	var options = {
+	style="width: 100%; height: 100vh; z-index: 1; "></div>
+	<!-- style="stroke: none; stroke-dashoffset: 0.5; transform: translateZ(0px); stroke-linejoin: round; fill: none; width: 100%; height: 100vh; position: absolute; z-index: 1; left: -2804px;"></div> -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebf0ba5544aa141eea8890b45c9b2e4f&libraries=services,clusterer,drawing"></script>
+<script>var map = new kakao.maps.Map(document.getElementById("map"), {
+    center: new kakao.maps.LatLng(36.2683, 127.6358),
+    level: 13,
+  });</script>
 
-		// 카카오지도 기본 좌표
-		center : new kakao.maps.LatLng(37.413294, 127.0016985),
-		level : 3
-	};
-
-	//카카오 지도 생성
-	var map = new kakao.maps.Map(container, options);
-
-	// 카카오지도 마커 생성
-	/* var marker = new kakao.maps.Marker({
-		   	// 마커 좌표 ( api에서 숙박업체 위도 경도 가져와서 값 대입하기)
-			position: new kakao.maps.LatLng(37.56741, 126.97865), // 마커의 좌표
-		    map: map // 마커를 표시할 지도 객체
-		}); */
-</script>
-<div style="height: 1080px"></div>
-
-
-
-
-
-<!-- JavaScript Bundle with Popper -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-	crossorigin="anonymous"></script>
-
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-	crossorigin="anonymous"></script>
 <script src="../resources/js/map.js"></script>
-
-<%@include file="include/footer1.jsp"%>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
