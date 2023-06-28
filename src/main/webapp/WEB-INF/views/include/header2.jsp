@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 
 <head><script src="https://www.youtube.com/player_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/0c9b5d20/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" async="" src="https://1330chat.visitkorea.or.kr/ttalk/js/ttalkDev.js" charset="UTF-8"></script>

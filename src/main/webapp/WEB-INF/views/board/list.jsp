@@ -18,16 +18,18 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="../resources/board/css/style.css">
+<link rel="stylesheet" href="/resources/board/css/style.css">
 
 </head>	
 <body>
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<h1 class="h3 mb-0 text-gray-800">Board List</h1>
-		<h1 class="h3 mb-0 text-gray-800">Board List</h1>
-		<h1 class="h3 mb-0 text-gray-800">Board List</h1>
-		<h1 class="h3 mb-0 text-gray-800">Board List</h1>
-		<h1 class="h3 mb-0 text-gray-800">Board List</h1>
+		<ul>
+			<li>.
+			<li>.
+			<li>.
+			<li>.
+			<li>.
+		</ul>
 	</div>
 	<div class="d-flex">
 		<!-- 검색부분  -->
@@ -103,7 +105,7 @@
 				<tr>
 					<th scope="row">${dto.bno}</th>
 					<td><a href="${dto.bno}" class="move">${dto.title}</a> <strong>[${dto.replyCnt}]</strong></td>
-					<td>${dto.writer}</td>
+					<td>"${dto.writer}"</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 							value="${dto.regDate}" /></td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
@@ -171,11 +173,10 @@
 	</script>
 	<script src="/resources/js/list.js"></script>
 	<%@include file="../include/footer1.jsp"%>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/popper.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
-
+	<script src="/resources/js/jquery.min.js"></script>
+	<script src="/resources/js/popper.js"></script>
+	<script src="/resources/js/bootstrap.min.js"></script>
+	<script src="/resources/js/main.js"></script>
 </body>
 </html>
 

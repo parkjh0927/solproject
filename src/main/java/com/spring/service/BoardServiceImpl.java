@@ -34,10 +34,10 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional
 	@Override
 	public boolean insert(BoardDTO dto) {
-		// board 테이블 + attach 테이블 등록
+
 		boolean insertFlag = mapper.insert(dto)==1?true:false;
 		
-		// 첨부파일 여부 확인
+
 		if(dto.getAttachList() == null || dto.getAttachList().size() == 0) {
 			return insertFlag;
 		}
@@ -53,9 +53,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardDTO getRow(int bno) {			
 		
-//		BoardDTO dto = mapper.readAttach(bno);
-//		log.info("상세 + 파일첨부 "+dto);
-		
+
 		return mapper.get(bno);
 	}
 	
@@ -65,15 +63,15 @@ public class BoardServiceImpl implements BoardService {
 		
 		boolean updateFlag = mapper.update(dto)==1?true:false;
 		
-		// 기존 첨부목록 제거
+
 		attachMapper.deleteAll(dto.getBno());		
 		
-		// 첨부파일이 있다면
+
 		if(dto.getAttachList() == null || dto.getAttachList().size() == 0) {
 			return updateFlag;
 		}		
 		
-		// 첨부목록 삽입
+
 		dto.getAttachList().forEach(attach -> {
 			attach.setBno(dto.getBno());
 			attachMapper.insert(attach); 
@@ -85,11 +83,10 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional
 	@Override
 	public boolean delete(int bno) {
-		
-		//자식 댓글 삭제
+
 		replyMapper.deleteAll(bno);
 		
-		//첨부파일 삭제
+
 		attachMapper.deleteAll(bno);	
 		
 		return mapper.delete(bno)==1?true:false;

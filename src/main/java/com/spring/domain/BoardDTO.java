@@ -21,7 +21,7 @@ public class BoardDTO {
 	private Date regDate;
 	private Date updateDate;
 	private int replyCnt;
-	//첨부파일 정보
+
 	private List<AttachFileDTO> attachList;
 }
 
