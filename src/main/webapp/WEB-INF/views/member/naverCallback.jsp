@@ -8,13 +8,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 
  	<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
- 	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
- 	
+ 	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/> 
+ 	<title>Insert title here</title>	
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	
 </head>
 <body>
 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+
 <script>
 
 	// csrf 토큰 첨부
@@ -50,12 +52,13 @@
 				      xhr.setRequestHeader(header, token);
 				    },
 				success: function(result) {
-					if(result=='ok') {
+					if (result == 'ok') {
 						console.log("네이버 로그인 성공")
-						location.replace("http://localhost:9091") 
+						location.replace("http://localhost:9091/") 
 					} else {
-						location.replace("http://localhost:9091/member/login")
-					}
+			            console.log("네이버 로그인 실패");
+			            location.replace("http://localhost:9091/member/login")
+			        }
 				},
 				error: function(result) {
 					console.log("오류 발생")

@@ -3,6 +3,7 @@ package com.spring.controller;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -124,12 +125,16 @@ public class SnsLoginController {
 		}
 		// 일치하는 아이디가 있으면 로그인
 		// Security Authentication 주입 
-			Authentication auth = new UsernamePasswordAuthenticationToken(username, dto.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
-			SecurityContextHolder.getContext().setAuthentication(auth);
-			System.out.println("시큐리티 권한" +auth);
+		Authentication auth = new UsernamePasswordAuthenticationToken(username, dto.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
+		SecurityContextHolder.getContext().setAuthentication(auth);
+		System.out.println("시큐리티 권한" +auth);
 				
-		    return result;	        
+		return result;	        
 	} 
+	
+	
+	
+	
 	 
 	 
 
