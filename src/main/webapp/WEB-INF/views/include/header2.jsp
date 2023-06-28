@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+
+
 
 
 
@@ -68,18 +71,19 @@
 
   .login-btn {
     display: inline-block;
-    width: 31px;
-    height: 31px;
-    background-image: url(resource/images/common/icon_header_profile1.png);
+    width: 35px;
+    height: 35px;
+    background-image: url(../resources/images/common/icon_header_profile1.png);
     text-indent: -9999px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
+    margin-left: 20px;
   }
-  .login-btn {
+  .logout-btn {
     display: inline-block;
-    width: 52px;
+    width: 35px;
     height: 35px;
     background-image: url(../resources/images/common/icon_header_profile2.png);
     text-indent: -9999px;
@@ -88,8 +92,8 @@
     background-position: 50% 50% !important;
     border-radius: 100%;
     margin-left: 20px;
+	}
     
-}
 	.search-sub{
      display: inline-block;
     width: 50px;
@@ -100,6 +104,31 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
+	}
+    
+    .logoutModal {
+      display: none;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: auto;      
+    } 
+    .logoutModal-content {
+      margin: 15% auto;
+      padding: 20px;
+      width: 450px;
+      border: 1px solid #888;
+      border-radius: 10px;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+    .logoutModal-content p {
+	  font-size: 18px; 
+	}    
+    .logoutModal-buttons {
+    margin-top: 20px;
+    text-align: center;
+  	}
 }
 	.navbar-nav{
 	margin-right: 80px;
@@ -151,11 +180,19 @@
               <li><a class="dropdown-item" href="#">자유 게시판</a></li>
             </ul>
           </li>
-         <c:if test="${authDTO != null }">
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">마이페이지</a>
-	          </li>   
-          </c:if>
+          
+        <security:authorize access="isAuthenticated()">          
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              마이페이지
+            </a>
+	            <ul class="dropdown-menu">
+	              <li><a class="dropdown-item" href="/member/myPage">내 정보</a></li>
+	              <li><a class="dropdown-item" href='<c:url value="#"/>'>찜 목록</a></li>
+	            </ul>
+          </li>          
+        </security:authorize>
+	            
           <li class="nav-item">
             <a class="nav-link" href="#">여행지도</a>
           </li>
@@ -164,14 +201,44 @@
           <input class="form-control me-2" id="inputse" type="search" placeholder="Search" aria-label="Search" name="search" action='<c:url value="/travel/destination"/>'>
           <button class="search-sub" type="submit">Search</button>
         </form>
-        <form action="">
-          <button class="login-btn" type="button">로그인</button>
-        </form>
+
+              	﻿
+		<security:authorize access="!isAuthenticated()">
+			<a href="/member/login" class="login-btn">로그인</a>
+		</security:authorize>
+		<security:authorize access="isAuthenticated()">
+			<form class="logoutForm" action="/logout" method="post">
+			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			 <button class="logout-btn" type="submit">로그아웃</button>
+			</form>
+		</security:authorize>
+
+﻿      
+
       </div>
     </div>
   </nav>
 </div>
-  
-</header>  
 
+<!-- 모달 창 -->
+<div id="logoutModal" class="logoutModal">
+  <div class="logoutModal-content">
+    <p></p>
+    <div class="logoutModal-buttons">
+      <button class="btn btn-danger logoutConfirmBtn">확인</button>
+      <button class="btn btn-secondary logoutCancelBtn">취소</button>
+    </div>
+  </div>
+</div>
+
+</header>
+
+
+<script>	
+// 시큐리티 로그인 여부 확인
+var isAuthenticated = <%= request.getRemoteUser() != null %>;
+</script>
+
+<script src="../resources/js/logIcon.js"></script>
 <script src="/resources/js/header.js"></script>
+
