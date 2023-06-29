@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.domain.WishListDTO;
 import com.spring.domain.WishTestListDTO;
 import com.spring.mapper.WishTestMapper;
 @Service
@@ -21,7 +20,7 @@ public class WishlistTestServiceImpl implements WishlistTestService {
 	}
 
 	@Override
-	public boolean insert(WishListDTO dto) {
+	public boolean insert(WishTestListDTO dto) {
 		
 		return mapper.insert(dto)==1?true:false;
 	}
