@@ -193,7 +193,7 @@
         </security:authorize>
 	            
           <li class="nav-item">
-            <a class="nav-link" href="/map">여행지도</a>
+            <a class="nav-link" href="/travel/map">여행지도</a>
           </li>
         </ul>
         <form class="d-flex" id="search123">
