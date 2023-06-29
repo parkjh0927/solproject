@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Controller @RequestMapping("/") @Slf4j
+@Controller @RequestMapping("/travel") @Slf4j
 public class MapController {
 	
 

@@ -1,3 +1,7 @@
+// 콘솔창 쿠키 오류 해결
+document.cookie = "safeCookie1=foo; SameSite=Lax";
+document.cookie = "safeCookie2=foo";
+document.cookie = "crossCookie=bar; SameSite=None; Secure";
 const sel_fest = document.querySelector("#search-festival");
 const sel_bed = document.querySelector("#search-bed");
 const sel_keyword = document.querySelector("#search-keyword");
@@ -13,7 +17,29 @@ const search_text = document.querySelector("#search-text");
 const search_btn = document.querySelector("#search-btn");
 //달력 선택
 const sel_date = document.querySelector("#select-date");
-
+//결과목록보기버튼
+const toggleButton = document.querySelector("#toggleSidebar");
+//검색중 아이콘
+const searchBuffer = document.querySelector("#search-buffer");
+//행사날짜 변수//================================================================================================================
+// var startDate = "";
+// var endDate = "";
+// document.querySelector("#datetest").addEventListener("click", () => {
+//   startDate = "2023" + document.getElementById("searchDate").value + "01";
+//   endDate = "2023" + document.getElementById("searchDate").value + "31";
+//   console.log("startDate : ", startDate);
+//   console.log("enddate: ", endDate);
+// });
+// const testurl =
+//   "https://apis.data.go.kr/B551011/KorService1/searchFestival1?numOfRows=9999&&MobileOS=AND&MobileApp=SolTour&_type=json&arrange=R&eventStartDate=" +
+//   startDate +
+//   "&eventEndDate=" +
+//   endDate +
+//   "&areaCode=" +
+//   "1" +
+//   "&serviceKey=XQa%2FASRtG5fdnoXmCcOAnCDgWeQrvUNGpQZLKr10Wa7YyOOZXFTm0sB7i%2FwvFvAUSmuQdj89r5ay%2BfTA7ASTIw%3D%3D";
+// console.log(testurl);
+//================================================================================================================
 let search_value = "";
 sel_fest.addEventListener("click", () => {
   addr_code.removeAttribute("hidden");
@@ -21,7 +47,7 @@ sel_fest.addEventListener("click", () => {
   search_text.setAttribute("hidden", "");
   type_code.setAttribute("hidden", "");
   sel_date.removeAttribute("hidden");
-  sel_option.innerHTML = "행사 조회";
+  sel_option.innerHTML = "행사지역 조회";
   search_value = "행사";
   sel_addr.innerHTML = "행사지역";
 });
@@ -41,12 +67,15 @@ sel_keyword.addEventListener("click", () => {
   type_code.removeAttribute("hidden");
   search_btn.removeAttribute("hidden");
   sel_date.setAttribute("hidden", "");
-  sel_option.innerHTML = "조회 타입";
+  sel_option.innerHTML = "검색조회";
   sel_addr.innerHTML = "검색지역";
   search_value = "검색";
 });
 // 사이드바 변수
 let sideNum = 0;
+toggleButton.addEventListener("click", () => {
+  if (sideNum == 0) alert("결과 목록이 없습니다.");
+});
 // 마커 아이콘 객체
 const icon_1 = document.querySelector("#icon-1");
 const icon_2 = document.querySelector("#icon-2");
@@ -88,6 +117,8 @@ search_btn.addEventListener("click", () => {
         "eventStartDate=" +
         sel_date.value.replace(/-/g, "") +
         "&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D";
+      search_btn.setAttribute("hidden", "");
+      searchBuffer.removeAttribute("hidden");
     } else {
       url =
         "https://apis.data.go.kr/B551011/KorService1/searchFestival1?" +
@@ -99,6 +130,8 @@ search_btn.addEventListener("click", () => {
         "&areaCode=" +
         addr_code.value +
         "&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D";
+      search_btn.setAttribute("hidden", "");
+      searchBuffer.removeAttribute("hidden");
     }
   } else if (search_value == "숙박") {
     if (addr_code.value == "null") {
@@ -111,6 +144,8 @@ search_btn.addEventListener("click", () => {
         9999 +
         "&MobileOS=ETC&MobileApp=APPtest&_type=json&" +
         "&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D";
+      search_btn.setAttribute("hidden", "");
+      searchBuffer.removeAttribute("hidden");
     } else {
       url =
         "https://apis.data.go.kr/B551011/KorService1/searchStay1?" +
@@ -120,6 +155,8 @@ search_btn.addEventListener("click", () => {
         "areaCode=" +
         addr_code.value +
         "&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D";
+      search_btn.setAttribute("hidden", "");
+      searchBuffer.removeAttribute("hidden");
     }
   } else if (search_value == "검색") {
     if (addr_code.value == "null") {
@@ -140,6 +177,8 @@ search_btn.addEventListener("click", () => {
         "&MobileOS=ETC&MobileApp=APPtest&_type=json&keyword=" +
         encodeURIComponent(search_text.value) +
         "&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D";
+      search_btn.setAttribute("hidden", "");
+      searchBuffer.removeAttribute("hidden");
     } else if (addr_code.value == "all") {
       url =
         "https://apis.data.go.kr/B551011/KorService1/searchKeyword1?" +
@@ -151,6 +190,8 @@ search_btn.addEventListener("click", () => {
         "&contentTypeId=" +
         type_code.value +
         "&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D";
+      search_btn.setAttribute("hidden", "");
+      searchBuffer.removeAttribute("hidden");
     } else if (type_code.value == "all") {
       url =
         "https://apis.data.go.kr/B551011/KorService1/searchKeyword1?" +
@@ -162,6 +203,8 @@ search_btn.addEventListener("click", () => {
         "&areaCode=" +
         addr_code.value +
         "&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D";
+      search_btn.setAttribute("hidden", "");
+      searchBuffer.removeAttribute("hidden");
     } else {
       url =
         "https://apis.data.go.kr/B551011/KorService1/searchKeyword1?" +
@@ -175,9 +218,12 @@ search_btn.addEventListener("click", () => {
         "&areaCode=" +
         addr_code.value +
         "&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D";
+      search_btn.setAttribute("hidden", "");
+      searchBuffer.removeAttribute("hidden");
     }
   }
   // url 생성 종료-----------------------------------------------종료
+  console.log(url);
   fetch(url)
     .then((response) => {
       if (!response.ok) {
@@ -186,6 +232,9 @@ search_btn.addEventListener("click", () => {
       return response.json();
     })
     .then((data) => {
+      searchBuffer.setAttribute("hidden", "");
+      search_btn.removeAttribute("hidden");
+      ("<button class='search-type' id='search-btn' type='button' ><img src='../resources/images/common/btn_header_search.png'></img></button>");
       item = data.response.body.items.item;
       if (data.response.body.items == "") {
         alert("검색결과가 없습니다.");
@@ -226,12 +275,13 @@ search_btn.addEventListener("click", () => {
       clusterer.clear();
       //사이드바 내용
       var sideCon = "";
-
       item.forEach((position) => {
+        var noImage = "";
         var sideContentImage = position.firstimage
           ? "<img src='" + position.firstimage + "' style='height:70px; width:70px;'/>"
           : "";
-        // 사이드바내용
+        if (sideContentImage == "") noImage = "line-height:70px;";
+        // 사이드바내용 // 사이드바내용 // 사이드바내용 // 사이드바내용 // 사이드바내용
         var sideTitle =
           position.title.indexOf("[") !== -1
             ? position.title.split("[")[0].trim()
@@ -239,22 +289,30 @@ search_btn.addEventListener("click", () => {
         var realSideTitle =
           sideTitle.indexOf("(") !== -1 ? sideTitle.split("(")[0].trim() : sideTitle.trim();
         sideCon +=
+          "<div class=" +
+          position.contenttypeid +
+          ">" +
           "<li type='button' class='side-li'>" +
           "<input class = 'side-li-value' hidden value='" +
           position.contentid +
-          "'>" +
+          "'/>" +
+          "<div style='display:flex; align-items:center;'>" +
           sideContentImage +
-          "<span class = 'side-span'>" +
+          "<span class = 'side-span' style='" +
+          noImage +
+          "' >" +
           realSideTitle +
-          "</span>" +
-          "</li>";
+          "</span></div>" +
+          "</li>" +
+          "</div>";
+
         // 포이치안에서 마커 생성
         var lat = position.mapy;
         var lng = position.mapx;
         var contenttypeid = position.contenttypeid;
 
         var markerImage;
-        var imageSize = new kakao.maps.Size(20, 35);
+        var imageSize = new kakao.maps.Size(20, 30);
 
         if (contenttypeid == 12) {
           markerImage = new kakao.maps.MarkerImage("../resources/images/map/관광지.png", imageSize);
@@ -338,9 +396,10 @@ search_btn.addEventListener("click", () => {
           icon_7.removeAttribute("hidden");
         }
       });
-      // 사이드바 변수 추가
-      sideNum = 1;
       //마커 포이치 종료
+      // 사이드바 변수 추가
+
+      sideNum = 1;
       clusterer.addMarkers(templeMarkers);
       clusterer.addMarkers(cultureMarkers);
       clusterer.addMarkers(festivalMarkers);
@@ -348,6 +407,7 @@ search_btn.addEventListener("click", () => {
       clusterer.addMarkers(homeMarkers);
       clusterer.addMarkers(shopMarkers);
       clusterer.addMarkers(foodMarkers);
+
       // 아이콘 클릭 이벤트
       icon_1.addEventListener("click", () => {
         changeMarker("icon1");
@@ -358,6 +418,14 @@ search_btn.addEventListener("click", () => {
         clusterer.removeMarkers(homeMarkers);
         clusterer.removeMarkers(shopMarkers);
         clusterer.removeMarkers(foodMarkers);
+        //사이드바
+        document.querySelectorAll(".side-li").forEach((element) => {
+          if (!element.parentNode.classList.contains("12")) {
+            element.parentNode.style.display = "none";
+          } else {
+            element.parentNode.style.display = ""; // 기본값으로 설정하여 다시 보여줍니다.
+          }
+        });
       });
       icon_2.addEventListener("click", () => {
         changeMarker("icon2");
@@ -368,6 +436,13 @@ search_btn.addEventListener("click", () => {
         clusterer.removeMarkers(homeMarkers);
         clusterer.removeMarkers(shopMarkers);
         clusterer.removeMarkers(foodMarkers);
+        document.querySelectorAll(".side-li").forEach((element) => {
+          if (!element.parentNode.classList.contains("14")) {
+            element.parentNode.style.display = "none";
+          } else {
+            element.parentNode.style.display = ""; // 기본값으로 설정하여 다시 보여줍니다.
+          }
+        });
       });
       icon_3.addEventListener("click", () => {
         changeMarker("icon3");
@@ -378,6 +453,13 @@ search_btn.addEventListener("click", () => {
         clusterer.removeMarkers(homeMarkers);
         clusterer.removeMarkers(shopMarkers);
         clusterer.removeMarkers(foodMarkers);
+        document.querySelectorAll(".side-li").forEach((element) => {
+          if (!element.parentNode.classList.contains("15")) {
+            element.parentNode.style.display = "none";
+          } else {
+            element.parentNode.style.display = ""; // 기본값으로 설정하여 다시 보여줍니다.
+          }
+        });
       });
       icon_4.addEventListener("click", () => {
         changeMarker("icon4");
@@ -388,6 +470,13 @@ search_btn.addEventListener("click", () => {
         clusterer.removeMarkers(homeMarkers);
         clusterer.removeMarkers(shopMarkers);
         clusterer.removeMarkers(foodMarkers);
+        document.querySelectorAll(".side-li").forEach((element) => {
+          if (!element.parentNode.classList.contains("28")) {
+            element.parentNode.style.display = "none";
+          } else {
+            element.parentNode.style.display = ""; // 기본값으로 설정하여 다시 보여줍니다.
+          }
+        });
       });
       icon_5.addEventListener("click", () => {
         changeMarker("icon5");
@@ -398,6 +487,13 @@ search_btn.addEventListener("click", () => {
         clusterer.addMarkers(homeMarkers);
         clusterer.removeMarkers(shopMarkers);
         clusterer.removeMarkers(foodMarkers);
+        document.querySelectorAll(".side-li").forEach((element) => {
+          if (!element.parentNode.classList.contains("32")) {
+            element.parentNode.style.display = "none";
+          } else {
+            element.parentNode.style.display = ""; // 기본값으로 설정하여 다시 보여줍니다.
+          }
+        });
       });
       icon_6.addEventListener("click", () => {
         changeMarker("icon6");
@@ -408,6 +504,13 @@ search_btn.addEventListener("click", () => {
         clusterer.removeMarkers(homeMarkers);
         clusterer.addMarkers(shopMarkers);
         clusterer.removeMarkers(foodMarkers);
+        document.querySelectorAll(".side-li").forEach((element) => {
+          if (!element.parentNode.classList.contains("38")) {
+            element.parentNode.style.display = "none";
+          } else {
+            element.parentNode.style.display = ""; // 기본값으로 설정하여 다시 보여줍니다.
+          }
+        });
       });
       icon_7.addEventListener("click", () => {
         changeMarker("icon7");
@@ -418,9 +521,15 @@ search_btn.addEventListener("click", () => {
         clusterer.removeMarkers(homeMarkers);
         clusterer.removeMarkers(shopMarkers);
         clusterer.addMarkers(foodMarkers);
+        document.querySelectorAll(".side-li").forEach((element) => {
+          if (!element.parentNode.classList.contains("39")) {
+            element.parentNode.style.display = "none";
+          } else {
+            element.parentNode.style.display = ""; // 기본값으로 설정하여 다시 보여줍니다.
+          }
+        });
       });
       // --------시작-----------사이드바---------사이드바-------------사이드바---시작
-      const toggleButton = document.querySelector("#toggleSidebar");
       const sidebar = document.querySelector(".left-side-bar");
       const sidemap = document.querySelector("#map");
       var sideContent = document.querySelector("#side-content");
@@ -435,23 +544,17 @@ search_btn.addEventListener("click", () => {
       }, 500);
 
       sideContent.innerHTML = sideCon;
-      if (sideNum == 1) {
-        toggleButton.addEventListener("click", () => {
-          toggleButton.innerHTML =
-            sidebar.style.left === "0px" ? "결과목록보기" : "결과목록 숨기기";
-          sidebar.style.left = sidebar.style.left === "0px" ? "-400px" : "0px";
-        });
-        sidemap.addEventListener("click", (event) => {
-          if (!sidebar.contains(event.target) && sidebar.style.left === "0px") {
-            toggleButton.innerHTML = "결과목록보기";
-            sidebar.style.left = "-400px";
-          }
-        });
-      } else {
-        toggleButton.addEventListener("click", () => {
-          alert("결과목록이 없습니다.");
-        });
-      }
+      toggleButton.addEventListener("click", () => {
+        toggleButton.innerHTML = sidebar.style.left === "0px" ? "결과목록보기" : "결과목록 숨기기";
+        sidebar.style.left = sidebar.style.left === "0px" ? "-400px" : "0px";
+      });
+      sidemap.addEventListener("click", (event) => {
+        if (!sidebar.contains(event.target) && sidebar.style.left === "0px") {
+          toggleButton.innerHTML = "결과목록보기";
+          sidebar.style.left = "-400px";
+        }
+      });
+
       document.querySelectorAll(".side-li").forEach((sideLi) => {
         sideLi.addEventListener("mouseover", () => {
           sideLi.style.backgroundColor = "antiquewhite";
@@ -460,7 +563,8 @@ search_btn.addEventListener("click", () => {
           sideLi.style.backgroundColor = "#F8F9FA";
         });
         sideLi.addEventListener("click", (event) => {
-          const sideValue = event.target.querySelector(".side-li-value").value;
+          console.log("value : ", event.currentTarget.querySelector(".side-li-value"));
+          const sideValue = event.currentTarget.querySelector(".side-li-value").value;
           console.log(sideValue);
 
           clusterer.getMarkers().forEach((element) => {
@@ -541,6 +645,7 @@ search_btn.addEventListener("click", () => {
             if (!selectedMarker || selectedMarker !== element) {
               // 클릭된 마커 객체가 null이 아니면
               // 클릭된 마커의 이미지를 기본 이미지로 변경하고
+              console.log("클릭된마커:", testMarker.getImage());
               !!selectedMarker && selectedMarker.setImage(testMarker.getImage());
 
               // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
@@ -558,15 +663,38 @@ search_btn.addEventListener("click", () => {
                 var image = new Image();
                 image.src = this.firstimage;
                 var imgHeight = image.height > 250 ? 250 : image.height;
+                var Title =
+                  element.title.indexOf("[") !== -1
+                    ? element.title.split("[")[0].trim()
+                    : element.title.trim();
+                var realTitle =
+                  Title.indexOf("(") !== -1 ? Title.split("(")[0].trim() : Title.trim();
+                clickTitle = realTitle;
                 document.querySelector("#exampleModalLabel").innerHTML = clickTitle;
                 modal_content = this.firstimage
-                  ? "<img src='" +
+                  ? "<div style='text-align: center;'><img src='" +
                     this.firstimage +
                     "' style='height:" +
                     imgHeight +
-                    "px;width:auto;'/>"
-                  : "<img src='../resources/img/prepare.png' style='height:100px;width:auto;'/>";
-                modal_content += "<div>" + data.response.body.items.item[0].overview + "</div>";
+                    "px;width:auto;'/><div>"
+                  : "<div style='text-align: center;'><img src='../resources/img/prepare.png' style='height:100px;width:auto;'/></div>";
+                //상세설명내용
+                modal_content +=
+                  "<div style='text-align: left;'>" +
+                  data.response.body.items.item[0].overview +
+                  "</div>";
+
+                document
+                  .querySelector("#find-road")
+                  .setAttribute(
+                    "href",
+                    "https://map.kakao.com/link/to/" +
+                      clickTitle +
+                      "," +
+                      data.response.body.items.item[0].mapy +
+                      "," +
+                      data.response.body.items.item[0].mapx
+                  );
                 document.querySelector("#modal-content").innerHTML = modal_content;
                 document.querySelector("#btn-modal").click();
               })
