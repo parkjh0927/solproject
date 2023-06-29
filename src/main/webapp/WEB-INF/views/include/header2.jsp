@@ -79,7 +79,6 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
-    margin-left: 20px;
   }
   .logout-btn {
     display: inline-block;
@@ -194,11 +193,7 @@
         </security:authorize>
 	            
           <li class="nav-item">
-<<<<<<< HEAD
             <a class="nav-link" href="/map">여행지도</a>
-=======
-            <a class="nav-link" href="/travel/map">여행지도</a>
->>>>>>> refs/heads/min
           </li>
         </ul>
         <form class="d-flex" id="search123">
