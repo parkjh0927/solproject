@@ -148,7 +148,7 @@
 <div style="background-color: #f8f9fa;">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-size: 1.4rem;">
     <div class="container">
-      <a class="navbar-brand" href="#" style="font-size: 1.9rem;">SOL 투어</a>
+      <a class="navbar-brand" href="/" style="font-size: 1.9rem;">SOL 투어</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -194,7 +194,7 @@
         </security:authorize>
 	            
           <li class="nav-item">
-            <a class="nav-link" href="#">여행지도</a>
+            <a class="nav-link" href="/map">여행지도</a>
           </li>
         </ul>
         <form class="d-flex" id="search123">
