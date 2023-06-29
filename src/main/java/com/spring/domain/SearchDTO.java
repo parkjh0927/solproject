@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailsDTO {
+public class SearchDTO {
 
-	private String contentId;
-	private String contenttypeId;
+	//키워드 
+	private String search;
 }

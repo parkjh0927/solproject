@@ -32,9 +32,8 @@
     }
 
     
-
     .top {
-      margin-top: 150px;
+      margin: 150px;
       font-size: 50px;
       display: flex;
       margin-bottom: 20px;
@@ -80,8 +79,8 @@
 
 .destination img {
   /* 스타일 지정 예시 */
-  width: 300px;
-  height: auto;
+  width: 350px;
+  height: 200px;
   margin-right: 20px;
 }
 
@@ -107,7 +106,7 @@
 </head>
 <body>
   <header class="top">
-    <h1>#전체</h1>
+    <h1># 여행지</h1>
   </header>
            
     <div class="choice-container">

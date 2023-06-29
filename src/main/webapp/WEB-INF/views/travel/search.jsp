@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@include file="../include/header2.jsp"%>
 
 <html>
@@ -21,7 +21,7 @@
 
     /* 메인 스타일 */
     main {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 20px auto;
       padding: 20px;
       background-color: #ffffff;
@@ -31,38 +31,7 @@
       align-items: center;
     }
 
-    /* 여행지 스타일 */
-    .destination {
-      display: flex;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 20px;
-    }
-
-    .destination img {
-      width: 40%;
-      border-radius: 5px;
-      margin-right: 20px;
-    }
-
-    .destination-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .destination h2 {
-      color: #008080;
-      font-size: 24px;
-      margin: 0;
-    }
-
-    .destination p {
-      color: #666666;
-      margin: 8px 0;
-    }
+    
 
     .top {
       margin-top: 150px;
@@ -72,6 +41,9 @@
       border-bottom: 1px solid #ccc;
       padding-bottom: 20px;
     }
+
+   
+
     .numbercheck {
       font-size: 15px;
       text-align: center;
@@ -80,32 +52,116 @@
     .moresee {
       margin-top: 20px;
     }
+   .information {
+  /* 스타일 지정 예시 */
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin: 10px;
+  width: 800px;
+}
+
+.destination {
+  /* 스타일 지정 예시 */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  height: 250px;
+}
+
+.destination img {
+  width: 350px;
+  height: 200px;
+  margin-right: 20px;
+}
+
+.destination-content {
+  /* 스타일 지정 예시 */
+  text-align: center;
+  flex-grow: 1;
+}
+
+.destination-content h2 {
+  /* 스타일 지정 예시 */
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.destination-content p {
+  /* 스타일 지정 예시 */
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+ .choice-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+      padding: 20px 250px 20px 0;
+    }
+
+    .choice {
+      margin-left: auto;
+      font-size: 15px
+    }
   </style>
 </head>
-<body class="searchre">
+<body>
   <header class="top">
-    <h1>#검색 </h1>
+    <h1>#전체</h1>
   </header>
-     
-  <main>          
-                   
+       
+     <!-- <div class="choice-container">
+      <select class="choice">
+        <option value="">전체 </option>
+        <option value="12">관광지</option>
+        <option value="14">문화 시설</option>
+        <option value="15">축제, 공연, 행사</option>
+        <option value="28">레포츠</option>
+        <option value="32">숙박</option>
+        <option value="38">쇼핑</option>
+        <option value="39">음식점</option>
+      </select>
+    </div>  -->
+    
+  <main> 
+  
+  <c:forEach var="dto" items="${result.item}"> 
     <div class="information">
-      <div class="destination">
-        <img src="seoul.jpg" alt="서울">
-        <div class="destination-content">
-          <h2>서울</h2>
-          <p>서울은 대한민국의 수도로서 역사적인 유적지와 현대적인 건축물이 공존하는 도시입니다.</p>
-          <p>주요 관광지: 경복궁, 명동, 남산 타워</p>
-        </div>          
-      </div>     
+        <div class='destination' id="${dto.contentid}" type = "button">
+		 	<img src="${dto.firstimage2}">
+		 <div class='destination-content'>
+		  <h2>${dto.title}</h2>
+		  	<p>주소 : ${dto.addr1}</p>
+		   	<p>${dto.tel}</p>
+		    <input class = 'conInput' hidden value='${dto.contentid}'></input>
+		  	<input class = 'contyInput' hidden value='${dto.contenttypeid}'></input>
+	   </div>
+     </div>
     </div>
-            
+  	</c:forEach>
+                   
+      <form id='locals' action='http://localhost:8080/travel/details'>
+	       <input hidden id='con1' name='contentId'/>
+	       <input hidden id='con2' name='contenttypeId'/>
+        </form>
+              
     <div>
       <p class="numbercheck"><strong class="count1" value="0"></strong> 곳 관람중...</p>
-      <button type="button" class="moresee">+ 더보기</button>
+      <!-- <button type="button" class="moresee">+ 더보기</button> -->
     </div>
   </main>
 </body> 
 </html>
 
+<script>
+  // JSTL 태그를 통해 반복된 아이템들의 길이를 구함
+  var count = ${fn:length(result.item)};
+  // count1 요소에 갯수 출력
+  document.querySelector(".count1").textContent = count;
+</script>
+
 <%@include file="../include/footer1.jsp"%>
+<script src="/resources/js/search.js"></script>
