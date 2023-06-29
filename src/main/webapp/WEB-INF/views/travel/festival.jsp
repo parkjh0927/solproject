@@ -386,6 +386,8 @@
 								<p class="blind">축제일순 리스트</p>
 								<ul class="other_festival_ul" id="fstvlList">
 								
+								
+								
 								</ul>
 							</div>
 							<!-- 더보기 버튼 -->

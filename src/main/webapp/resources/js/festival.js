@@ -47,9 +47,9 @@ function showItems(items) {
     console.log(data.firstimage);
 
     str += "<li>";
-    str += '<a href="#">';
-    str += '<div class="other_festival_img  open">';
-    str += "<img src=" + data.firstimage + ">";
+    str += '<div class="festa_detail">';
+    str += '<div class="other_festival_img  open" type="button">';
+    str += "<img src=" + data.firstimage + " width=100 height=100>";
     str += '<div class="sing_area">';
     str += '<div class="blind">문화 관광 축제</div>';
     str += "</div>";
@@ -64,11 +64,32 @@ function showItems(items) {
       "</div>";
     str += '<div class="loc">' + data.addr1 + "</div>";
     str += "</div>";
-    str += "</a>";
+    str += "</div>";
     str += "</li>";
+    str += "<form id='locals' action='http://localhost:8080/travel/details'>";
+    str += "<input hidden id='con1' name='contentId'/>";
+    str += "<input hidden id='con2' name='contenttypeId'/>";
+    str += "<form>";
+    document.querySelector("#fstvlList").innerHTML = str;
+
+    // document.querySelectorAll(".festa_detail").forEach((festa_detail) => {
+    //   festa_detail.addEventListener("click", () => {
+    //     const contentId = festa_detail.querySelector(".conInput").value;
+    //     const contenttypeId = festa_detail.querySelector(".contyInput").value;
+    //     const con1 = document.querySelector("#con1");
+    //     const con2 = document.querySelector("#con2");
+    //     const festaForm = document.querySelector("#locals");
+    //     con1.value = contentId
+    //     con2.value = contenttypeId
+    //     festaForm.submit();
+    //     console.log(contentId)
+    //     console.log(contenttypeId)
+            
+    // });
+    // });
   });
 
-  document.querySelector("#fstvlList").innerHTML += str;
+  //document.querySelector("#fstvlList").innerHTML += str;
 }
 
 function loadMore() {

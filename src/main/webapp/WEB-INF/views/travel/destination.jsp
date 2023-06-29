@@ -124,6 +124,7 @@
     </div>   
   <main>       
                    
+               
     <div class="information">
         <div class='destination' id=" + e.contentid + " type='button'>
  <img src=" + e.firstimage2 + ">
@@ -140,6 +141,7 @@
        <input hidden id='con2' name='contenttypeId'/>
         <form>
     </div>
+     	
               
     <div>
       <p class="numbercheck"><strong class="count1" value="0"></strong> 곳 관람중...</p>

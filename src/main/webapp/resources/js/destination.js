@@ -45,7 +45,7 @@ function loadItems() {
       let str = "";
       
       item.forEach((e) => {
-        str += "<div class='destination' id=" + e.contentid + " type='button'>";
+        str += "<div class='destination' id=" + e.contentid + ">";
         str += "<img src=" + e.firstimage2 + ">";
         str += "<div class='destination-content'>";
         str += "<h2>" + e.title + "</h2>";
