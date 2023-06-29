@@ -36,10 +36,11 @@ input[type="date"]:focus::before, input[type="date"]:valid::before {
 /* 모달창 제목 */
 #exampleModalLabel{
 	font-family: 'Nanum Gothic', sans-serif;
+	z-index: 9999;
 }
 
 #icon {
-	z-index: 9999;
+	z-index: 999;
 	position: absolute;
 	right: 5%;
 	bottom: 5%;
@@ -99,7 +100,7 @@ input[type="date"]:focus::before, input[type="date"]:valid::before {
 	width: 400px;
 	position: fixed;
 	left: -400px;
-	top: 60px;
+	top: 55px;
 	transition: left 0.3s;
 	
 	overflow: scroll;
@@ -117,4 +118,19 @@ input[type="date"]:focus::before, input[type="date"]:valid::before {
 }
 .side-span{
 	padding-left:10px;
+}
+#side-title{
+	padding-top:20px;
+}
+/* 스크롤바 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+  background: #eeeeee;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#c2e59c, #64b3f4);
 }

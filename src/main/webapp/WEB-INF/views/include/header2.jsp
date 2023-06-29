@@ -79,7 +79,6 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
-    margin-left: 20px;
   }
   .logout-btn {
     display: inline-block;
@@ -194,11 +193,11 @@
         </security:authorize>
 	            
           <li class="nav-item">
-            <a class="nav-link" href="/map">여행지도</a>
+            <a class="nav-link" href="/travel/map">여행지도</a>
           </li>
         </ul>
-        <form class="d-flex" id="search123">
-          <input class="form-control me-2" id="inputse" type="search" placeholder="Search" aria-label="Search" name="search" action='<c:url value="/travel/destination"/>'>
+        <form class="d-flex" id="search123" action='<c:url value="/travel/search"/>'>
+          <input class="form-control me-2" id="inputse" type="search" placeholder="Search" aria-label="Search" name="search"/>
           <button class="search-sub" type="submit">Search</button>
         </form>
 
