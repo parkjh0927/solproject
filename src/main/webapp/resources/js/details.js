@@ -398,9 +398,9 @@ if(contenttypeid == 32){
 const wish = document.querySelector(".wish");
 
 wish.addEventListener("click", () => location.href=path);
-  const form = document.querySelector("form");
+  const aaform = document.querySelector("form");
 
-  form.addEventListener("submit", (e) => {
+  aaform.addEventListener("submit", (e) => {
     const title = document.querySelector("#title");
     const tel = document.querySelector("#tel");
     const hmpg = document.querySelector("#hmpg");

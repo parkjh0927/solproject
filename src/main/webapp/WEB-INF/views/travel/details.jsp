@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../include/header2.jsp"%>
-
+<script src="/resources/js/details.js"></script>
 <html>
 <style>
     /* 전체 스타일 */
@@ -158,6 +158,7 @@
     			<button type="button">찜 추가 하기</button>
     		</div>
       
+      
   <main class="main">   
     <form action="/travel/details">
     <div class="information">
@@ -216,5 +217,5 @@
 <script>
 	const path = '<c:url value="/travel/mywishlist"/>';
 </script>
+
 <%@include file="../include/footer1.jsp"%>
-<script src="/resources/js/details.js"></script>
