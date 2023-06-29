@@ -196,8 +196,8 @@
             <a class="nav-link" href="/travel/map">여행지도</a>
           </li>
         </ul>
-        <form class="d-flex" id="search123">
-          <input class="form-control me-2" id="inputse" type="search" placeholder="Search" aria-label="Search" name="search" action='<c:url value="/travel/destination"/>'>
+        <form class="d-flex" id="search123" action='<c:url value="/travel/search"/>'>
+          <input class="form-control me-2" id="inputse" type="search" placeholder="Search" aria-label="Search" name="search"/>
           <button class="search-sub" type="submit">Search</button>
         </form>
 
