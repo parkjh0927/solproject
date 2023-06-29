@@ -9,5 +9,4 @@ public interface WishMapper {
 	public int insert(WishListDTO dto);
 	public int delete(String contentid);
 	public List<WishListDTO> getRow();
-
 }

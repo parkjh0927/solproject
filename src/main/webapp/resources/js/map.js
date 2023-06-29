@@ -622,7 +622,7 @@ search_btn.addEventListener("click", () => {
                 "px;width:auto;'/>"
               : "<div style='overflow:visible; text-align: center;'>" +
                 realTitle +
-                "</div><img src='../resources/img/prepare.png' style='height:250px;width:auto;'/>";
+                "</div><img src='../resources/img/prepare1.png' style='height:250px;width:auto;'/>";
 
             infowindow.setContent(iwContent);
             infowindow.open(map, element);
@@ -656,7 +656,7 @@ search_btn.addEventListener("click", () => {
             fetch(
               "https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=test&_type=json&contentId=" +
                 this.contentid +
-                "&overviewYN=Y&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D"
+                "&mapinfoYN=Y&overviewYN=Y&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D"
             )
               .then((response) => response.json())
               .then((data) => {
@@ -677,13 +677,13 @@ search_btn.addEventListener("click", () => {
                     "' style='height:" +
                     imgHeight +
                     "px;width:auto;'/><div>"
-                  : "<div style='text-align: center;'><img src='../resources/img/prepare.png' style='height:100px;width:auto;'/></div>";
+                  : "<div style='text-align: center;'><img src='../resources/img/prepare1.png' style='height:100px;width:auto;'/></div>";
                 //상세설명내용
                 modal_content +=
                   "<div style='text-align: left;'>" +
                   data.response.body.items.item[0].overview +
                   "</div>";
-
+                console.log(data.response.body.items.item);
                 document
                   .querySelector("#find-road")
                   .setAttribute(
@@ -696,6 +696,10 @@ search_btn.addEventListener("click", () => {
                       data.response.body.items.item[0].mapx
                   );
                 document.querySelector("#modal-content").innerHTML = modal_content;
+                document.querySelector("#submitid").value =
+                  data.response.body.items.item[0].contentid;
+                document.querySelector("#submittypeid").value =
+                  data.response.body.items.item[0].contenttypeid;
                 document.querySelector("#btn-modal").click();
               })
               .catch((error) => console.log(error));
@@ -720,9 +724,7 @@ function changeMarker(type) {
     icon_6.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_7.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
   } else if (type === "icon2") {
-    // 선택된 아이콘을 선택된 스타일로 변경하고
     icon_2.style.backgroundColor = "white";
-    // 나머지는 선택되지 않은 스타일로 바꿉니다
     icon_1.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_3.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_4.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
@@ -730,9 +732,7 @@ function changeMarker(type) {
     icon_6.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_7.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
   } else if (type === "icon3") {
-    // 선택된 아이콘을 선택된 스타일로 변경하고
     icon_3.style.backgroundColor = "white";
-    // 나머지는 선택되지 않은 스타일로 바꿉니다
     icon_2.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_1.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_4.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
@@ -740,9 +740,7 @@ function changeMarker(type) {
     icon_6.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_7.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
   } else if (type === "icon4") {
-    // 선택된 아이콘을 선택된 스타일로 변경하고
     icon_4.style.backgroundColor = "white";
-    // 나머지는 선택되지 않은 스타일로 바꿉니다
     icon_2.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_3.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_1.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
@@ -750,9 +748,7 @@ function changeMarker(type) {
     icon_6.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_7.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
   } else if (type === "icon5") {
-    // 선택된 아이콘을 선택된 스타일로 변경하고
     icon_5.style.backgroundColor = "white";
-    // 나머지는 선택되지 않은 스타일로 바꿉니다
     icon_2.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_3.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_4.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
@@ -760,9 +756,7 @@ function changeMarker(type) {
     icon_6.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_7.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
   } else if (type === "icon6") {
-    // 선택된 아이콘을 선택된 스타일로 변경하고
     icon_6.style.backgroundColor = "white";
-    // 나머지는 선택되지 않은 스타일로 바꿉니다
     icon_2.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_3.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_4.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
@@ -770,9 +764,7 @@ function changeMarker(type) {
     icon_1.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_7.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
   } else if (type === "icon7") {
-    // 선택된 아이콘을 선택된 스타일로 변경하고
     icon_7.style.backgroundColor = "white";
-    // 나머지는 선택되지 않은 스타일로 바꿉니다
     icon_2.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_3.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     icon_4.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
@@ -781,3 +773,9 @@ function changeMarker(type) {
     icon_1.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
   }
 }
+document.querySelector("#modal-like").addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log(document.querySelector("#submittypeid").value);
+  console.log(document.querySelector("#submitid").value);
+  document.querySelector("#detailForm").submit();
+});

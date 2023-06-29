@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -34,9 +34,11 @@
 			<div class="modal-body" id="modal-content">2</div>
 			<div class="modal-footer">
 				<a style='position: absolute; left: 20px; padding:10px;' id='find-road' href='' target='_blank'>길찾기</a>
-				<button type="button" class="btn btn-secondary" id="btnbtnbtn"
-					data-bs-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" id="modal-like">상세페이지 보기</button>
+				<form  id='detailForm' action = "http://localhost:8080/travel/details">
+					<input id='submitid'  name='contentId' hidden/>
+					<input id='submittypeid'  name='contenttypeId' hidden/>
+					<button type="submit" class="btn btn-primary" id="modal-like">상세페이지 보기</button>
+				</form>
 			</div>
 		</div>
 	</div>
