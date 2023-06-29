@@ -22,7 +22,6 @@ public class BoardDTO {
 	private Date updateDate;
 	private int replyCnt;
 
-	private List<AttachFileDTO> attachList;
 }
 
 

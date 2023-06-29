@@ -105,7 +105,7 @@
 				<tr>
 					<th scope="row">${dto.bno}</th>
 					<td><a href="${dto.bno}" class="move">${dto.title}</a> <strong>[${dto.replyCnt}]</strong></td>
-					<td>"${dto.writer}"</td>
+					<td>${dto.writer}</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 							value="${dto.regDate}" /></td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
@@ -114,6 +114,15 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 페이지 나누기 시작 -->
 	<nav aria-label="...">
 		<ul class="pagination justify-content-center">
@@ -171,12 +180,14 @@
 		// result = 'success'; 수정,삭제
 		// result = '35';  등록
 	</script>
-	<script src="/resources/js/list.js"></script>
 	<%@include file="../include/footer1.jsp"%>
 	<script src="/resources/js/jquery.min.js"></script>
 	<script src="/resources/js/popper.js"></script>
 	<script src="/resources/js/bootstrap.min.js"></script>
 	<script src="/resources/js/main.js"></script>
+	<script src="/resources/js/list.js"></script>
 </body>
+
+
 </html>
 

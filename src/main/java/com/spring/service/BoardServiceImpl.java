@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spring.domain.AttachFileDTO;
+
 import com.spring.domain.BoardDTO;
 import com.spring.domain.Criteria;
-import com.spring.mapper.AttachMapper;
+
 import com.spring.mapper.BoardMapper;
 import com.spring.mapper.ReplyMapper;
 
@@ -21,8 +21,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardMapper mapper;
-	@Autowired
-	private AttachMapper attachMapper;
 	@Autowired
 	private ReplyMapper replyMapper;
 	
@@ -36,16 +34,6 @@ public class BoardServiceImpl implements BoardService {
 	public boolean insert(BoardDTO dto) {
 
 		boolean insertFlag = mapper.insert(dto)==1?true:false;
-		
-
-		if(dto.getAttachList() == null || dto.getAttachList().size() == 0) {
-			return insertFlag;
-		}
-		
-		dto.getAttachList().forEach(attach -> {
-			attach.setBno(dto.getBno());
-			attachMapper.insert(attach); 
-		});
 		
 		return insertFlag;
 	}
@@ -62,20 +50,7 @@ public class BoardServiceImpl implements BoardService {
 	public boolean update(BoardDTO dto) {	
 		
 		boolean updateFlag = mapper.update(dto)==1?true:false;
-		
 
-		attachMapper.deleteAll(dto.getBno());		
-		
-
-		if(dto.getAttachList() == null || dto.getAttachList().size() == 0) {
-			return updateFlag;
-		}		
-		
-
-		dto.getAttachList().forEach(attach -> {
-			attach.setBno(dto.getBno());
-			attachMapper.insert(attach); 
-		});
 		
 		return updateFlag;
 	}
@@ -85,9 +60,7 @@ public class BoardServiceImpl implements BoardService {
 	public boolean delete(int bno) {
 
 		replyMapper.deleteAll(bno);
-		
 
-		attachMapper.deleteAll(bno);	
 		
 		return mapper.delete(bno)==1?true:false;
 	}
@@ -97,10 +70,6 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.totalCnt(cri);
 	}
 
-	@Override
-	public List<AttachFileDTO> getAttachList(int bno) {		
-		return attachMapper.select(bno);
-	}
 }
 
 

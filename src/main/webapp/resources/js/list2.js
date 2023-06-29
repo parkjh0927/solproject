@@ -3,7 +3,6 @@
  *
  */
 
-
 checkModal(result);
 
 history.replaceState({}, null, null);

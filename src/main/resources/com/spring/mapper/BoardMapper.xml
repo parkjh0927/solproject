@@ -98,20 +98,8 @@
 		<result property="title" column="title"/>
 		<result property="content" column="content"/>
 		<result property="writer" column="writer"/>
-		<collection property="attachList" resultMap="attachMap"/>
 	</resultMap>	
-	<resultMap type="com.spring.domain.AttachFileDTO" id="attachMap">
-		<result property="uuid" column="uuid"/>
-		<result property="uploadPath" column="uploadPath"/>
-		<result property="fileName" column="fileName"/>
-		<result property="fileType" column="fileType"/>
-		<result property="bno" column="bno"/>
-	</resultMap>	
-	<select id="readAttach" resultMap="boardMap">
-		select title,content,writer,sa.bno, uuid, uploadpath,filetype,filename
-		from spring_board sb join spring_attach sa on sb.bno = sa.bno
-		where sb.bno=#{bno}	
-	</select>
+	
 	
 	
 	

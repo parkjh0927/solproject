@@ -7,6 +7,15 @@
 <div class="row">
 	<div class="col">
 		<form action="" method="post">
+			<div>
+				<ul>
+					<li>.
+					<li>.
+					<li>.
+					<li>.
+					<li>.
+				</ul>
+			</div>
 			<div class="form-group">
 				<label for="title">Title</label>
 				<input type="text" class="form-control" id="title" name="title" readonly value="${dto.title}">
@@ -28,8 +37,8 @@
 					<button type="button" class="btn btn-info">수정</button>
 				</c:if>
 			</security:authorize>		
-			
-			<button type="button" class="btn btn-secondary">목록</button>
+			<a class="btn btn-secondary" href="/board/list">목록</a>
+			<!-- <button type="button" class="btn btn-secondary">목록</button> -->
 		</form>
 	</div>
 </div>
@@ -121,7 +130,8 @@
 	// CSRF 토큰 값 생성
 	const csrfToken = '${_csrf.token}';
 </script>
-<script src="/resources/js/reply.js"></script>
+
+
 <script src="/resources/js/read.js"></script>
 <%@ include file="../include/footer1.jsp"%>
 

@@ -2,23 +2,21 @@ package com.spring.service;
 
 import java.util.List;
 
-import com.spring.domain.AttachFileDTO;
 import com.spring.domain.BoardDTO;
 import com.spring.domain.Criteria;
 
 public interface BoardService {
-	//전체 리스트 가져오기
+	//�쟾泥� 由ъ뒪�듃 媛��졇�삤湲�
 	public List<BoardDTO> getList(Criteria cri);
-	//글등록
+	//湲��벑濡�
 	public boolean insert(BoardDTO dto);
-	//특정 게시글 조회
+	//�듅�젙 寃뚯떆湲� 議고쉶
 	public BoardDTO getRow(int bno);
-	//글수정
+	//湲��닔�젙
 	public boolean update(BoardDTO dto);
-	//글삭제
+	//湲��궘�젣
 	public boolean delete(int bno);
-	//전체 게시물 개수
+	//�쟾泥� 寃뚯떆臾� 媛쒖닔
 	public int getTotalCnt(Criteria cri);	
-	//첨부 파일 가져오기
-	public List<AttachFileDTO> getAttachList(int bno);
+
 }

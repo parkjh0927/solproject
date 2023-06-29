@@ -3,6 +3,7 @@ package com.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import com.spring.domain.BoardDTO;
 import com.spring.domain.Criteria;
 import com.spring.domain.PageDTO;
 import com.spring.service.BoardService;
-import com.spring.service.TravelService;
+
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +30,7 @@ public class BoardController {
 
 	@GetMapping("/list")
 	public void boardlistGet(Model model, @ModelAttribute("cri") Criteria cri) {
-		log.info("°Ô½ÃÆÇ/°øÁö»çÇ×");
+		log.info("ê²Œì‹œíŒ/ê³µì§€ì‚¬í•­");
 
 		List<BoardDTO> list = service.getList(cri);
 		int total = service.getTotalCnt(cri);
@@ -40,19 +41,20 @@ public class BoardController {
 
 	}
 
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/register")
 	public void registerGet() {
-		log.info("°Ô½ÃÆÇ/µî·Ï");
+		log.info("ê²Œì‹œíŒ/ë“±ë¡");
 	}
 
 	@PostMapping("/register")
 	public String registerPost(BoardDTO dto, RedirectAttributes rttr, Criteria cri) {
 		boolean insertFlag=service.insert(dto);
 	      if(insertFlag) {
-	         log.info("±Û ¹øÈ£: "+dto.getBno()); // °Ô½Ã±ÛÀ» ÀÛ¼ºÇÒ ¶§¸¶´Ù ·Î±×¿¡ ±Û ¹øÈ£°¡ Ãâ·ÂµÈ´Ù.
-	         rttr.addFlashAttribute("result", dto.getBno()); // addFlashAttribute: ÁÖ¼ÒÁÙ¿¡ ³Ñ±âÁö ¾Ê°í session¿¡ Àá½Ã ´ã¾ÆµÎ´Â ¹æ½Ä
+	         log.info("ê¸€ ë²ˆí˜¸: "+dto.getBno()); // ê²Œì‹œê¸€ì„ ì‘ì„±í•  ë•Œë§ˆë‹¤ ë¡œê·¸ì— ê¸€ ë²ˆí˜¸ê°€ ì¶œë ¥ëœë‹¤.
+	         rttr.addFlashAttribute("result", dto.getBno()); // addFlashAttribute: ì£¼ì†Œì¤„ì— ë„˜ê¸°ì§€ ì•Šê³  sessionì— ì ì‹œ ë‹´ì•„ë‘ëŠ” ë°©ì‹
 	         
-	         // ÆäÀÌÁö ³ª´©±â Á¤º¸ ÁÖ¼ÒÁÙ¿¡ °°ÀÌ º¸³»±â
+	         // í˜ì´ì§€ ë‚˜ëˆ„ê¸° ì •ë³´ ì£¼ì†Œì¤„ì— ê°™ì´ ë³´ë‚´ê¸°
 	         rttr.addAttribute("page", cri.getPage());
 	         rttr.addAttribute("amount", cri.getAmount());
 	         
@@ -62,6 +64,7 @@ public class BoardController {
 	}
 
 	
+	
 	@GetMapping({"/read","/modify"})
 	public void readGet(int bno,Model model,@ModelAttribute("cri") Criteria cri){
 		log.info(""+bno);
@@ -69,4 +72,39 @@ public class BoardController {
 		BoardDTO dto = service.getRow(bno);
 		model.addAttribute("dto", dto);		
 	}
+	
+	@PostMapping("/modify")
+	@PreAuthorize("principal.username == #dto.writer") 
+	public String modifyPost(BoardDTO dto,RedirectAttributes rttr,Criteria cri) {
+		log.info(""+cri);
+
+		service.update(dto);
+		
+		rttr.addFlashAttribute("result");
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("amount", cri.getAmount());
+
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		return "redirect:/board/list";		
+	}
+	
+	
+	@GetMapping("/remove")
+	@PreAuthorize("principal.username == #writer")
+	public String removeGet(int bno,String writer,RedirectAttributes rttr,Criteria cri) {
+		
+		service.delete(bno);
+		
+		rttr.addFlashAttribute("result", "");
+
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
+		return "redirect:/board/list";		
+	}
+	
 }
