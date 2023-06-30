@@ -60,18 +60,14 @@ public class SnsLoginController {
 		//id 생성 (email의 @앞부분)
 		int atIndex = email.indexOf("@");
 		String username = email.substring(0, atIndex);
-		System.out.println("아이디"+username);		
-		
-		//비밀번호 생성 (id를 암호화)
-		String password = encoder.encode(username);
-		System.out.println("비밀번호"+password);
+		System.out.println("아이디"+username);						
 		
 		MemberDTO dto = new MemberDTO();
-		// 일치하는 아이디 없을시 회원가입
+		// 일치하는 아이디 없을시 회원가입 (id를 암호화해서 비번으로 저장)
 		if(!service.idCheck(username)) {
 			log.info("카카오로 회원가입 시작");
 			dto.setUsername(username);
-			dto.setPassword(password);
+			dto.setPassword(username);
 			dto.setEmail(email);
 			service.register(dto);
 		}
@@ -105,11 +101,7 @@ public class SnsLoginController {
 		//id 생성 (email의 @앞부분)
 		int atIndex = n_email.indexOf("@");
 		String username = n_email.substring(0, atIndex);
-		System.out.println("네이버 아이디"+username);		
-			
-		//비밀번호 생성 (id를 암호화)
-		String password = encoder.encode(username);
-		System.out.println("네이버 비밀번호"+password);
+		System.out.println("네이버 아이디"+username);					
 		
 		// ajax 결과
 		String result = "ok";
@@ -118,7 +110,7 @@ public class SnsLoginController {
 		if(!service.idCheck(username)) {
 			log.info("네이버로 회원가입 시작");
 			dto.setUsername(username);
-			dto.setPassword(password);
+			dto.setPassword(username);
 			dto.setEmail(n_email);
 			service.register(dto);
 		}
