@@ -74,14 +74,7 @@ public class TravelController {
 		return "redirect:/travel/mywishlist";
 	}
 	
-	public void getRow(Model model) {
-		log.info("�쐞�떆由ъ뒪�듃 紐⑸줉 �슂泥�");
-		
-		List<WishListDTO> list = service.getRow();
-		
-		model.addAttribute("list", list);
-	}
-	
+
 
 	@GetMapping("/festival")
 	public void feslistGet() {

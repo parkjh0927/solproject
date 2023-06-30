@@ -14,5 +14,5 @@ public class WishListDTO {
 	private String tel;
 	private String firstimage2;
 	private String addr1;
-
+	private String contentid;
 }

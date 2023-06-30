@@ -103,15 +103,18 @@
       <p class="numbercheck">현재 찜 개수 <strong class="count1" value="0"></strong> 개</p>
     </div>
   <main>
+    <c:forEach items="${wishList}" var="e">
+          
+        
 	  <div class="information">
-	  	<div class='destination' id=" + e.contentid + " type='button'>
-		 <!-- <img src=" + e.firstimage2 + "> -->
+	  	<div class='destination' id="  ${ e.contentid}  " type='button'>
+		 <img src=" ${e.firstimage2} "> 
 			<div class='destination-content'>
-			  <!-- <h2>" + e.title + "</h2>
-			  <p>주소 : " + e.addr1 + "</p>
-			  <p>전화번호 : " + e.tel + "</p>
-		      <input class = 'conInput' hidden value='" + e.contentid + "'></input>
-		  	  <input class = 'contyInput' hidden value='" + e.contenttypeid + "'></input> -->
+			  <h2>" + ${e.title} + "</h2>
+			  <p>주소 : " ${ e.addr1} + "</p>
+			  <p>전화번호 : " ${ e.tel} + "</p>
+		      <input class = 'conInput' hidden value='" ${ e.contentid} "'></input>
+		  	  <!-- <input class = 'contyInput' hidden value='" + e.contenttypeid + "'></input> --> 
 	     	</div>
 	    </div>
 	    <form id='locals' action='http://localhost:8080/travel/details'>
@@ -119,6 +122,21 @@
 	       <input hidden id='con2' name='contenttypeId'/>
 	    </form>
 	 </div>
+	 
+	 </c:forEach>
    </main> 
-    
+    <script>
+    document.queryse
+    </script>
+<script>
+  var count = 0;
+
+  // forEach 반복마다 count를 증가시킴
+  <c:forEach items='${wishList}' var='e'>
+    count++;
+  </c:forEach>
+
+  // 현재 찜 개수 업데이트
+  document.querySelector('.count1').innerHTML = count;
+</script>
  <%@include file="../include/footer1.jsp"%>

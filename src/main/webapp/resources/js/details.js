@@ -20,6 +20,56 @@ fetch(url)
   .then((data) => {
     console.log(data);
     const item = data.response.body.items.item;
+    // 위시리스트 보낼 정보=============
+    var userid = document.querySelector("#logintest").value;
+    console.log("userid:", userid);
+    var wishArr = {
+      addr1: item[0].addr1,
+      tel: item[0].tel,
+      firstimage: item[0].firstimage,
+      title: item[0].title,
+      contentid: item[0].contentid,
+      userid: userid,
+    };
+
+    document.querySelector(".wish").addEventListener("click", () => {
+      // CustomAccessDeniedHandler 디나이 핸들러에 막혀버림
+      // csrf 토큰값 가져오기
+      var csrfToken = document.querySelector("#csrfToken").value;
+      console.log(wishArr);
+      fetch("http://localhost:8080/wish/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-TOKEN": csrfToken, // CSRF 토큰을 X-CSRF-TOKEN 헤더에 포함
+        },
+        body: JSON.stringify(wishArr),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          alert(data);
+          console.log("data: ", data);
+        })
+        .catch((error) => console.log(error));
+      var iidd = document.querySelector("#wishAdd");
+      iidd.innerHTML =
+        "<input name ='addr1' hidden value = '" +
+        item[0].addr1 +
+        "'/><input hidden name ='tel' value='" +
+        item[0].tel +
+        "'/><input hidden name='firstimage2' value='" +
+        item[0].firstimage +
+        "'/><input hidden name='title' value='" +
+        item[0].title + //title에 띄어쓰기가 있으므로 자바객체에 담을수가 없음
+        "'/><input hidden name='contentid' value='" +
+        item[0].contentid +
+        "'/>";
+      console.log("위시리스트 보낼정보", document.querySelector("#wishForm"));
+
+      const wishForm = document.querySelector("#wishForm");
+      //wishForm.submit();
+    });
+    // -------------------------
     let str = "";
     item.forEach((e) => {
       str += "<header class='top'>";

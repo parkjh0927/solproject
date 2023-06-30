@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="../include/header2.jsp"%>
 
+
 <html>
 <style>
     /* 전체 스타일 */
@@ -154,9 +155,11 @@
 <head>
 </head>
 <body>
+    
          <div class="wish">
-    			<button type="button">찜 추가 하기</button>
+    			<button type="button"><security:authorize access="isAuthenticated()">찜 추가 하기</security:authorize></button>
     		</div>
+	
       
   <main class="main">   
     <form action="/travel/details">
@@ -207,11 +210,20 @@
     </div>    
     </form>         
     
-    
+    <!-- 찜목록(위시리스트)에 담을 내용 -->
+   <form method='get' id='wishForm' action ='http://localhost:8080/wish/add'>
+   <input hidden id='csrfToken' name="${_csrf.parameterName}" value="${_csrf.token}" />
+    <input hidden id='logintest' name='userid' value='
+    <security:authorize access="isAuthenticated()">
+    	<security:authentication property="principal.username"/>
+	</security:authorize>'/>
+	<div id='wishAdd'></div>
+  </form>
   
     
   </main>
 </body>
+
 </html>
 <script>
 	const path = '<c:url value="/travel/mywishlist"/>';

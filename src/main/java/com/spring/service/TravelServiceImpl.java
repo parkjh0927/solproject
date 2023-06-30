@@ -37,8 +37,8 @@ public class TravelServiceImpl implements TravelService {
 	}
 
 	@Override
-	public List<WishListDTO> getRow() {
-		return wishmapper.getRow();
+	public List<WishListDTO> getRow(String username) {
+		return wishmapper.getRow(username);
 	}
 
 	

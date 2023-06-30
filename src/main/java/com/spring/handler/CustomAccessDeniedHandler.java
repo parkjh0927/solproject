@@ -19,7 +19,9 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 		
 		log.info("�젒洹� �젣�븳 �빖�뱾�윭..............");
-		
+	    // 액세스 거부 에러 메시지 로깅
+        log.info("Access Denied: {}", accessDeniedException.getMessage());
+
 		// response 媛앹껜�뿉 �젙蹂대�� �떞嫄곕굹 �뿉�윭 �럹�씠吏�濡� �씠�룞
 		response.sendRedirect("/member/denied");
 
