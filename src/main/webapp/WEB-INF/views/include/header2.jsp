@@ -79,7 +79,6 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
-    margin-left: 20px;
   }
   .logout-btn {
     display: inline-block;
@@ -188,13 +187,19 @@
             </a>
 	            <ul class="dropdown-menu">
 	              <li><a class="dropdown-item" href="/member/myPage">내 정보</a></li>
-	              <li><a class="dropdown-item" href='<c:url value="#"/>'>찜 목록</a></li>
+	              <form action="/wish/mywishlist" method="POST">
+					  <li>
+					  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					    <input type="hidden" name="username" value="<security:authentication property="principal.username" />" />
+					    <button type="submit" class="dropdown-item">찜 목록</button>
+					  </li>
+				  </form>
 	            </ul>
           </li>          
         </security:authorize>
 	            
           <li class="nav-item">
-            <a class="nav-link" href="/map">여행지도</a>
+            <a class="nav-link" href="/travel/map">여행지도</a>
           </li>
         </ul>
         <form class="d-flex" id="search123" action='<c:url value="/travel/search"/>'>

@@ -18,9 +18,11 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 		
-		log.info("접근 제한 핸들러..............");
-		
-		// response 객체에 정보를 담거나 에러 페이지로 이동
+		log.info("�젒洹� �젣�븳 �빖�뱾�윭..............");
+	    // 액세스 거부 에러 메시지 로깅
+        log.info("Access Denied: {}", accessDeniedException.getMessage());
+
+		// response 媛앹껜�뿉 �젙蹂대�� �떞嫄곕굹 �뿉�윭 �럹�씠吏�濡� �씠�룞
 		response.sendRedirect("/member/denied");
 
 	}

@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.domain.WishListDTO;
+
 import lombok.extern.slf4j.Slf4j;
 
-@Controller @RequestMapping("/") @Slf4j
+@Controller @RequestMapping("/travel") @Slf4j
 public class MapController {
 	
 
@@ -93,6 +95,11 @@ public class MapController {
 	@GetMapping("/tetetet")
 	public void getttt() {
 		log.info("ddd");
+	}
+	
+	@GetMapping("/map/wishlist")
+	public void mapWishlistGet(List<WishListDTO> dto) {
+		
 	}
 
 }

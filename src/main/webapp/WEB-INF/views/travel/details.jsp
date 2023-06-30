@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@include file="../include/header2.jsp"%>
+
+<script src="/resources/js/details.js"></script>
 
 <html>
 <style>
@@ -146,9 +148,12 @@
     line-height: 26px;
 }
 	.wish{
-	margin: 150px 0px 0px 1100px; 
+	margin: 100px 0px -30px 600px; 
+	padding-bottom:-100px;
 	font-size: 20px;
+	z-index:30;
 	}
+<<<<<<< HEAD
 	.reply{
 	width: 1000px; 
 	justify-content: center;
@@ -167,16 +172,25 @@
 	}
 	#card1{
 	font-size: 20px;
+=======
+	#btn-like{
+	color:red;
+	font-weight: bolder;
+	margin-right:100px;
+>>>>>>> refs/heads/master
 	}
   </style>
 <head>
 </head>
 <body>
-         <div class="wish">
-    			<button type="button">찜 추가 하기</button>
-    		</div>
+    
+      
       
   <main class="main">   
+         <div class="wish" >
+    			<button id='btn-like' type="button"><security:authorize access="isAuthenticated()">찜 추가 하기</security:authorize></button>
+    		</div>
+	
     <form action="/travel/details">
     <div class="information">
     	<div class="commons">
@@ -225,10 +239,21 @@
     </div>    
     </form>         
     
+<<<<<<< HEAD
    
+=======
+
+    <!-- 찜목록(위시리스트)에 담을 내용 -->
+   <input hidden id='csrfToken' name="${_csrf.parameterName}" value="${_csrf.token}" />
+    <input hidden id='logintest' name='userid' value=
+    ' <security:authorize access="isAuthenticated()"><security:authentication property="principal.username"/></security:authorize>'/>
+	
+  
+>>>>>>> refs/heads/master
     
   </main>
 </body>
+<<<<<<< HEAD
 <div class="reply1">
 	<div class="card">
      <form>
@@ -287,6 +312,9 @@
     </div>
   </div>
 </div>
+=======
+
+>>>>>>> refs/heads/master
 </html>
 
 <form action="" id="operForm">
@@ -298,5 +326,9 @@
 	const contentid = ${dto.contentid}
 	const csrfToken = '${_csrf.token}';
 </script>
+<<<<<<< HEAD
 <script src="/resources/js/details.js"></script>
+=======
+
+>>>>>>> refs/heads/master
 <%@include file="../include/footer1.jsp"%>
