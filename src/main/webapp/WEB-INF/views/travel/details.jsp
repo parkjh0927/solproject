@@ -151,6 +151,7 @@
 	margin: 100px 0px -30px 600px; 
 	padding-bottom:-100px;
 	font-size: 20px;
+	z-index:30;
 	}
 	#btn-like{
 	color:red;
