@@ -149,7 +149,25 @@
 	margin: 150px 0px 0px 1100px; 
 	font-size: 20px;
 	}
+	.reply{
+	width: 1000px; 
+	justify-content: center;
+    align-items: center;
+    margin-left: 230px;
+	}
 	
+	#reply-content {
+  	height: 150px;
+ 	width: 800px;
+ 	margin-left: 90px;
+}
+
+	#btn-reply-save {
+	  float: right; /* 등록 버튼 오른쪽 정렬 */
+	}
+	#card1{
+	font-size: 20px;
+	}
   </style>
 <head>
 </head>
@@ -207,14 +225,78 @@
     </div>    
     </form>         
     
-    
-  
+   
     
   </main>
 </body>
+<div class="reply1">
+	<div class="card">
+     <form>
+     <input type="text" name="username" class="rep" id="username" readonly
+     			value='<security:authentication property="principal.username"/>'>
+		<div class="card-body">
+			<textarea id="dereply" name="dereply" class="form-control" rows="2"></textarea>
+		</div>
+		<div class="card-footer">
+			<button type="button" id="btn-reply-save" class="btn btn-primary">등록</button>
+		</div>
+		</form>
+	</div>
+    
+    
+<div class="card" id="card1">
+		<div class="card-header">댓글 리스트</div>
+		<ul id="reply--box" class="list-group">
+			
+			<li id="reply--1" class="list-group-item d-flex justify-content-between">
+				<div>댓글내용</div>
+				<div class="d-flex">
+					<div class="">작성자</div>
+					<button class="warning">수정</button>
+					<button class="badge">삭제</button>
+				</div>
+			</li>
+
+		</ul>
+	</div>
+</div>
+
+<!-- 댓글 수정 폼 -->
+<div class="modal" tabindex="-1" id="replyModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">댓글 수정</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="rno" id="rno" />
+      <div class="form-group">
+      	<textarea name="dereply" id="dereply" rows="4" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+      	<input type="text" name="username" id="username" class="form-control" readonly/>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">수정</button>
+      </div>
+    </div>
+  </div>
+</div>
 </html>
+
+<form action="" id="operForm">
+	<input type="hidden" name="contentid" value="${dto.contentid}">
+	<input type="hidden" name="page" value="${cri.page}">
+	<input type="hidden" name="amount" value="${cri.amount}">
+</form>
 <script>
-	const path = '<c:url value="/travel/mywishlist"/>';
+	const contentid = ${dto.contentid}
+	const csrfToken = '${_csrf.token}';
 </script>
-<%@include file="../include/footer1.jsp"%>
 <script src="/resources/js/details.js"></script>
+<%@include file="../include/footer1.jsp"%>

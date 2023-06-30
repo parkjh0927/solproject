@@ -1,4 +1,4 @@
-// 상세 정보 제공 페이지의 상단부분(이름, 사진, 개요)정보 불러오기
+///////// 상세 정보 제공 페이지의 상단부분(이름, 사진, 개요)정보 불러오기
 const urlParams = new URLSearchParams(window.location.search);
 
 // 특정 매개변수 값 가져오기
@@ -391,20 +391,6 @@ if(contenttypeid == 32){
 
 
 
-//========================================================
 
 
-//위시리스트 추가 
-const wish = document.querySelector(".wish");
-
-wish.addEventListener("click", () => location.href=path);
-  const form = document.querySelector("form");
-
-  form.addEventListener("submit", (e) => {
-    const title = document.querySelector("#title");
-    const tel = document.querySelector("#tel");
-    const hmpg = document.querySelector("#hmpg");
-    const firstimage = document.querySelector("#firstimage");
-  })
-
-
+//rrrr

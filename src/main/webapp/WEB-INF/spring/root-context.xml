@@ -28,7 +28,7 @@
 			value="jdbc:oracle:thin:@soldeskproject_high?TNS_ADMIN=Users/jaeshim/Wallet_soldeskproject" />
 		<property name="username" value="ADMIN" />
 		<property name="password" value="Soldeskproject123!" />
-	</bean>
+	</bean> 
 	
 	
 	<!-- <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -40,17 +40,19 @@
 		<property name="password" value="12345" />
 	</bean>
 
-	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource"
+	 <bean id="ds" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
-	</bean>
+	</bean> 
 
 	mybatis 설정
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
-	</bean> -->
-	<mybatis-spring:scan base-package="com.spring.mapper" />
+	</bean>  -->
+	
+	
+	<mybatis-spring:scan base-package="com.spring.mapper" /> 
 
 	
 </beans>
