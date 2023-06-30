@@ -386,25 +386,3 @@ if(contenttypeid == 32){
     })
     .catch((error) => console.log(error));
 }
-
-
-
-
-
-//========================================================
-
-
-//위시리스트 추가 
-const wish = document.querySelector(".wish");
-
-wish.addEventListener("click", () => location.href=path);
-  const aaform = document.querySelector("form");
-
-  aaform.addEventListener("submit", (e) => {
-    const title = document.querySelector("#title");
-    const tel = document.querySelector("#tel");
-    const hmpg = document.querySelector("#hmpg");
-    const firstimage = document.querySelector("#firstimage");
-  })
-
-
