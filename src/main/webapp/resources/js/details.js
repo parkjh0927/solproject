@@ -1,4 +1,4 @@
-//상세 정보 제공 페이지의 상단부분(이름, 사진, 개요)정보 불러오기
+// 상세 정보 제공 페이지의 상단부분(이름, 사진, 개요)정보 불러오기
 const urlParams = new URLSearchParams(window.location.search);
 
 // 특정 매개변수 값 가져오기
@@ -23,12 +23,12 @@ fetch(url)
     let str = "";
     item.forEach((e) => {
       str += "<header class='top'>";
-      str += "<h1>" + e.title + "</h1>";
+      str += "<h1 id='title'>" + e.title + "</h1>";
       str += "</header>";
       str += "<main>";
       str += "<div class='information'>";
       str += "<div class='destination'>";
-      str += "<img src=" + e.firstimage + ">";
+      str += "<img id='firstimage' src=" + e.firstimage + ">";
       str += "</div>";
       str += "<div class='destination'>";
       str += "<div class='destination-content'>";
@@ -43,7 +43,6 @@ fetch(url)
       str += "</div>";
     });
     document.querySelector(".commons").innerHTML = str;
-    console.log("typeinputValue=", typeinputValue);
   })
   .catch((error) => console.log(error));
 
@@ -69,11 +68,11 @@ if(contenttypeid == 32){
         item.forEach((e) => {
           str += "<ul>";
           if (e.infocenterlodging) {
-            str += "<li><strong>문의 및 안내</strong><span class='mo'>" + e.infocenterlodging + "</span></li>";
+            str += "<li id='tel'><strong>문의 및 안내</strong><span class='mo'>" + e.infocenterlodging + "</span></li>";
           }
           if (e.reservationurl) {
             str +=
-              "<li><strong>홈페이지</strong><span><a href=" + e.reservationurl + ">" + e.reservationurl + "</a></li>";
+              "<li id='hmpg'><strong>홈페이지</strong><span><a href=" + e.reservationurl + ">" + e.reservationurl + "</a></li>";
           }
           if (e.parkinglodging) {
             str += "<li><strong>주차</strong><span>" + e.parkinglodging + "</span></li>";
@@ -120,7 +119,7 @@ if(contenttypeid == 32){
       item.forEach(e => {
           str += "<ul>"
           if (e.expguide) {
-            str += "<li><strong>체험 안내</strong><span class='mo'>" + e.expguide + "</span></li>";
+            str += "<li id='tel'><strong>체험 안내</strong><span class='mo'>" + e.expguide + "</span></li>";
           }
           if (e.expagerange) {
             str += "<li><strong>체험가능 연령</strong><span>" + e.expagerange + "</span></li>";
@@ -161,7 +160,7 @@ if(contenttypeid == 32){
       item.forEach(e => {
           str += "<ul>"
           if (e.infocenterculture) {
-            str += "<li><strong>문의 및 안내</strong><span class='mo'>" + e.infocenterculture + "</span></li>";
+            str += "<li id='tel'><strong>문의 및 안내</strong><span class='mo'>" + e.infocenterculture + "</span></li>";
           }
           if (e.restdateculture) {
             str += "<li><strong>쉬는날</strong><span>" + e.restdateculture + "</span></li>";
@@ -208,7 +207,7 @@ if(contenttypeid == 32){
       item.forEach(e => {
           str += "<ul>"
           if (e.sponsor1tel) {
-            str += "<li><strong>문의 및 안내</strong><span class='mo'>" + e.sponsor1tel + "</span></li>";
+            str += "<li id='tel'><strong>문의 및 안내</strong><span class='mo'>" + e.sponsor1tel + "</span></li>";
           }
           if (e.eventplace) {
             str += "<li><strong>행사 장소</strong><span>" + e.eventplace + "</span></li>";
@@ -238,7 +237,7 @@ if(contenttypeid == 32){
             str += "<li><strong>행사 홈페이지</strong><span><a href='" + e.eventhomepage + "'>" + e.eventhomepage + "</a></span></li>";
           }
           if (e.usetimefestival) {
-            str += "<li><strong>이용 요금</strong><span>" + e.usetimefestival + "</span></li>";
+            str += "<li id='hmpg'><strong>이용 요금</strong><span>" + e.usetimefestival + "</span></li>";
           }
           if (e.bookingplace) {
             str += "<li><strong>예매처</strong><span>" + e.bookingplace + "</span></li>";
@@ -264,7 +263,7 @@ if(contenttypeid == 32){
       item.forEach(e => {
           str += "<ul>"
           if (e.infocenterleports) {
-            str += "<li><strong>문의 및 안내</strong><span class='mo'>" + e.infocenterleports + "</span></li>";
+            str += "<li id='tel'><strong>문의 및 안내</strong><span class='mo'>" + e.infocenterleports + "</span></li>";
           }
           if (e.expagerangeleports) {
             str += "<li><strong>체험가능 연령</strong><span>" + e.expagerangeleports + "</span></li>";
@@ -317,7 +316,7 @@ if(contenttypeid == 32){
       item.forEach(e => {
           str += "<ul>"
           if (e.infocentershopping) {
-            str += "<li><strong>문의 및 안내</strong><span class='mo'>" + e.infocentershopping + "</span></li>";
+            str += "<li id='tel'><strong>문의 및 안내</strong><span class='mo'>" + e.infocentershopping + "</span></li>";
           }
           if (e.opendateshopping) {
             str += "<li><strong>개장일</strong><span>" + e.opendateshopping + "</span></li>";
@@ -361,7 +360,7 @@ if(contenttypeid == 32){
       item.forEach(e => {
           str += "<ul>"
           if (e.infocenterfood) {
-            str += "<li><strong>문의 및 안내</strong><span class='mo'>" + e.infocenterfood + "</span></li>";
+            str += "<li id='tel'><strong>문의 및 안내</strong><span class='mo'>" + e.infocenterfood + "</span></li>";
           }
           if (e.reservationfood) {
             str += "<li><strong>예약 안내</strong><span>" + e.reservationfood + "</span></li>";
@@ -392,82 +391,20 @@ if(contenttypeid == 32){
 
 
 
+//========================================================
 
 
+//위시리스트 추가 
+const wish = document.querySelector(".wish");
+
+wish.addEventListener("click", () => location.href=path);
+  const aaform = document.querySelector("form");
+
+  aaform.addEventListener("submit", (e) => {
+    const title = document.querySelector("#title");
+    const tel = document.querySelector("#tel");
+    const hmpg = document.querySelector("#hmpg");
+    const firstimage = document.querySelector("#firstimage");
+  })
 
 
-
-
-
-//=======================================//
-
-// //상세 정보 제공 페이지의 상단부분(이름, 사진, 개요)정보 불러오기
-// let url = "https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=sol&_type=json&contentId=2465071&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&serviceKey=d%2FV%2BXJ2uRRmx8fi1ZLRNYKAIGNw5ZGfsEJvUhgnWEU%2FSTHfhq5E7aMU8BNrPSbm0EzohYFuTUbQ8InQMNB6kaw%3D%3D";
-
-// fetch(url)
-//   .then((response) => {
-//     if (!response.ok) {
-//       throw new Error("상세정보 요청 실패");
-//     }
-//     return response.json();
-//   })
-//   .then((data) => {
-//     console.log(data);
-//     const item = data.response.body.items.item;
-//     let str = "";
-//     item.forEach(e => {
-//         str += "<header class='top'>";
-//         str += "<h1>" + e.title + "</h1>";
-//         str += "</header>";
-//         str += "<main>";
-//         str += "<div class='information'>";
-//         str += "<div class='destination'>";
-//         str += "<img src=" + e.firstimage + ">";
-//         str += "</div>";
-//         str += "<div class='destination'>";
-//         str += "<div class='destination-content'>";
-//         str += "<h2>상세정보 </h2>";
-//         str += "</div>";
-//         str += "</div>";
-//         str += "<div class='destination'>";
-//         str += "<div class='destination-content'>";
-//         str += "<p style='font-size: 20px'>" + e.overview + "</p>";
-//         str += "</div>";
-//         str += "</div>";
-//         str += "</div>";
-//     });
-//     document.querySelector(".commons").innerHTML = str;
-//     console.log("typeinputValue=", typeinputValue)
-//   })
-//   .catch((error) => console.log(error));
-
-
-// //숙박 : 상세 정보 제공 페이지의 하단부분(전화번호, 홈페이지, 주차, 등..)정보 불러오기
-//   fetch("https://apis.data.go.kr/B551011/KorService1/detailIntro1?MobileOS=ETC&MobileApp=sol&_type=json&contentId=2465071&contentTypeId=32&serviceKey=d%2FV%2BXJ2uRRmx8fi1ZLRNYKAIGNw5ZGfsEJvUhgnWEU%2FSTHfhq5E7aMU8BNrPSbm0EzohYFuTUbQ8InQMNB6kaw%3D%3D")
-//   .then((response)=>{
-//     if(!response.ok){
-//         throw new Error("소개정보 요청 실패")
-//     }
-//     return response.json();
-//   })
-//   .then((data)=>{
-//     console.log(data);
-//     const item = data.response.body.items.item;
-//     let str = "";
-//     item.forEach(e => {
-//         str += "<ul>"
-//         str += "<li><strong>문의 및 안내</strong><span class='mo'>" + e.infocenterlodging+ "</li>";
-//         str += "<li><strong>홈페이지</strong><span><a href=" + e.reservationurl + ">" + e.reservationurl + "</a></li>";
-//         str += "<li><strong>주차</strong><span>" + e.parkinglodging + "</span></li>";
-//         str += "<li><strong>입실시간</strong><span>" + e.checkintime + "</span></li>";
-//         str += "<li><strong>퇴실시간</strong><span>" + e.checkouttime + "</span></li>";
-//         str += "<li><strong>객실수</strong><span>" + e.roomcount+ "</span></li>";
-//         str += "<li><strong>수용인원</strong><span>" + e.accomcountlodging+ "</span></li>";
-//         str += "<li><strong>객실내취사여부</strong><span>" + e.chkcooking + "</span></li>";
-//         str += "<li><strong>세미나실여부</strong><span>" + e.seminar+ "</span></li>";
-//         str += "<li><strong>환불규정</strong><span>" + e.refundregulation+ "</span></li>";
-//         str += "</ul>";
-//     });
-//     document.querySelector(".inr").innerHTML = str;
-//   })
-//   .catch()

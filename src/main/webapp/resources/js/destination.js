@@ -53,11 +53,11 @@ function loadItems() {
         if (e.tel) {
             str += " <p>전화번호 : " + e.tel + "</p>";
           }
-          str += "<input class = 'conInput' hidden value='" + e.contentid + "'></input>";
-          str += "<input class = 'contyInput' hidden value='" + e.contenttypeid + "'></input>";
-          str += "</div>";
-          str += "</div>";
-        });
+        str += "<input class = 'conInput' hidden value='" + e.contentid + "'></input>";
+        str += "<input class = 'contyInput' hidden value='" + e.contenttypeid + "'></input>";
+        str += "</div>";
+        str += "</div>";
+      });
         str += "<form id='locals' action='http://localhost:8080/travel/details'>";
         str += "<input hidden id='con1' name='contentId'/>";
         str += "<input hidden id='con2' name='contenttypeId'/>";

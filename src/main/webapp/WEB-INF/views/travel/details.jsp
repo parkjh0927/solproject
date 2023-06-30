@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../include/header2.jsp"%>
-
+<script src="/resources/js/details.js"></script>
 <html>
-<head>
 <style>
     /* 전체 스타일 */
     body {
@@ -73,7 +72,7 @@
     }
 
     .top {
-      margin-top: 150px;
+      margin-top: 50px;
       font-size: 50px;
       display: flex;
       margin-bottom: 20px;
@@ -146,17 +145,25 @@
     color: #333;
     line-height: 26px;
 }
-	
+	.wish{
+	margin: 150px 0px 0px 1100px; 
+	font-size: 20px;
+	}
 	
   </style>
+<head>
 </head>
 <body>
-         
+         <div class="wish">
+    			<button type="button">찜 추가 하기</button>
+    		</div>
+      
       
   <main class="main">   
-             
+    <form action="/travel/details">
     <div class="information">
     	<div class="commons">
+    		
 	      <div class="destination">
 	        <img src="seoul.jpg">
 	                   
@@ -187,20 +194,10 @@
 					<div class="inr_wrap">  
 						<div class="inr">
 							<ul>
-								<li><strong>주소</strong><span>강원 양양군 현북면 잔교리</span></li>
+								
 							</ul>
 							<ul>
-								<li><strong>문의 및 안내</strong><span class="mo">해파랑길 종합 안내소 051-607-6395</li>
-								<li><strong>홈페이지</strong><span><a href="https://www.durunubi.kr/course-detail-view.do?crs_idx=T_CRS_MNG0000004211" target="_blank" title="새창 : 해파랑길 42코스 홈페이지로 이동">https://www.durunubi.kr/main.do</a></span></li>
-								<li><strong>이용시간</strong><span>상시이용 가능, 방문 전 통제구간 확인 요망</span></li>
-								<li><strong>휴일</strong><span>연중무휴</span></li>
-								<li><strong>주차</strong><span>있음 (약 소형 100대, 대형5대 주차가능)</span></li>
-								<li><strong>체험프로그램</strong><span>트레킹</span></li>
-								<li><strong>장애인 주차 안내</strong><span>장애인 주차장 있음_무장애 편의시설</span></li>
-								<li><strong>접근로</strong><span>출입구까지 턱이 없어 휠체어 접근 가능함</span></li>
-								<li><strong>출입통로</strong><span>주출입구는 턱이 없어 휠체어 접근 가능함</span></li>
-								<li><strong>화장실</strong><span>장애인 화장실 있음</span></li>
-								<li><strong>보조견동반</strong><span>동반가능_시각장애인 편의시설</span></li>
+								
 							</ul>
 						</div>
 					</div>
@@ -209,6 +206,7 @@
         </div>
       </div>      
     </div>    
+    </form>         
     
     
   
@@ -216,6 +214,8 @@
   </main>
 </body>
 </html>
+<script>
+	const path = '<c:url value="/travel/mywishlist"/>';
+</script>
 
 <%@include file="../include/footer1.jsp"%>
-<script src="/resources/js/details.js"></script>

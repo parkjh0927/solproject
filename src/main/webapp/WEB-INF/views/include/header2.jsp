@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+
+
 
 
 
@@ -76,7 +79,6 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
-    margin-left: 20px;
   }
   .logout-btn {
     display: inline-block;
@@ -145,7 +147,7 @@
 <div style="background-color: #f8f9fa;">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-size: 1.4rem;">
     <div class="container">
-      <a class="navbar-brand" href="#" style="font-size: 1.9rem;">SOL 투어</a>
+      <a class="navbar-brand" href="/" style="font-size: 1.9rem;">SOL 투어</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -191,11 +193,11 @@
         </security:authorize>
 	            
           <li class="nav-item">
-            <a class="nav-link" href="#">여행지도</a>
+            <a class="nav-link" href="/travel/map">여행지도</a>
           </li>
         </ul>
-        <form class="d-flex" id="search123">
-          <input class="form-control me-2" id="inputse" type="search" placeholder="Search" aria-label="Search" name="search" action='<c:url value="/travel/destination"/>'>
+        <form class="d-flex" id="search123" action='<c:url value="/travel/search"/>'>
+          <input class="form-control me-2" id="inputse" type="search" placeholder="Search" aria-label="Search" name="search"/>
           <button class="search-sub" type="submit">Search</button>
         </form>
 

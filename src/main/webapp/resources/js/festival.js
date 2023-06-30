@@ -41,13 +41,8 @@ function showItems(items) {
 
   let str = "";
   items.forEach((data) => {
-    console.log(data.title);
-    console.log(data.eventstartdate);
-    console.log(data.eventenddate);
-    console.log(data.firstimage);
-
     str += "<li>";
-    str += '<a href="#">';
+    str += '<a href="/travel/details?contentId='+data.contentid+'&contenttypeId='+data.contenttypeid+'">';
     str += '<div class="other_festival_img  open">';
     str += "<img src=" + data.firstimage + ">";
     str += '<div class="sing_area">';

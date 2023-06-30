@@ -13,6 +13,10 @@
 	<context:component-scan
 		base-package="com.spring.service, com.spring.util" />
 
+	<context:component-scan
+		base-package="com.spring.api" />
+
+
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 	</bean> 
@@ -25,6 +29,9 @@
 		<property name="username" value="ADMIN" />
 		<property name="password" value="Soldeskproject123!" />
 	</bean>
+	
+	
+
 	<mybatis-spring:scan base-package="com.spring.mapper" />
 
 	

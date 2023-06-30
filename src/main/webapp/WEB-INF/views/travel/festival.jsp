@@ -384,7 +384,9 @@
 							<div class="tab_cont active" aria-expanded="true" role="application">
 								<!-- class="active" 추가시 활성 -->
 								<p class="blind">축제일순 리스트</p>
-								<ul class="other_festival_ul" id="fstvlList"></ul>
+								<ul class="other_festival_ul" id="fstvlList">
+								
+								</ul>
 							</div>
 							<!-- 더보기 버튼 -->
 							<button class="list_more_btn" id="loadMoreButton">더보기</button>
@@ -772,6 +774,7 @@
 					}
 				}
 
+				
 				if(searchType == 'B'){
 					pagingInfoLikeOrder.totalCnt = res.totalCnt;
 					$('#btnMore').text('더보기 (' + pagingInfoLikeOrder.rowNum + '/' + pagingInfoLikeOrder.totalCnt + ')');
