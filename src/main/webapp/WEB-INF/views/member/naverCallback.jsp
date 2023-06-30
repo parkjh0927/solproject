@@ -26,7 +26,7 @@
 	// 네이버 로그인 설정
 	var naverLogin = new naver.LoginWithNaverId({
 		clientId: "T5au66dpnNZuT0_5qsZR", 
-		callbackUrl: "http://localhost:9091/naverCallback", 
+		callbackUrl: "http://localhost:8080/naverCallback", 
 		isPopup: false,
 		callbackHandle: true
 	});
@@ -54,10 +54,10 @@
 				success: function(result) {
 					if (result == 'ok') {
 						console.log("네이버 로그인 성공")
-						location.replace("http://localhost:9091/") 
+						location.replace("http://localhost:8080/") 
 					} else {
 			            console.log("네이버 로그인 실패");
-			            location.replace("http://localhost:9091/member/login")
+			            location.replace("http://localhost:8080/member/login")
 			        }
 				},
 				error: function(result) {
@@ -67,7 +67,7 @@
 		// 로그인 실패시
 		} else {
 			console.log("네이버 로그인 실패");
-			location.replace("http://localhost:9091/member/login")
+			location.replace("http://localhost:8080/member/login")
 		}
 		});
 	});

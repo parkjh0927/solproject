@@ -78,7 +78,7 @@ public class SnsLoginController {
 		// 일치하는 아이디가 있으면 로그인
 		// Security Authentication 주입 
 		// CustomUser user = new CustomUser(username, password, Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
-		Authentication auth = new UsernamePasswordAuthenticationToken(username, dto.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
+		Authentication auth = new UsernamePasswordAuthenticationToken(username, null, Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		System.out.println("시큐리티 권한" +auth);
 			
@@ -88,13 +88,12 @@ public class SnsLoginController {
 
 	
 	
-	// 네이버 로그인 페이지
+	// 네이버 로그인 
 	@RequestMapping(value="naverCallback", method=RequestMethod.GET)
 	public String callBack(){
 		return "/member/naverCallback";
 	}	
 	 
-	// 네이버 로그인
 	@RequestMapping(value="naverSave", method=RequestMethod.POST)
 	@ResponseBody
 	public String naverSave(@RequestParam("n_email") String n_email) {
@@ -125,7 +124,7 @@ public class SnsLoginController {
 		}
 		// 일치하는 아이디가 있으면 로그인
 		// Security Authentication 주입 
-		Authentication auth = new UsernamePasswordAuthenticationToken(username, dto.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
+		Authentication auth = new UsernamePasswordAuthenticationToken(username, null, Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		System.out.println("시큐리티 권한" +auth);
 				
