@@ -153,7 +153,7 @@
 	font-size: 20px;
 	z-index:30;
 	}
-<<<<<<< HEAD
+
 	.reply{
 	width: 1000px; 
 	justify-content: center;
@@ -172,12 +172,11 @@
 	}
 	#card1{
 	font-size: 20px;
-=======
+
 	#btn-like{
 	color:red;
 	font-weight: bolder;
 	margin-right:100px;
->>>>>>> refs/heads/master
 	}
   </style>
 <head>
@@ -239,9 +238,7 @@
     </div>    
     </form>         
     
-<<<<<<< HEAD
-   
-=======
+
 
     <!-- 찜목록(위시리스트)에 담을 내용 -->
    <input hidden id='csrfToken' name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -249,14 +246,15 @@
     ' <security:authorize access="isAuthenticated()"><security:authentication property="principal.username"/></security:authorize>'/>
 	
   
->>>>>>> refs/heads/master
+
     
   </main>
 </body>
-<<<<<<< HEAD
+
 <div class="reply1">
 	<div class="card">
-     <form>
+	<security:authorize access="isAuthenticated()">
+     <form id="replyForm">
      <input type="text" name="username" class="rep" id="username" readonly
      			value='<security:authentication property="principal.username"/>'>
 		<div class="card-body">
@@ -266,6 +264,7 @@
 			<button type="button" id="btn-reply-save" class="btn btn-primary">등록</button>
 		</div>
 		</form>
+	</security:authorize>
 	</div>
     
     
@@ -273,10 +272,13 @@
 		<div class="card-header">댓글 리스트</div>
 		<ul id="reply--box" class="list-group">
 			
-			<li id="reply--1" class="list-group-item d-flex justify-content-between">
+			<li id="reply--1" class="list-group-item d-flex justify-content-between" data-rno='1'>
 				<div>댓글내용</div>
 				<div class="d-flex">
-					<div class="">작성자</div>
+					<div class="">
+						<strong id="username">작성자</strong>
+						<small>2023-06-30 00:00</small>
+					</div>
 					<button class="warning">수정</button>
 					<button class="badge">삭제</button>
 				</div>
@@ -285,6 +287,12 @@
 		</ul>
 	</div>
 </div>
+
+
+<div class="card-page">
+
+</div>
+
 
 <!-- 댓글 수정 폼 -->
 <div class="modal" tabindex="-1" id="replyModal">
@@ -312,9 +320,9 @@
     </div>
   </div>
 </div>
-=======
 
->>>>>>> refs/heads/master
+
+
 </html>
 
 <form action="" id="operForm">
@@ -326,9 +334,9 @@
 	const contentid = ${dto.contentid}
 	const csrfToken = '${_csrf.token}';
 </script>
-<<<<<<< HEAD
-<script src="/resources/js/details.js"></script>
-=======
 
->>>>>>> refs/heads/master
+
+
+<script src="/resources/js/details.js"></script>
+
 <%@include file="../include/footer1.jsp"%>
