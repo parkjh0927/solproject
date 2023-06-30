@@ -208,7 +208,15 @@
     </div>    
     </form>         
     
-    
+       
+   <!-- 찜목록(위시리스트)에 담을 내용 -->
+   <form method='get' id='wishForm' action ='http://localhost:8080/wish/add'>
+    <input id='logintest' name='userid' value='
+    <security:authorize access="isAuthenticated()">
+    	<security:authentication property="principal.username"/>
+	</security:authorize>'/>
+	<div id='wishAdd'></div>
+  </form>
   
     
   </main>
