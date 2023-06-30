@@ -779,3 +779,156 @@ document.querySelector("#modal-like").addEventListener("click", (e) => {
   console.log(document.querySelector("#submitid").value);
   document.querySelector("#detailForm").submit();
 });
+
+document.querySelector("#btn-like").addEventListener("click", () => {
+  loginId = document.querySelector("#logintest").value;
+  console.log(loginId);
+  fetch("http://localhost:8080/travel/like?username=" + loginId)
+    .then((response) => response.text())
+    .then((data) => {
+      if (!data) {
+        alert("찜목록이 없습니다.");
+        return;
+      }
+      const wishList = JSON.parse(data);
+
+      var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+        mapOption = {
+          center: new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
+          level: 13, // 지도의 확대 레벨
+        };
+
+      var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+      // 마커를 표시할 위치와 title 객체 배열입니다
+
+      // 마커 이미지의 이미지 주소입니다
+      var imageSrc = "../resources/images/map/찜마커.png";
+
+      var imageSize = new kakao.maps.Size(34, 35);
+
+      // 마커 이미지를 생성합니다
+      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+      // 인포윈도우 생성
+      var infowindow = new kakao.maps.InfoWindow();
+      // 마커를 생성합니다
+      console.log("wishList:", wishList);
+      function createMarker(map, position, image, firstimage, title, contentid) {
+        var marker = new kakao.maps.Marker({
+          map: map,
+          position: position,
+          image: image,
+        });
+        marker.firstimage2 = firstimage;
+        marker.title = title;
+        marker.contentid = contentid;
+        return marker;
+      }
+      wishList.forEach((element) => {
+        var marker = createMarker(
+          map,
+          new kakao.maps.LatLng(element.mapy, element.mapx),
+          markerImage,
+          element.firstimage2,
+          element.title,
+          element.contentid
+        );
+
+        //title, tel, addr1, firstimage2, contentid,mapx,mapy,contenttypeid
+        //-------------------------------마커이벤트 시작
+        // 오버마우스 이벤트 ======= 마커 오버마우스 이벤트
+        kakao.maps.event.addListener(marker, "mouseover", function () {
+          console.log("마커:", marker);
+          console.log("==========================");
+          marker.setImage(new kakao.maps.MarkerImage(imageSrc, new kakao.maps.Size(45, 47)));
+          var image = new Image();
+          image.onload = function () {
+            var imgHeight = image.height > 250 ? 250 : image.height;
+            var Title =
+              marker.title.indexOf("[") !== -1
+                ? marker.title.split("[")[0].trim()
+                : marker.title.trim();
+            var realTitle = Title.indexOf("(") !== -1 ? Title.split("(")[0].trim() : Title.trim();
+            clickTitle = realTitle;
+            var iwContent = marker.firstimage2
+              ? "<div style='overflow:visible; padding-bottom:5px; padding-top:5px;  text-align: center;'>" +
+                realTitle +
+                "</div><img src='" +
+                marker.firstimage2 +
+                "' style='height:" +
+                imgHeight +
+                "px;width:auto;'/>"
+              : "<div style='overflow:visible; text-align: center;'>" +
+                realTitle +
+                "</div><img src='../resources/img/prepare1.png' style='height:250px;width:auto;'/>";
+            infowindow.setContent(iwContent);
+            infowindow.open(map, marker);
+            console.log("인포내용", iwContent);
+            console.log("마커:", marker);
+          };
+          image.src = marker.firstimage2;
+          console.log("==========================");
+        });
+
+        // 아웃마우스 이벤트 ======= 마커 아웃마우스 이벤트
+        kakao.maps.event.addListener(marker, "mouseout", function () {
+          infowindow.close();
+          marker.setImage(markerImage);
+        });
+
+        // 클릭마우스 이벤트 ======= 마커 클릭 이벤트
+        kakao.maps.event.addListener(marker, "click", function () {
+          fetch(
+            "https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=test&_type=json&contentId=" +
+              marker.contentid +
+              "&mapinfoYN=Y&overviewYN=Y&serviceKey=KPX00nbUJjy6lFKETU%2FymNP%2BKbcHYN13m5Scu%2Fm6zQ1w2Fh1aiA6Xp9w8Qghnx7nyiOolBhGricu%2BT5es2t8%2FQ%3D%3D"
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              var image = new Image();
+              image.src = marker.firstimage2;
+              var imgHeight = image.height > 250 ? 250 : image.height;
+              var Title =
+                element.title.indexOf("[") !== -1
+                  ? element.title.split("[")[0].trim()
+                  : element.title.trim();
+              var realTitle = Title.indexOf("(") !== -1 ? Title.split("(")[0].trim() : Title.trim();
+              clickTitle = realTitle;
+              document.querySelector("#exampleModalLabel").innerHTML = clickTitle;
+              modal_content = marker.firstimage2
+                ? "<div style='text-align: center;'><img src='" +
+                  marker.firstimage2 +
+                  "' style='height:" +
+                  imgHeight +
+                  "px;width:auto;'/><div>"
+                : "<div style='text-align: center;'><img src='../resources/img/prepare1.png' style='height:100px;width:auto;'/></div>";
+              //상세설명내용
+              modal_content +=
+                "<div style='text-align: left;'>" +
+                data.response.body.items.item[0].overview +
+                "</div>";
+              console.log(data.response.body.items.item);
+              document
+                .querySelector("#find-road")
+                .setAttribute(
+                  "href",
+                  "https://map.kakao.com/link/to/" +
+                    clickTitle +
+                    "," +
+                    data.response.body.items.item[0].mapy +
+                    "," +
+                    data.response.body.items.item[0].mapx
+                );
+              document.querySelector("#modal-content").innerHTML = modal_content;
+              document.querySelector("#submitid").value =
+                data.response.body.items.item[0].contentid;
+              document.querySelector("#submittypeid").value =
+                data.response.body.items.item[0].contenttypeid;
+              document.querySelector("#btn-modal").click();
+            })
+            .catch((error) => console.log(error));
+        });
+      });
+    })
+    .catch((error) => console.log(error));
+});

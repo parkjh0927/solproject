@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <!DOCTYPE html>
 <html>
@@ -63,7 +64,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <button type='button' class="nav-link active" aria-current="page" id='toggleSidebar'>결과목록보기</button>
+          <button type='button' class="nav-link active" aria-current="page" id='toggleSidebar'>결as과목록보기</button>
+        </li>
+        <li class="nav-item">
+          <button type='button' class="nav-link active" aria-current="page" id='btn-like'><security:authorize access="isAuthenticated()">찜목록 보기</security:authorize></button>
         </li>
          <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" type='button' role="button" data-bs-toggle="dropdown" aria-expanded="false" id="search-option">
@@ -153,7 +157,12 @@
 	</ul>
 </div>
 
-
+<!-- 로그인된 사용자 id -->
+<input hidden id='csrfToken' name="${_csrf.parameterName}" value="${_csrf.token}" />
+<input hidden id='logintest' name='userid' value=
+    ' <security:authorize access="isAuthenticated()"><security:authentication property="principal.username"/></security:authorize>'/>
+	
+	
 <div id="map"
 	style="width: 100%; height: 100vh; z-index: 1; "></div>
 	<!-- style="stroke: none; stroke-dashoffset: 0.5; transform: translateZ(0px); stroke-linejoin: round; fill: none; width: 100%; height: 100vh; position: absolute; z-index: 1; left: -2804px;"></div> -->
