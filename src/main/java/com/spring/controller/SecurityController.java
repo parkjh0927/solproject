@@ -2,16 +2,12 @@ package com.spring.controller;
 
 
 import java.security.Principal;
-import java.util.Arrays;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,11 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.spring.domain.CustomUser;
 import com.spring.domain.LeaveDTO;
 import com.spring.domain.MemberDTO;
 import com.spring.domain.PasswordDTO;
@@ -42,35 +36,30 @@ public class SecurityController {
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	
-	
-	// 회원가입
+
 	@GetMapping("/register")
 	public void registerGet() {
-		log.info("회원가입 폼 요청");
+		log.info("�쉶�썝媛��엯 �뤌 �슂泥�");
 	}	
-	
-	// 회원가입 성공 시 login 이동
-	//          실패 시 register 이동
+
 	@PostMapping("/register")
 	public String registerPost(MemberDTO dto) {
-		log.info("회원가입 요청 " +dto);
+		log.info("�쉶�썝媛��엯 �슂泥� " +dto);
 		
 		String path = service.register(dto) ? "redirect:/member/login" : "/member/register";
 		return path;
 	}
-		
-	// 로그인
+
 	@GetMapping("/login")
 	public void loginGet() {
-		log.info("로그인 폼 요청 ");		
+		log.info("濡쒓렇�씤 �뤌 �슂泥� ");		
 	}
 				
 	
 	
 	@GetMapping("/login-error")
 	public String loginError(Model model) {
-		model.addAttribute("error", "<span style=\"color: red;\">아이디나 비밀번호를 확인해 주세요</span>");
+		model.addAttribute("error", "<span style=\"color: red;\"></span>");
 		return "/member/login"; 
 	}
 	
@@ -86,142 +75,122 @@ public class SecurityController {
 	}
 		
 	
-	// 중복 아이디 점검
-	@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST) // /member/memberIdChk에 대한 POST 메서드를 처리
-	@ResponseBody //컨트롤러 작업이 완료될때 결과값으로 리턴시킴 (뷰 리졸버를 동작시키지 않음) 
+
+	@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST) // /member/memberIdChk
+	@ResponseBody
 	public String memberIdChkPost(String username) throws Exception {	
-		log.info("memberIdChk() 진입");	
+		log.info("memberIdChk() 吏꾩엯");	
 		
 		boolean result = service.idCheck(username);
 		if(result) {			
-			return "fail";	// 중복 아이디가 존재			
+			return "fail";	
 		} else {			
-			return "success";	// 중복 없음			
+			return "success";	
 		}	
 	}
 	
-
-	// 마이페이지 보여주기
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/myPage")	
     public void myPageGet(Principal principal, Model model) {
-		
-        // log.info("마이페이지 요청 유저아이디: "+principal.getName());
+
         String username=principal.getName();
         
         MemberDTO dto = service.read(username);
-        model.addAttribute("dto",dto);
-		
-//        log.info("마이페이지 요청 유저아이디: "+dto.getUsername());
-//        log.info("마이페이지 요청 비번: "+dto.getPassword());
-//        log.info("마이페이지 요청 메일: "+dto.getEmail());
-//        log.info("마이페이지 요청 우편: "+dto.getPostcode());
-//        log.info("마이페이지 요청 주소: "+dto.getAddress());
-//        log.info("마이페이지 요청 주소2: "+dto.getAddress2());		
+        model.addAttribute("dto",dto);	
     }
 
-	
-	// 회원 정보 수정 폼 보여주기
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/modify")
 	public void modifyGet(Principal principal, Model model) {
-		log.info("회원정보 수정 폼 요청 ");	
+		log.info("�쉶�썝�젙蹂� �닔�젙 �뤌 �슂泥� ");	
 		String username=principal.getName();
         
         MemberDTO dto = service.read(username);
         model.addAttribute("dto",dto);						
 	}
-			
-	// 회원 정보 수정
+
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/modify")
 	public String modifyPost(MemberDTO dto) {
-		log.info("회원 정보 수정 " +dto);
+		log.info("�쉶�썝 �젙蹂� �닔�젙 " +dto);
 		
 		String path = service.modify(dto) ? "redirect:/member/myPage" : "/member/myPage";
 		return path;
 	}
 	
-
-	
-	// 회원 탈퇴 폼 보여주기
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/leave")
 	public void leaveGet(Principal principal, Model model) {
-		log.info("회원 탈퇴 페이지 요청");		
+		log.info("�쉶�썝 �깉�눜 �럹�씠吏� �슂泥�");		
 		String username=principal.getName();
         
         MemberDTO dto = service.read(username);
         model.addAttribute("dto",dto);
 	}
-	
-	// 회원 탈퇴
+
 	@PostMapping("/leave")
 	public String leavePost(LeaveDTO leaveDTO, HttpSession session, RedirectAttributes redirectAttributes) {
-		log.info("회원 탈퇴 요청"+leaveDTO);
+		log.info("�쉶�썝 �깉�눜 �슂泥�"+leaveDTO);
 						
 		if(service.leave(leaveDTO)) {
 			session.invalidate();
-			SecurityContextHolder.clearContext();	//시큐리티의 세션 초기화
+			SecurityContextHolder.clearContext();	//�떆�걧由ы떚�쓽 �꽭�뀡 珥덇린�솕
 			return "redirect:/";
 		}
-		redirectAttributes.addFlashAttribute("failMessage", "비밀번호가 일치하지 않습니다.");
+		redirectAttributes.addFlashAttribute("failMessage", "鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.");
 		return "redirect:/member/leave";
 	}
-	
-	
-	// 비밀번호 변경 폼 보여주기
+
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/changePwd")
 	public void changePwdGet(Principal principal, Model model) {
-		log.info("비밀번호 변경 페이지 요청");
+		log.info("鍮꾨�踰덊샇 蹂�寃� �럹�씠吏� �슂泥�");
 		String username = principal.getName();
         
         MemberDTO dto = service.read(username);
         model.addAttribute("dto",dto);
 	}	
-	
-	// 비밀번호 변경
+
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/changePwd")
 	public String changePwdPost(PasswordDTO passwordDTO, HttpSession session, RedirectAttributes redirectAttributes) {
-		log.info("비밀번호 변경 요청" +passwordDTO);
+		log.info("鍮꾨�踰덊샇 蹂�寃� �슂泥�" +passwordDTO);
 		
-		if(passwordDTO.passwordEquals()) { // 새비번과 새비번확인이 일치하는 경우	
+		if(passwordDTO.passwordEquals()) { // �깉鍮꾨쾲怨� �깉鍮꾨쾲�솗�씤�씠 �씪移섑븯�뒗 寃쎌슦	
 			if(service.changePwd(passwordDTO)) { 
 				session.invalidate();
 				SecurityContextHolder.clearContext();
 				return "redirect:/member/login";
 			}			
 		}
-		redirectAttributes.addFlashAttribute("failMessage", "비밀번호가 일치하지 않습니다.");
+		redirectAttributes.addFlashAttribute("failMessage", "鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.");
 		return "redirect:/member/changePwd";		
 	}	
 
 	
-	// 비번찾기 폼 보여주기
+	// 鍮꾨쾲李얘린 �뤌 蹂댁뿬二쇨린
 	@GetMapping("/findPwd")
 	public void findPwdGet() {
-		log.info("비번찾기 폼 요청 ");		
+		log.info("鍮꾨쾲李얘린 �뤌 �슂泥� ");		
 	}
 	
-	// 비번찾기 메일전송
+	// 鍮꾨쾲李얘린 硫붿씪�쟾�넚
 	@PostMapping("/findPwd")
 	public String findPwdPost(MemberDTO dto, RedirectAttributes redirectAttributes) {
 		MemberDTO memberDto = service.read(dto.getUsername());
-		log.info("비번찾기 " +dto);
+		log.info("鍮꾨쾲李얘린 " +dto);
 		
-		if (memberDto != null) { // 비밀번호 재설정을 위한 아이디가 존재하는 경우
+		if (memberDto != null) { // 鍮꾨�踰덊샇 �옱�꽕�젙�쓣 �쐞�븳 �븘�씠�뵒媛� 議댁옱�븯�뒗 寃쎌슦
 	        if (service.findPwd(memberDto)) {
-	            // 비밀번호 재설정 성공
-	            redirectAttributes.addFlashAttribute("successMessage", "임시비밀번호가 발송되었습니다");
+	            // 鍮꾨�踰덊샇 �옱�꽕�젙 �꽦怨�
+	            redirectAttributes.addFlashAttribute("successMessage", "�엫�떆鍮꾨�踰덊샇媛� 諛쒖넚�릺�뿀�뒿�땲�떎");
 	        } else {
-	            // 비밀번호 재설정 실패
-	            redirectAttributes.addFlashAttribute("failMessage", "임시 비밀번호 발송에 실패했습니다");
+	            // 鍮꾨�踰덊샇 �옱�꽕�젙 �떎�뙣
+	            redirectAttributes.addFlashAttribute("failMessage", "�엫�떆 鍮꾨�踰덊샇 諛쒖넚�뿉 �떎�뙣�뻽�뒿�땲�떎");
 	        }
 	    } else {
-	        // 입력한 아이디가 존재하지 않는 경우
-	        redirectAttributes.addFlashAttribute("failMessage", "아이디가 존재하지 않습니다");
+	        // �엯�젰�븳 �븘�씠�뵒媛� 議댁옱�븯吏� �븡�뒗 寃쎌슦
+	        redirectAttributes.addFlashAttribute("failMessage", "�븘�씠�뵒媛� 議댁옱�븯吏� �븡�뒿�땲�떎");
 	    }
 	    return "redirect:/member/findPwd";
 	}
