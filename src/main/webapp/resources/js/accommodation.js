@@ -74,15 +74,9 @@ function showList(){
         str += '<ul class="other_festival_ul" id="fstvlList">';
         i = 0;
         item.forEach((data) => {
-        if (i < 12) {
-            console.log(data.title);
-            console.log(data.title);
-            console.log(data.eventstartdate);
-            console.log(data.eventenddate);
-            console.log(data.firstimage);
-
+        if (i < 20) {
             str += "<li>";
-            str += '<a href="#">';
+            str += '<a href="/travel/details?contentId='+data.contentid+'&contenttypeId='+data.contenttypeid+'">';
             str += '<div class="other_festival_img  open">';
             str += "<img src=" + data.firstimage + ">";
             str += '<div class="sing_area">';

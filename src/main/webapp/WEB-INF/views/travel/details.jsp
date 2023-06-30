@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../include/header2.jsp"%>
+<<<<<<< HEAD
 
 
+=======
+<script src="/resources/js/details.js"></script>
+>>>>>>> refs/heads/master
 <html>
 <style>
     /* 전체 스타일 */
@@ -161,6 +165,7 @@
     		</div>
 	
       
+      
   <main class="main">   
     <form action="/travel/details">
     <div class="information">
@@ -210,10 +215,17 @@
     </div>    
     </form>         
     
+<<<<<<< HEAD
     <!-- 찜목록(위시리스트)에 담을 내용 -->
    <form method='get' id='wishForm' action ='http://localhost:8080/wish/add'>
    <input hidden id='csrfToken' name="${_csrf.parameterName}" value="${_csrf.token}" />
     <input hidden id='logintest' name='userid' value='
+=======
+       
+   <!-- 찜목록(위시리스트)에 담을 내용 -->
+   <form method='get' id='wishForm' action ='http://localhost:8080/wish/add'>
+    <input id='logintest' name='userid' value='
+>>>>>>> refs/heads/master
     <security:authorize access="isAuthenticated()">
     	<security:authentication property="principal.username"/>
 	</security:authorize>'/>
@@ -228,5 +240,5 @@
 <script>
 	const path = '<c:url value="/travel/mywishlist"/>';
 </script>
+
 <%@include file="../include/footer1.jsp"%>
-<script src="/resources/js/details.js"></script>

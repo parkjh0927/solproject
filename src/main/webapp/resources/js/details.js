@@ -70,6 +70,106 @@ fetch(url)
       //wishForm.submit();
     });
     // -------------------------
+    // 위시리스트 보낼 정보=============
+    document.querySelector(".wish").addEventListener("click", () => {
+      var iidd = document.querySelector("#wishAdd");
+      iidd.innerHTML =
+        "<input name ='addr1' hidden value = '" +
+        item[0].addr1 +
+        "'/><input hidden name ='tel' value='" +
+        item[0].tel +
+        "'/><input hidden name='firstimage2' value='" +
+        item[0].firstimage +
+        "'/><input hidden name='title' value='" +
+        // item[0].title + //title에 띄어쓰기가 있으므로 자바객체에 담을수가 없음
+        "title";
+      "'/><input hidden name='contentid' value='" + item[0].contentid + "'/>";
+      console.log("위시리스트 보낼정보", document.querySelector("#wishForm"));
+
+      const wishForm = document.querySelector("#wishForm");
+      wishForm.submit();
+    });
+    // -------------------------
+    // 위시리스트 보낼 정보=============
+    document.querySelector(".wish").addEventListener("click", () => {
+      var iidd = document.querySelector("#wishAdd");
+      iidd.innerHTML =
+        "<input name ='addr1' hidden value = '" +
+        item[0].addr1 +
+        "'/><input hidden name ='tel' value='" +
+        item[0].tel +
+        "'/><input hidden name='firstimage2' value='" +
+        item[0].firstimage +
+        "'/><input hidden name='title' value='" +
+        // item[0].title + //title에 띄어쓰기가 있으므로 자바객체에 담을수가 없음
+        "title";
+      "'/><input hidden name='contentid' value='" + item[0].contentid + "'/>";
+      console.log("위시리스트 보낼정보", document.querySelector("#wishForm"));
+
+      const wishForm = document.querySelector("#wishForm");
+      wishForm.submit();
+    });
+    // -------------------------
+    // 위시리스트 보낼 정보=============
+    document.querySelector(".wish").addEventListener("click", () => {
+      var iidd = document.querySelector("#wishAdd");
+      iidd.innerHTML =
+        "<input name ='addr1' hidden value = '" +
+        item[0].addr1 +
+        "'/><input hidden name ='tel' value='" +
+        item[0].tel +
+        "'/><input hidden name='firstimage2' value='" +
+        item[0].firstimage +
+        "'/><input hidden name='title' value='" +
+        // item[0].title + //title에 띄어쓰기가 있으므로 자바객체에 담을수가 없음
+        "title";
+      "'/><input hidden name='contentid' value='" + item[0].contentid + "'/>";
+      console.log("위시리스트 보낼정보", document.querySelector("#wishForm"));
+
+      const wishForm = document.querySelector("#wishForm");
+      wishForm.submit();
+    });
+    // -------------------------
+    // 위시리스트 보낼 정보=============
+    document.querySelector(".wish").addEventListener("click", () => {
+      var iidd = document.querySelector("#wishAdd");
+      iidd.innerHTML =
+        "<input name ='addr1' hidden value = '" +
+        item[0].addr1 +
+        "'/><input hidden name ='tel' value='" +
+        item[0].tel +
+        "'/><input hidden name='firstimage2' value='" +
+        item[0].firstimage +
+        "'/><input hidden name='title' value='" +
+        // item[0].title + //title에 띄어쓰기가 있으므로 자바객체에 담을수가 없음
+        "title";
+      "'/><input hidden name='contentid' value='" + item[0].contentid + "'/>";
+      console.log("위시리스트 보낼정보", document.querySelector("#wishForm"));
+
+      const wishForm = document.querySelector("#wishForm");
+      wishForm.submit();
+    });
+    // -------------------------
+    // 위시리스트 보낼 정보=============
+    document.querySelector(".wish").addEventListener("click", () => {
+      var iidd = document.querySelector("#wishAdd");
+      iidd.innerHTML =
+        "<input name ='addr1' hidden value = '" +
+        item[0].addr1 +
+        "'/><input hidden name ='tel' value='" +
+        item[0].tel +
+        "'/><input hidden name='firstimage2' value='" +
+        item[0].firstimage +
+        "'/><input hidden name='title' value='" +
+        // item[0].title + //title에 띄어쓰기가 있으므로 자바객체에 담을수가 없음
+        "title";
+      "'/><input hidden name='contentid' value='" + item[0].contentid + "'/>";
+      console.log("위시리스트 보낼정보", document.querySelector("#wishForm"));
+
+      const wishForm = document.querySelector("#wishForm");
+      wishForm.submit();
+    });
+    // -------------------------
     let str = "";
     item.forEach((e) => {
       str += "<header class='top'>";
