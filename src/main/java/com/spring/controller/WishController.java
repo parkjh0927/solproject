@@ -27,15 +27,20 @@ public class WishController {
 	@ResponseBody
 	@PostMapping("/add")
 	public String wishAddget(@RequestBody WishListDTO dto) {
-		System.out.println("================================================");
+		System.out.println("========Post wish Add========================================");
 		dto.setUserid(dto.getUserid().replaceAll("\\s+", ""));
 		System.out.println(dto.getUserid());
 		log.info("찜목록추가,"+dto);
 		String alert="";
-		if(service.insert(dto)) {
-			alert="찜목록 추가 완료";
+		try {
+			service.insert(dto);
+				alert="true";
+			
+			System.out.println("alert1="+alert);
+		} catch (Exception e) {
+			alert="false";
 		}
-		else alert="이미 찜목록에 있습니다";
+		System.out.println("alert2="+alert);
 		return alert;
 	}
 	@PostMapping("/mywishlist")
