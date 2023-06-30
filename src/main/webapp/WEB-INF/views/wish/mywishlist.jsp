@@ -105,29 +105,60 @@
   <main>
     <c:forEach items="${wishList}" var="e">
           
-        
-	  <div class="information">
-	  	<div class='destination' id="  ${ e.contentid}  " type='button'>
+	  <div class="information" style="position: relative;">
+     <button id="delete-wish" type="button" style="position: absolute; top: 10px; right: 10px;  margin-top: 13px;margin-right:6px; z-index: 99;">
+          <img src="../resources/img/위시삭제.png" style="height: 50px; width: 50px; margin: 0; padding-right: 5px;">
+        </button>
+	  	<div class='destination' id="btn-wish" type='button'>
 		 <img src=" ${e.firstimage2} "> 
 			<div class='destination-content'>
-			  <h2>" + ${e.title} + "</h2>
-			  <p>주소 : " ${ e.addr1} + "</p>
-			  <p>전화번호 : " ${ e.tel} + "</p>
-		      <input class = 'conInput' hidden value='" ${ e.contentid} "'></input>
-		  	  <!-- <input class = 'contyInput' hidden value='" + e.contenttypeid + "'></input> --> 
+			  <h2>  ${e.title} </h2>
+			  <p>주소 :  ${ e.addr1} </p>
+			  <p>전화번호 :  
+			     <c:choose>
+            		<c:when test="${not empty e.tel}">
+             			 ${e.tel}
+            		</c:when>
+          	     <c:otherwise>
+              전화번호없음
+            </c:otherwise>
+          </c:choose>  </p>
 	     	</div>
 	    </div>
-	    <form id='locals' action='http://localhost:8080/travel/details'>
-	       <input hidden id='con1' name='contentId'/>
-	       <input hidden id='con2' name='contenttypeId'/>
+	    <form class='wishForm' action='http://localhost:8080/travel/details'>
+	       <input hidden class='con1' name='contentId' value='${e.contentid }'/>
+	       <input hidden class='con2' name='contenttypeId' value='${e.contenttypeid }'/>
 	    </form>
 	 </div>
-	 
 	 </c:forEach>
+	 
+	  <input hidden id='csrfToken' name="${_csrf.parameterName}" value="${_csrf.token}" />
+	 <input hidden id='logintest' name='userid' value=
+    ' <security:authorize access="isAuthenticated()"><security:authentication property="principal.username"/></security:authorize>'/>
+	 
    </main> 
-    <script>
-    document.queryse
-    </script>
+
+<!-- 찜목록 제거 모달 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">찜목록에서 제거하시겠습니까?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" id='btn-conform'>찜 제거</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button hidden type="button" class="btn btn-primary" id='open-modal' data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+<!-- 찜목록 제거 모달 -->
+
+
+
 <script>
   var count = 0;
 
@@ -139,4 +170,5 @@
   // 현재 찜 개수 업데이트
   document.querySelector('.count1').innerHTML = count;
 </script>
+<script src="../resources/js/wishList.js"></script>
  <%@include file="../include/footer1.jsp"%>

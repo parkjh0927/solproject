@@ -148,22 +148,27 @@
     line-height: 26px;
 }
 	.wish{
-	margin: 150px 0px 0px 1100px; 
+	margin: 100px 0px -30px 600px; 
+	padding-bottom:-100px;
 	font-size: 20px;
 	}
-	
+	#btn-like{
+	color:red;
+	font-weight: bolder;
+	margin-right:100px;
+	}
   </style>
 <head>
 </head>
 <body>
     
-         <div class="wish">
-    			<button type="button"><security:authorize access="isAuthenticated()">찜 추가 하기</security:authorize></button>
-    		</div>
-	
       
       
   <main class="main">   
+         <div class="wish" >
+    			<button id='btn-like' type="button"><security:authorize access="isAuthenticated()">찜 추가 하기</security:authorize></button>
+    		</div>
+	
     <form action="/travel/details">
     <div class="information">
     	<div class="commons">
@@ -214,16 +219,10 @@
     
 
     <!-- 찜목록(위시리스트)에 담을 내용 -->
-   <form method='get' id='wishForm' action ='http://localhost:8080/wish/add'>
    <input hidden id='csrfToken' name="${_csrf.parameterName}" value="${_csrf.token}" />
-    <input hidden id='logintest' name='userid' value='
-
-
-    <security:authorize access="isAuthenticated()">
-    	<security:authentication property="principal.username"/>
-	</security:authorize>'/>
-	<div id='wishAdd'></div>
-  </form>
+    <input hidden id='logintest' name='userid' value=
+    ' <security:authorize access="isAuthenticated()"><security:authentication property="principal.username"/></security:authorize>'/>
+	
   
     
   </main>

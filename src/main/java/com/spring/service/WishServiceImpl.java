@@ -28,9 +28,9 @@ public class WishServiceImpl implements WishService {
 	}
 
 	@Override
-	public boolean delete(String contentid) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(String contentid,String username) {
+
+		return mapper.delete(contentid, username)==1?true:false;
 	}
 
 

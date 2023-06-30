@@ -15,4 +15,7 @@ public class WishListDTO {
 	private String firstimage2;
 	private String addr1;
 	private String contentid;
+	private String mapx;
+	private String mapy;
+	private String contenttypeid;
 }
