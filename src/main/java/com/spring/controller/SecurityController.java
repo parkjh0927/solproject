@@ -2,8 +2,6 @@ package com.spring.controller;
 
 
 import java.security.Principal;
-import java.util.Arrays;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,9 +38,6 @@ public class SecurityController {
 	@Autowired
 	private MemberService service;
 	
-	@Autowired
-	private BCryptPasswordEncoder encoder;
-	
 	
 	// 회원가입
 	@GetMapping("/register")
@@ -50,27 +45,29 @@ public class SecurityController {
 		log.info("회원가입 폼 요청");
 	}	
 	
-	// 회원가입 성공 시 login 이동
-	//          실패 시 register 이동
+	// 회원가입 성공 시 login, 실패 시 register 이동
 	@PostMapping("/register")
-	public String registerPost(MemberDTO dto) {
+	public String registerPost(MemberDTO dto, Model model) {
 		log.info("회원가입 요청 " +dto);
 		
-		String path = service.register(dto) ? "redirect:/member/login" : "/member/register";
-		return path;
+		if(service.register(dto)) {
+			model.addAttribute("register", "회원가입에 성공했습니다");
+			return "/member/login";
+		} 	
+		return "/member/register";		      		
 	}
 		
+	
 	// 로그인
 	@GetMapping("/login")
 	public void loginGet() {
 		log.info("로그인 폼 요청 ");		
 	}
-				
-	
+					
 	
 	@GetMapping("/login-error")
 	public String loginError(Model model) {
-		model.addAttribute("error", "<span style=\"color: red;\">아이디나 비밀번호를 확인해 주세요</span>");
+		model.addAttribute("error", "아이디나 비밀번호를 확인해주세요");
 		return "/member/login"; 
 	}
 	

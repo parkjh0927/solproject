@@ -39,7 +39,7 @@ public class SnsLoginService {
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");            
 			sb.append("&client_id=040ad7bc8137ca9e8bcc14ee58633e1c"); // 본인이 발급받은 key
-			sb.append("&redirect_uri=http://localhost:9091/kakaoLogin"); // 본인이 설정한 주소            
+			sb.append("&redirect_uri=http://localhost:8080/kakaoLogin"); // 본인이 설정한 주소            
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
 			bw.flush();
