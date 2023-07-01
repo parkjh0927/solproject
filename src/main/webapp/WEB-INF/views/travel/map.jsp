@@ -18,7 +18,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
 <body>
-
+<!-- 사용자 아이디 보여주기 -->
+<div style="position:fixed; z-index:995; right:30px; top:70px;">
+<security:authorize access="isAuthenticated()">
+	<strong><security:authorize access="isAuthenticated()"><security:authentication property="principal.username"/></security:authorize></strong> 님
+</security:authorize>
+<security:authorize access="!isAuthenticated()">
+	손님
+</security:authorize>
+</div>
 <!-- 지도 모달 창 시작 -->
 <button type="button" id="btn-modal" class="btn btn-primary"
 	data-bs-toggle="modal" data-bs-target="#exampleModal" hidden></button>
@@ -35,6 +43,15 @@
 			<div class="modal-body" id="modal-content">2</div>
 			<div class="modal-footer">
 				<a style='position: absolute; left: 20px; padding:10px;' id='find-road' href='' target='_blank'>길찾기</a>
+				<security:authorize access="isAuthenticated()">
+					<button type="button" class="btn btn-warning" id="modal-wish">찜목록 추가</button>
+				</security:authorize>
+				<input id='submitaddr1' hidden/>
+				<input id='submittel' hidden/>
+				<input id='submitfirstimage' hidden/>
+				<input id='submittitle' hidden/>
+				<input id='submitmapx' hidden/>
+				<input id='submitmapy' hidden/>
 				<form  id='detailForm' action = "http://localhost:8080/travel/details">
 					<input id='submitid'  name='contentId' hidden/>
 					<input id='submittypeid'  name='contenttypeId' hidden/>
@@ -49,7 +66,7 @@
     <!-- 사이드바	사이드바	사이드바	사이드바		사이드바	사이드바	사이드바	사이드바 -->
 	<div class="left-side-bar">
       <div id='side-title'>
-        <span>여행지 목록</span>
+        <span id='side-span'>여행지 목록</span>
       </div>
 
       <ul id="side-content">
@@ -64,7 +81,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <button type='button' class="nav-link active" aria-current="page" id='toggleSidebar'>결as과목록보기</button>
+          <button type='button' class="nav-link active" aria-current="page" id='toggleSidebar'>결과목록보기</button>
         </li>
         <li class="nav-item">
           <button type='button' class="nav-link active" aria-current="page" id='btn-like'><security:authorize access="isAuthenticated()">찜목록 보기</security:authorize></button>
