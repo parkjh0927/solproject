@@ -176,15 +176,8 @@
           <li class="nav-item">
             <a class="nav-link" href="/accommodation/accommodation">숙박 정보</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              게시판
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/board/list">공지사항</a></li>
-              <li><a class="dropdown-item" href="#">Q & A</a></li>
-              <li><a class="dropdown-item" href="#">자유 게시판</a></li>
-            </ul>
+          <li class="nav-item ">
+            <a class="nav-link" href="/board/list">공지사항</a>
           </li>
           
         <security:authorize access="isAuthenticated()">          
