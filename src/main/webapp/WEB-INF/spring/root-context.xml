@@ -28,11 +28,20 @@
 			value="jdbc:oracle:thin:@soldeskproject_high?TNS_ADMIN=C:/Wallet_soldeskproject" />
 		<property name="username" value="ADMIN" />
 		<property name="password" value="Soldeskproject123!" />
-	</bean>
+	</bean> 
 	
 	
 
-	<mybatis-spring:scan base-package="com.spring.mapper" />
+
+	<!-- mybatis 설정
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds" />
+	</bean>  -->
+	
+	
+	<mybatis-spring:scan base-package="com.spring.mapper" /> 
+
 
 	
 </beans>

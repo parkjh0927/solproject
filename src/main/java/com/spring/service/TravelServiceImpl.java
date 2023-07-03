@@ -33,12 +33,12 @@ public class TravelServiceImpl implements TravelService {
 
 	@Override
 	public boolean delete(String contentid) {
-		return wishmapper.delete(contentid) == 1 ? true : false;
+		return wishmapper.delete(contentid,contentid) == 1 ? true : false;
 	}
 
 	@Override
-	public List<WishListDTO> getRow() {
-		return wishmapper.getRow();
+	public List<WishListDTO> getRow(String username) {
+		return wishmapper.getRow(username);
 	}
 
 	

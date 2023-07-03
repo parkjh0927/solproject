@@ -194,7 +194,13 @@
             </a>
 	            <ul class="dropdown-menu">
 	              <li><a class="dropdown-item" href="/member/myPage">내 정보</a></li>
-	              <li><a class="dropdown-item" href='<c:url value="#"/>'>찜 목록</a></li>
+	              <form action="/wish/mywishlist" method="POST">
+					  <li>
+					  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					    <input type="hidden" name="username" value="<security:authentication property="principal.username" />" />
+					    <button type="submit" class="dropdown-item">찜 목록</button>
+					  </li>
+				  </form>
 	            </ul>
           </li>          
         </security:authorize>

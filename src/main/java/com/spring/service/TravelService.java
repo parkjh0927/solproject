@@ -11,6 +11,6 @@ public interface TravelService {
 	public SearchResDTO search(String search);
 	public boolean insert(WishListDTO dto);
 	public boolean delete(String contentid);
-	public List<WishListDTO> getRow();
+	public List<WishListDTO> getRow(String username);
 
 }

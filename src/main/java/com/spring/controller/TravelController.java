@@ -27,20 +27,23 @@ public class TravelController {
 	
 	@GetMapping("/destination")
 	public void destination() {
-		log.info("여행지 페이지 요청");
+		log.info("�뿬�뻾吏� �럹�씠吏� �슂泥�");
 		 
 	}
 	
 	@GetMapping("/details")
 	public void details() {
-		log.info("여행지 상세 페이지 요청");
+		log.info("�뿬�뻾吏� �긽�꽭 �럹�씠吏� �슂泥�");
 	}
 	
-	
+	@PostMapping("/details")
+	public void detailsPost() {
+		log.info("상세페이지 포스트 요청");
+	}
 	
 	@GetMapping("/search")
 	public void search(String search, Model model) {
-		log.info("검색 요청",search);
+		log.info("寃��깋 �슂泥�",search);
 		
 		
 		SearchResDTO result = service.search(search);
@@ -52,33 +55,26 @@ public class TravelController {
 	}
 	@GetMapping("/mywishlist")
 	public void mtwishlist() {
-		log.info("위시리스트 폼 요청");
+		log.info("�쐞�떆由ъ뒪�듃 �뤌 �슂泥�");
 	}
 	
 	@PostMapping("/mywishlist")
 	public String insert(WishListDTO dto) {
-		log.info("위시리스트 추가");
+		log.info("�쐞�떆由ъ뒪�듃 異붽�");
 		service.insert(dto);
 		return "/travel/mywishlist";
 	}
 	
 	@GetMapping("delete")
 	public String delete(String contentid) {
-		log.info("위시리스트 삭제 요청");
+		log.info("�쐞�떆由ъ뒪�듃 �궘�젣 �슂泥�");
 		
 		service.delete(contentid);
 		
 		return "redirect:/travel/mywishlist";
 	}
 	
-	public void getRow(Model model) {
-		log.info("위시리스트 목록 요청");
-		
-		List<WishListDTO> list = service.getRow();
-		
-		model.addAttribute("list", list);
-	}
-	
+
 
 	@GetMapping("/festival")
 	public void feslistGet() {
