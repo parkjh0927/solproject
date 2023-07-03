@@ -56,13 +56,14 @@
     position: absolute;
     width: 6px;
     height: 6px;
-    border-radius: 50%;
+    border-radius: 50%;	
     background-color: #000;
     top: -4px;
     right: -4px;
     transform: rotate(45deg);
     opacity: 0;
     transition: opacity 0.3s ease;
+    align-content: center;	
   }
 
   .nav-item:hover > .nav-link::before {
@@ -130,7 +131,7 @@
   	}
 }
 	.navbar-nav{
-	margin-right: 80px;
+	align-content: center;
 	}
 	
 	.row{
