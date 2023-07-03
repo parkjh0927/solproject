@@ -132,6 +132,13 @@
 	.navbar-nav{
 	margin-right: 80px;
 	}
+	
+	.row{
+	margin-top: 150px;
+	margin-left: 80px;
+	margin-right: 150px;
+
+	}
 </style>
 
 

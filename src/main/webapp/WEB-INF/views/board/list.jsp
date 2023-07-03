@@ -6,7 +6,6 @@
 
 <head>
 
-<title>공지사항</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,21 +18,61 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="/resources/board/css/style.css">
+<style>
+
+section.notice {
+  padding: 80px 0;
+}
+
+#board-search .search-window {
+  padding: 15px 0;
+  background-color: #f9f7f9;
+}
+#board-search .search-window .search-wrap {
+  position: relative;
+/*   padding-right: 124px; */
+  margin: 0 auto;
+  width: 80%;
+  max-width: 564px;
+}
+#board-search .search-window .search-wrap input {
+  height: 40px;
+  width: 100%;
+  font-size: 14px;
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+}
+#board-search .search-window .search-wrap input:focus {
+  border-color: #333;
+  outline: 0;
+  border-width: 1px;
+}
+#board-search .search-window .search-wrap .btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 108px;
+  padding: 0;
+  font-size: 16px;
+}
+</style>
+
 
 </head>	
 <body>
+<section class="notice">
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<ul>
 			<li>.
-			<li>.
-			<li>.
-			<li>.
-			<li>.
+			<li><h1>공지사항</h1>
 		</ul>
 	</div>
 	<div class="d-flex">
 		<!-- 검색부분  -->
-		<div class="flex-grow-1 pb-2 justify-content-between">
+		<div id="board-search">
+		<div class="container">
+		<div class="flex-grow-1 pb-2 justify-content-between search-window">
 			<form action="" id="searchForm">
 				<%-- 검색 버튼 클릭 시 검색 결과는 무조건 1page 부터 봐야 하기 때문에 --%>
 				<input type="hidden" name="page" value="1" /> <input type="hidden"
@@ -69,6 +108,8 @@
 					</div>
 				</div>
 			</form>
+		</div>
+		</div>
 		</div>
 		<!-- 검색 종료 -->
 		<div class="pb-2 px-2">
@@ -186,6 +227,7 @@
 	<script src="/resources/js/bootstrap.min.js"></script>
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/list.js"></script>
+</section>
 </body>
 
 
