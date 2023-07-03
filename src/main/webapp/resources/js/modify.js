@@ -28,10 +28,8 @@ const differentForm = document.querySelector("#differentForm");
 // 삭제 버튼 클릭 시 operForm 보내기
 // /board/remove 전송
 const btnDan = document.querySelector(".btn-danger");
-if (btnDan) {
-  btnDan.addEventListener("click", () => {
-    differentForm.action = "/board/remove";
-    differentForm.submit();
-  });
-}
+btnDan.addEventListener("click", () => {
+  differentForm.submit();
+});
+
 
