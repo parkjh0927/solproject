@@ -260,7 +260,7 @@
 				<textarea id="dereply" name="dereply" class="form-control" rows="2"></textarea>
 			</div>
 			<div class="card-footer">
-				<button type="button" id="btn-reply-save" class="btn btn-primary">2등록</button>
+				<button type="button" id="btn-reply-save" class="btn btn-primary">등록</button>
 			</div>
 		</form>
 	</security:authorize>
