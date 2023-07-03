@@ -606,23 +606,6 @@
 							imgSrc = '/kfes/resources/img/default_list.png';
 						}
 
-						var innerStr = '';
-						innerStr += '    <li>';
-						innerStr += '		<a href="/kfes/detail/fstvlDetail.do?fstvlCntntsId='+ result.fstvlCntntsId +'">';
-						//innerStr += '	    <!-- class sing 추가시 마크 추가, class open 추가시 개최중 붙음 -->';
-						innerStr += '	    	<div class="other_festival_img '+ imgClass +'">';
-						innerStr += '				<img src="'+ imgSrc +'" alt="'+ result.fstvlCntntsImgAlt +'" '+ imgOnErrorStr + '/>';
-						innerStr += '				<div class="sing_area">';
-						innerStr += '		    		<div class="blind">문화 관광 축제</div>';
-						innerStr += '				</div>';
-						innerStr += '	    	</div>';
-						innerStr += '	    	<div class="other_festival_content">';
-						innerStr += '				<strong>'+ result.cntntsNm +'</strong>';
-						innerStr += '				<div class="date">'+ result.fstvlBgngDe +'~'+ result.fstvlEndDe +'</div>';
-						innerStr += '				<div class="loc">'+ result.areaNm +'</div>';
-						innerStr += '	    	</div>';
-						innerStr += '		</a>';
-						innerStr += '    </li>';
 
 						if(searchType == 'B'){
 							$('#fstvlLikeOrderList').append(innerStr);
