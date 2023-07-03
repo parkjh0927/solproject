@@ -277,10 +277,11 @@
 						<input hidden class='reRno' value = '${e.rno}'></input>
 						<input hidden class='reUser' value = '${e.username}'></input>
 						<input hidden class='reContent' value='${e.dereply }'></input>
-						<div id = "replyContent">${e.dereply }<!-- 댓글내용 --></div>
+						<strong style="margin-right:10px;" id="replyUsername">작성자 :    ${e.username }<!-- 작성자 --></strong>
+						<div style="text-align: left; margin-left:-20px; padding-left:-20px;"id = "replyContent">${e.dereply }<!-- 댓글내용 --></div>
+						<div></div><div></div><div></div><div></div><div></div>
 						<div class="d-flex">
 							<div class="">
-								<strong style="margin-right:10px;" id="replyUsername">작성자 :    ${e.username }<!-- 작성자 --></strong>
 								<small style="margin-right:10px;" > ${e.formattedDate}<!-- 2023-06-30 00:00 --></small>
 							</div>
 							<button style="margin-right:10px; padding-right:10px" class="btn btn-success reModify">수정</button>
