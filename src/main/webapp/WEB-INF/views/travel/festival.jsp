@@ -65,75 +65,6 @@
 			</span> 바로가기
 			</a>
 
-
-			<nav role="navigation">
-				<ul class="sub_menu search2">
-					<li class="lst">
-						<button class="main_search" aria-label="검색"></button>
-
-
-
-
-
-
-
-
-
-
-						<div class="search_box">
-							<form name="totalSearchForm"
-								action="/kfes/list/totalSearchList.do" method="post"
-								onsubmit="return false">
-								<div class="search_detail_area">
-									<div class="selectBox2 size2">
-										<div class="label searchTypeLabel">축제</div>
-										<ul class="optionList">
-											<li class="optionItem"><div class="searchType"
-													name="ALL">전체</div></li>
-											<li class="optionItem"><div class="searchType" name="A">축제</div></li>
-											<li class="optionItem"><div class="searchType" name="B">여행정보</div></li>
-										</ul>
-									</div>
-									<fieldset>
-										<label class="blind2" for="totalSearchText">검색</label> <input
-											id="totalSearchText" name="totalSearchText"
-											class="search_line" title="검색" value=""
-											placeholder="검색어를 입력해주세요." maxlength="40">
-										<button aria-label="검색 버튼" onclick="fn_totalSearch();"></button>
-									</fieldset>
-								</div>
-
-
-
-
-
-
-
-
-
-
-
-								<ul>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=공연">#공연</a></li>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=문화관광">#문화관광</a></li>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=자연">#자연</a></li>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=환경">#환경</a></li>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=꽃">#꽃</a></li>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=가족과함께">#가족과함께</a></li>
-
-								</ul>
-							</form>
-							<button class="search_box_close" aria-label="닫기 버튼"></button>
-						</div>
-					</li>
-				</ul>
-			</nav>
 		</div>
 	</header>
 	<!--// header -->
@@ -276,89 +207,22 @@
 							</li>
 
 							<li class="visual visual3 active">
-								<!-- class="active" 추가시 활성 --> <a href="http://localhost:8080/travel/details?contentId=531391&contenttypeId=15"
-								style="background-image: url('https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/06/12/c420cd6f-f9ed-4cdc-b235-47443aece351.jpg');"
-								title="강릉단오제  ">
+								<!-- class="active" 추가시 활성 --> <a href="http://localhost:8080/travel/details?contentId=2825667&contenttypeId=15"
+								style="background-image: url('../resources/upload/contents/db/4300fc7c-4d4b-4d40-85d3-c92c69fa52bb_6.png');"
+								title="쁘띠프랑스 & 이탈리아마을 베니스가면축제">
 									<div class="txt_area">
 										<div class="tit_box">
-
-											<strong>강릉단오제 </strong>
+										<span class="flag">개최중</span>
+											<strong>쁘띠프랑스 & 이탈리아마을 베니스가면축제</strong>
 										</div>
 										<div class="tit_desc">
-											<span>2023.06.18 ~ 2023.06.25</span> <span class="area_name">강원도
-												강릉시</span> <span class="btn_more"></span>
+											<span>2023.07.01 ~ 2023.08.31</span> <span class="area_name">경기도
+												가평군</span> <span class="btn_more"></span>
 										</div>
 									</div>
-							</a>
+								</a>
 							</li>
-
 						</ul>
-					</div>
-					<div class="mobile_wrap">
-						<!-- swiper -->
-						<div class="swiper-container mobile">
-							<div class="swiper-wrapper">
-
-								<div class="swiper-slide visual1">
-									<a
-										href="/kfes/detail/fstvlDetail.do?fstvlCntntsId=ffee2588-2551-4b83-a5ea-2a1d3a5b5aeb"
-										style="background: url(https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/06/12/da1eaf74-7514-4207-a365-12b59746a5e5.jpg) no-repeat 27% 50%/cover;">
-										<div class="txt_area">
-											<div class="tit_box">
-
-												<span class="flag">개최중</span> <strong>이월드 트로피컬 아쿠아
-													빌리지</strong>
-											</div>
-											<div class="tit_desc">
-												<span>2023.06.10 ~ 2023.08.27</span> <span class="area_name">대구
-													달서구</span>
-											</div>
-										</div>
-									</a>
-								</div>
-
-
-								<div class="swiper-slide visual2">
-									<a
-										href="/kfes/detail/fstvlDetail.do?fstvlCntntsId=a8fcf987-666e-404e-9446-0a7f787e83fb"
-										style="background: url(https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/06/12/1177bc95-13a8-4533-86e2-e9a077065210.jpg) no-repeat 27% 50%/cover;">
-										<div class="txt_area">
-											<div class="tit_box">
-
-												<span class="flag">개최중</span> <strong>서울랜드 불빛축제
-													루나파크</strong>
-											</div>
-											<div class="tit_desc">
-												<span>2023.01.01 ~ 2023.12.31</span> <span class="area_name">경기도
-													과천시</span>
-											</div>
-										</div>
-									</a>
-								</div>
-
-
-								<div class="swiper-slide visual3">
-									<a
-										href="/kfes/detail/fstvlDetail.do?fstvlCntntsId=c30076fe-18c2-40a8-8a0c-66f05e349cb1"
-										style="background: url(https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/06/12/c420cd6f-f9ed-4cdc-b235-47443aece351.jpg) no-repeat 27% 50%/cover;">
-										<div class="txt_area">
-											<div class="tit_box">
-
-												<strong>강릉단오제 </strong>
-											</div>
-											<div class="tit_desc">
-												<span>2023.06.18 ~ 2023.06.25</span> <span class="area_name">강원도
-													강릉시</span>
-											</div>
-										</div>
-									</a>
-								</div>
-
-							</div>
-							<div class="swiper-pagination"></div>
-						</div>
-
-						<!--// swiper -->
 					</div>
 				</div>
 			</section>

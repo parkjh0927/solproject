@@ -66,75 +66,6 @@
 			</span> 바로가기
 			</a>
 
-
-			<nav role="navigation">
-				<ul class="sub_menu search2">
-					<li class="lst">
-						<button class="main_search" aria-label="검색"></button>
-
-
-
-
-
-
-
-
-
-
-						<div class="search_box">
-							<form name="totalSearchForm"
-								action="/kfes/list/totalSearchList.do" method="post"
-								onsubmit="return false">
-								<div class="search_detail_area">
-									<div class="selectBox2 size2">
-										<div class="label searchTypeLabel">축제</div>
-										<ul class="optionList">
-											<li class="optionItem"><div class="searchType"
-													name="ALL">전체</div></li>
-											<li class="optionItem"><div class="searchType" name="A">축제</div></li>
-											<li class="optionItem"><div class="searchType" name="B">여행정보</div></li>
-										</ul>
-									</div>
-									<fieldset>
-										<label class="blind2" for="totalSearchText">검색</label> <input
-											id="totalSearchText" name="totalSearchText"
-											class="search_line" title="검색" value=""
-											placeholder="검색어를 입력해주세요." maxlength="40">
-										<button aria-label="검색 버튼" onclick="fn_totalSearch();"></button>
-									</fieldset>
-								</div>
-
-
-
-
-
-
-
-
-
-
-
-								<ul>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=공연">#공연</a></li>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=문화관광">#문화관광</a></li>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=자연">#자연</a></li>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=환경">#환경</a></li>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=꽃">#꽃</a></li>
-
-									<li><a href="/kfes/list/wntyFstvlList.do?tagNm=가족과함께">#가족과함께</a></li>
-
-								</ul>
-							</form>
-							<button class="search_box_close" aria-label="닫기 버튼"></button>
-						</div>
-					</li>
-				</ul>
-			</nav>
 		</div>
 	</header>
 	<!--// header -->
@@ -170,7 +101,7 @@
 										<option value="5">광주</option>
 										<option value="6">부산</option>
 										<option value="7">울산</option>
-										<option value="8">제주특별자치시</option>
+										<option value="8">세종특별자치시</option>
 										<option value="31">경기도</option>
 										<option value="32">강원특별자치도</option>
 										<option value="33">충청북도</option>
@@ -663,187 +594,171 @@
     </script>
 
 	<script>
-		var isLoading = false;
-		$(document).ready(function(){
+    var isLoading = false;
+    $(document).ready(function () {
 
-			// 검색
-			$('#btnSearch').click(function(){
-				fn_search(0);
-				$('html').animate({scrollTop : $('.tab_cont_area').offset().top - 200}, 1000);
-			});
+        // 검색
+        $('#btnSearch').click(function () {
+            fn_search(0);
+            $('html').animate({ scrollTop: $('.tab_cont_area').offset().top - 200 }, 1000);
+        });
 
-			// 더보기
-			$('#btnMore').click(function(){
-				if(!fn_isLastPage()){
-		            if($('#tabFstvlLikeOrderList').hasClass('active')){
-						fn_search(pagingInfoLikeOrder.rowNum);
+        // 더보기
+        $('#btnMore').click(function () {
+            if (!fn_isLastPage()) {
+                if ($('#tabFstvlLikeOrderList').hasClass('active')) {
+                    fn_search(pagingInfoLikeOrder.rowNum);
 
-					}else {
-						fn_search(pagingInfo.rowNum);
-					}
-				}
-			});
+                } else {
+                    fn_search(pagingInfo.rowNum);
+                }
+            }
+        });
 
-			var tagNm = '';
-			$('#searchCate').val(tagNm);
+        var tagNm = '';
+        $('#searchCate').val(tagNm);
 
-			if(tagNm != null && tagNm != ''){
-				$('.select_box.select_cate').addClass('on');
-				$('.select_box.select_cate').attr('style', "background-image:url('" + $('#searchCate').find('option:selected').attr('tagUrl') + "')");
-				$('html').animate({scrollTop : $('.tab_cont_area').offset().top - 200}, 1000);
-			}
+        if (tagNm != null && tagNm != '') {
+            $('.select_box.select_cate').addClass('on');
+            $('.select_box.select_cate').attr('style', "background-image:url('" + $('#searchCate').find('option:selected').attr('tagUrl') + "')");
+            $('html').animate({ scrollTop: $('.tab_cont_area').offset().top - 200 }, 1000);
+        }
 
-			fn_search(0);
+        fn_search(0);
 
-			$(window).scroll( function() {
-				if(($(window).scrollTop() + 150) >= $(document).height() - $(window).height()) {
-					$('#btnMore').click();
-				}
-			});
-		});
+        $(window).scroll(function () {
+            if (($(window).scrollTop() + 150) >= $(document).height() - $(window).height()) {
+                $('#btnMore').click();
+            }
+        });
+    });
 
-		function fn_isLastPage(){
-			if($('#tabFstvlLikeOrderList').hasClass('active')){
-				if(pagingInfoLikeOrder.rowNum == pagingInfoLikeOrder.totalCnt){
-					return true;
-				}
-			}else {
-				if(pagingInfo.rowNum == pagingInfo.totalCnt){
-					return true;
-				}
-			}
+    function fn_isLastPage() {
+        if ($('#tabFstvlLikeOrderList').hasClass('active')) {
+            if (pagingInfoLikeOrder.rowNum == pagingInfoLikeOrder.totalCnt) {
+                return true;
+            }
+        } else {
+            if (pagingInfo.rowNum == pagingInfo.totalCnt) {
+                return true;
+            }
+        }
 
-			return false;
-		}
+        return false;
+    }
 
-		var pagingInfo = {
-				rowNum : 0
-				, totalCnt : 0
-		};
+    var pagingInfo = {
+        rowNum: 0,
+        totalCnt: 0
+    };
 
-		var pagingInfoLikeOrder = {
-				rowNum : 0
-				, totalCnt : 0
-		};
+    var pagingInfoLikeOrder = {
+        rowNum: 0,
+        totalCnt: 0
+    };
 
-		function fn_search(startIdx){
+    function fn_search(startIdx) {
 
-			if(isLoading) return;
+        if (isLoading) return;
 
-			var searchType = 'A';
-			if($('#tabFstvlLikeOrderList').hasClass('active')){
-				searchType = 'B';
-			}
+        var searchType = 'A';
+        if ($('#tabFstvlLikeOrderList').hasClass('active')) {
+            searchType = 'B';
+        }
 
-			if(gfn_chkNvl(startIdx) || startIdx == 0){
-				startIdx = 0;
-			}
+        if (gfn_chkNvl(startIdx) || startIdx == 0) {
+            startIdx = 0;
+        }
 
-			var param = {
-				startIdx : startIdx
-				, searchType : searchType
-				, searchDate : $('#searchDate').val()
-				, searchArea : $('#searchArea').val()
-				, searchCate : $('#searchCate').val()
-			};
+        var param = {
+            startIdx: startIdx,
+            searchType: searchType,
+            searchDate: $('#searchDate').val(),
+            searchArea: $('#searchArea').val(),
+            searchCate: $('#searchCate').val()
+        };
 
-			var imgOnErrorStr = 'onerror="this.src=\'/kfes/resources/img/default_list.png\';"';
-			isLoading = true;
-			gfn_callPostJsonData("/kfes/list/selectWntyFstvlList.do", param, function(res){
+        var imgOnErrorStr = 'onerror="this.src=\'/kfes/resources/img/default_list.png\';"';
+        isLoading = true;
+        gfn_callPostJsonData("/kfes/list/selectWntyFstvlList.do", param, function (res) {
 
-				if(startIdx == 0){
-					pagingInfo.rowNum = 0;
-					$('#fstvlList').empty();
+            if (startIdx == 0) {
+                pagingInfo.rowNum = 0;
+                $('#fstvlList').empty();
 
-					pagingInfoLikeOrder.rowNum = 0;
-					$('#fstvlLikeOrderList').empty();
-				}
+                pagingInfoLikeOrder.rowNum = 0;
+                $('#fstvlLikeOrderList').empty();
+            }
 
-				if(res.resultList.length > 0) {
+            if (res.resultList.length > 0) {
 
-					for(var i = 0; i < res.resultList.length; i++){
-						var result = res.resultList[i];
-						var imgClass = '';
+                for (var i = 0; i < res.resultList.length; i++) {
+                    var result = res.resultList[i];
+                    var imgClass = '';
 
-						/* if(result.fstvlClCd == 'MF'){
-							imgClass += ' sing';
-						}
-						if(result.fstvlIngFlag == '0'){
-							imgClass += ' open';
-						} */
+                    /* if(result.fstvlClCd == 'MF'){
+                        imgClass += ' sing';
+                    }
+                    if(result.fstvlIngFlag == '0'){
+                        imgClass += ' open';
+                    } */
 
-						var imgSrc = "";
-						if(!gfn_chkNvl(result.dispFstvlCntntsImgRout)){
-							imgSrc = result.dispFstvlCntntsImgRout.replace('/db/', '/db/300_');
-						}
+                    var imgSrc = "";
+                    if (!gfn_chkNvl(result.dispFstvlCntntsImgRout)) {
+                        imgSrc = result.dispFstvlCntntsImgRout.replace('/db/', '/db/300_');
+                    }
 
-						if(gfn_chkNvl(imgSrc)){
-							imgSrc = '/kfes/resources/img/default_list.png';
-						}
+                    if (gfn_chkNvl(imgSrc)) {
+                        imgSrc = '/kfes/resources/img/default_list.png';
+                    }
 
-						var innerStr = '';
-						innerStr += '    <li>';
-						innerStr += '		<a href="/kfes/detail/fstvlDetail.do?fstvlCntntsId='+ result.fstvlCntntsId +'">';
-						//innerStr += '	    <!-- class sing 추가시 마크 추가, class open 추가시 개최중 붙음 -->';
-						innerStr += '	    	<div class="other_festival_img">';
-						innerStr += '				<img src="'+ imgSrc +'" alt="'+ result.fstvlCntntsImgAlt +'" '+ imgOnErrorStr + '/>';
-						innerStr += '				<div class="sing_area">';
-						innerStr += '		    		<div class="blind">문화 관광 축제</div>';
-						innerStr += '				</div>';
-						innerStr += '	    	</div>';
-						innerStr += '	    	<div class="other_festival_content">';
-						innerStr += '				<strong>'+ result.cntntsNm +'</strong>';
-						innerStr += '				<div class="date">'+ result.fstvlBgngDe +'~'+ result.fstvlEndDe +'</div>';
-						innerStr += '				<div class="loc">'+ result.areaNm +'</div>';
-						innerStr += '	    	</div>';
-						innerStr += '		</a>';
-						innerStr += '    </li>';
 
-						if(searchType == 'B'){
-							$('#fstvlLikeOrderList').append(innerStr);
-							pagingInfoLikeOrder.rowNum = res.resultList[res.resultList.length - 1].rowNum;
+                    if (searchType == 'B') {
+                        $('#fstvlLikeOrderList').append(innerStr);
+                        pagingInfoLikeOrder.rowNum = res.resultList[res.resultList.length - 1].rowNum;
 
-						}else {
-							$('#fstvlList').append(innerStr);
-							pagingInfo.rowNum = res.resultList[res.resultList.length - 1].rowNum;
-						}
-					}
-				}
+                    } else {
+                        $('#fstvlList').append(innerStr);
+                        pagingInfo.rowNum = res.resultList[res.resultList.length - 1].rowNum;
+                    }
+                }
+            }
 
-				if(searchType == 'B'){
-					pagingInfoLikeOrder.totalCnt = res.totalCnt;
-					$('#btnMore').text('더보기 (' + pagingInfoLikeOrder.rowNum + '/' + pagingInfoLikeOrder.totalCnt + ')');
+            if (searchType == 'B') {
+                pagingInfoLikeOrder.totalCnt = res.totalCnt;
+                $('#btnMore').text('더보기 (' + pagingInfoLikeOrder.rowNum + '/' + pagingInfoLikeOrder.totalCnt + ')');
 
-					if(pagingInfoLikeOrder.totalCnt > 0){
-						$('#divNoData').hide();
-						$('#btnMore').show();
-						$('#festival_ul_top').show();
-					}else {
-						$('#divNoData').show();
-						$('#btnMore').hide();
-						$('#festival_ul_top').hide();
-					}
+                if (pagingInfoLikeOrder.totalCnt > 0) {
+                    $('#divNoData').hide();
+                    $('#btnMore').show();
+                    $('#festival_ul_top').show();
+                } else {
+                    $('#divNoData').show();
+                    $('#btnMore').hide();
+                    $('#festival_ul_top').hide();
+                }
 
-				}else {
-					pagingInfo.totalCnt = res.totalCnt;
-					$('#btnMore').text('더보기 (' + pagingInfo.rowNum + '/' + pagingInfo.totalCnt + ')');
+            } else {
+                pagingInfo.totalCnt = res.totalCnt;
+                $('#btnMore').text('더보기 (' + pagingInfo.rowNum + '/' + pagingInfo.totalCnt + ')');
 
-					if(pagingInfo.totalCnt > 0){
-						$('#divNoData').hide();
-						$('#btnMore').show();
-						$('#festival_ul_top').show();
-					}else {
-						$('#divNoData').show();
-						$('#btnMore').hide();
-						$('#festival_ul_top').hide();
-					}
-				}
+                if (pagingInfo.totalCnt > 0) {
+                    $('#divNoData').hide();
+                    $('#btnMore').show();
+                    $('#festival_ul_top').show();
+                } else {
+                    $('#divNoData').show();
+                    $('#btnMore').hide();
+                    $('#festival_ul_top').hide();
+                }
+            }
 
-				isLoading = false;
-			},true, true);
+            isLoading = false;
+        }, true, true);
 
-		}
-	</script>
+    }
+</script>
+
 
 <!-- GA script -->
 

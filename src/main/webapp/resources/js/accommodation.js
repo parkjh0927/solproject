@@ -77,7 +77,7 @@ function showList(){
         if (i < 20) {
             str += "<li>";
             str += '<a href="/travel/details?contentId='+data.contentid+'&contenttypeId='+data.contenttypeid+'">';
-            str += '<div class="other_festival_img  open">';
+            str += '<div class="other_festival_img">';
             str += "<img src=" + data.firstimage + ">";
             str += '<div class="sing_area">';
             str += '<div class="blind">문화 관광 축제</div>';
