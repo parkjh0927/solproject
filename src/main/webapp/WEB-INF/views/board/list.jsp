@@ -20,7 +20,7 @@
 
 <link rel="stylesheet" href="/resources/board/css/style.css">
 <style>
-<<<<<<< HEAD
+
 
 section.notice {
   padding: 80px 0;
