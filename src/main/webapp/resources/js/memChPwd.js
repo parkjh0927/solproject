@@ -13,7 +13,7 @@ pwdForm.addEventListener("submit", (e) => {
   pwdForm.classList.add("was-validated");
 });
 
-// 비밀번호 재확인 (비동기식)
+// 비밀번호 재확인
 $(".pwd_input").on("keyup paste input", function () {
   console.log("비밀번호 검사 keyup 테스트");
 
