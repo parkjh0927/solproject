@@ -88,7 +88,6 @@ const icon_7 = document.querySelector("#icon-7");
 // 검색버튼클릭     검색버튼클릭     검색버튼클릭     검색버튼클릭     검색버튼클릭
 // 검색버튼클릭     검색버튼클릭     검색버튼클릭     검색버튼클릭     검색버튼클릭
 search_btn.addEventListener("click", () => {
-  document.querySelector("#side-span").innerHTML = "여행지 목록";
   // 지도 생성
   map = new kakao.maps.Map(document.getElementById("map"), {
     center: new kakao.maps.LatLng(36.2683, 127.6358),
@@ -240,6 +239,9 @@ search_btn.addEventListener("click", () => {
         alert("검색결과가 없습니다.");
         return;
       }
+      // 사이드바제목 , 모달창찜목록제거 수정
+      document.querySelector("#side-span").innerHTML = "여행지 목록";
+      document.querySelector("#modal-wish-delete").setAttribute("hidden", "");
       //지도 아이콘 전부 숨기기
       icon_1.setAttribute("hidden", "");
       icon_2.setAttribute("hidden", "");
@@ -814,6 +816,25 @@ document.querySelector("#modal-wish").addEventListener("click", () => {
     })
     .catch((error) => console.log(error));
 });
+// 찜목록제거 버튼 클릭이벤트
+document.querySelector("#modal-wish-delete").addEventListener("click", () => {
+  const contentid = document.querySelector("#submitid");
+  const userid = document.querySelector("#logintest");
+  console.log("contentid:", contentid.value);
+  console.log("username:", userid.value);
+  document.querySelector("#open-modal").click();
+  document.querySelector("#btn-conform").addEventListener("click", () => {
+    fetch(
+      "http://localhost:8080/wish/delete?username=" + userid.value + "&contentid=" + contentid.value
+    )
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data);
+        location.reload();
+      })
+      .catch();
+  });
+});
 
 // 찜목록보기 버튼 클릭이벤트
 document.querySelector("#btn-like").addEventListener("click", () => {
@@ -821,10 +842,11 @@ document.querySelector("#btn-like").addEventListener("click", () => {
   fetch("http://localhost:8080/travel/like?username=" + loginId)
     .then((response) => response.text())
     .then((data) => {
-      if (!data) {
+      if (data == "[]") {
         alert("찜목록이 없습니다.");
         return;
       }
+      document.querySelector("#modal-wish-delete").removeAttribute("hidden");
       sideNum = 1;
       const wishList = JSON.parse(data);
 
