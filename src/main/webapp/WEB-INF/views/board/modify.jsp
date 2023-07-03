@@ -44,7 +44,7 @@
 				<security:authentication property="principal.username" var="username"/>
 				<c:if test="${username == dto.writer}">					
 					<button type="submit" class="btn btn-info">수정</button>
-					<button type="button" class="btn btn-danger">삭제</button>			
+					<button type="button" class="btn btn-danger" form="">삭제</button>			
 				</c:if>
 			</security:authorize>
 			<a class="btn btn-secondary" href="/board/list">목록</a>
@@ -54,7 +54,7 @@
 
 
 
-<form action="" id="differentForm">
+<form action="/board/remove" id="differentForm">
 	<input type="hidden" name="bno" value="${dto.bno}" />
 	<input type="hidden" name="page" value="${cri.page}" />
 	<input type="hidden" name="amount" value="${cri.amount}" />
