@@ -7,7 +7,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <!-- SEO -->
 <link rel="canonical"
 	href="https://korean.visitkorea.or.kr:443/kfes/list/wntyFstvlList.do">
@@ -213,7 +212,7 @@
 
 							<li class="visual visual1 active">
 								<!-- class="active" 추가시 활성 --> <a
-								href="/kfes/detail/fstvlDetail.do?fstvlCntntsId=ffee2588-2551-4b83-a5ea-2a1d3a5b5aeb"
+								href="http://localhost:8080/travel/details?contentId=2385656&contenttypeId=15"
 								style="background-image: url('https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/06/12/da1eaf74-7514-4207-a365-12b59746a5e5.jpg');"
 								title="이월드 트로피컬 아쿠아 빌리지">
 									<div class="txt_area">
@@ -233,7 +232,7 @@
 
 							<li class="visual visual2 active">
 								<!-- class="active" 추가시 활성 --> <a
-								href="/kfes/detail/fstvlDetail.do?fstvlCntntsId=a8fcf987-666e-404e-9446-0a7f787e83fb"
+								href="http://localhost:8080/travel/details?contentId=2601899&contenttypeId=15"
 								style="background-image: url('https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/06/12/1177bc95-13a8-4533-86e2-e9a077065210.jpg');"
 								title="서울랜드 불빛축제 루나파크">
 									<div class="txt_area">
@@ -251,7 +250,7 @@
 
 
 							<li class="visual visual3 active">
-								<!-- class="active" 추가시 활성 --> <a href="#"
+								<!-- class="active" 추가시 활성 --> <a href="http://localhost:8080/travel/details?contentId=531391&contenttypeId=15"
 								style="background-image: url('https://korean.visitkorea.or.kr/kfes/upload/nationwide/2023/06/12/c420cd6f-f9ed-4cdc-b235-47443aece351.jpg');"
 								title="강릉단오제  ">
 									<div class="txt_area">
@@ -766,12 +765,12 @@
 						var result = res.resultList[i];
 						var imgClass = '';
 
-						if(result.fstvlClCd == 'MF'){
+						/* if(result.fstvlClCd == 'MF'){
 							imgClass += ' sing';
 						}
 						if(result.fstvlIngFlag == '0'){
 							imgClass += ' open';
-						}
+						} */
 
 						var imgSrc = "";
 						if(!gfn_chkNvl(result.dispFstvlCntntsImgRout)){
@@ -786,7 +785,7 @@
 						innerStr += '    <li>';
 						innerStr += '		<a href="/kfes/detail/fstvlDetail.do?fstvlCntntsId='+ result.fstvlCntntsId +'">';
 						//innerStr += '	    <!-- class sing 추가시 마크 추가, class open 추가시 개최중 붙음 -->';
-						innerStr += '	    	<div class="other_festival_img '+ imgClass +'">';
+						innerStr += '	    	<div class="other_festival_img">';
 						innerStr += '				<img src="'+ imgSrc +'" alt="'+ result.fstvlCntntsImgAlt +'" '+ imgOnErrorStr + '/>';
 						innerStr += '				<div class="sing_area">';
 						innerStr += '		    		<div class="blind">문화 관광 축제</div>';

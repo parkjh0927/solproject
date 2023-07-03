@@ -1,0 +1,136 @@
+@charset "utf-8";
+
+html {
+	overflow: hidden;
+}
+
+.select-1 {
+	width: 30px;
+}
+
+#address-code, #type-code {
+	width: 144px;
+	padding: 5px;
+	margin: 5px
+}
+
+#select-date {
+	background-color: white;
+	width: 150px;
+	padding: 5px;
+	margin: 5px;
+}
+
+#search-text {
+	width: 200px;
+}
+
+input[type="date"]::before {
+	content: attr(data-placeholder);
+	width: 100%
+}
+
+input[type="date"]:focus::before, input[type="date"]:valid::before {
+	display: none
+}
+/* 모달창 제목 */
+#exampleModalLabel{
+	font-family: 'Nanum Gothic', sans-serif;
+	z-index: 9999;
+}
+
+#icon {
+	z-index: 999;
+	position: absolute;
+	right: 5%;
+	bottom: 5%;
+	font-size: 10%;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 30px;
+	size: 80%;
+}
+
+#icon-ul {
+	background-color: rgba(255, 255, 255, 0.3);
+	list-style-type: none;
+	margin: 0;
+	padding-left: 0%;
+}
+
+#icon-ul li {
+	border-color: rgba(0, 0, 0, 0.3);
+	border-width: 1px;
+	border-style: solid;
+	display: flex;
+	align-items: center;
+	margin-left: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 50px;
+}
+
+#icon-ul li img {
+	width: 20px;
+	height: 28px
+}
+
+#search-btn {
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+}
+/* 사이드바 */
+/* .left-side-bar>ul ul {
+	background-color : black;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 100%;
+	list-style-type: decimal
+} */
+#side-content{
+	list-style:none;
+	margin-bottom: 5px;
+  padding-left: 1px
+}
+
+.left-side-bar {
+	z-index: 999;
+	background-color: #F8F9FA;
+	height: 100%;
+	width: 400px;
+	position: fixed;
+	left: -400px;
+	top: 55px;
+	transition: left 0.3s;
+	
+	overflow: scroll;
+}
+.left-side-bar ul li {
+  padding:10px;
+}
+.left-side-bar > div {
+  width: 100%; /* 사이드바의 전체 너비를 사용 */
+  display: flex;
+  justify-content: center; /* 수평 방향 가운데 정렬 */
+  padding-top:10px;
+  padding-bottom:20px;
+  font-size: 2rem;
+}
+.side-span{
+	padding-left:10px;
+}
+#side-title{
+	padding-top:20px;
+}
+/* 스크롤바 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+  background: #eeeeee;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#c2e59c, #64b3f4);
+}

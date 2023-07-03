@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.WishMapper">
+
+	<select id="getRow" resultType="com.spring.domain.WishListDTO">
+		select title, tel, addr1, firstimage2, contentid,mapx,mapy,contenttypeid from member_wish where username=#{username}
+	</select>
+	
+	<insert id="insert">
+		insert into member_wish(username,title, tel, firstimage2, addr1, contentid,mapx,mapy,contenttypeid)
+		values(#{userid},#{title}, #{tel}, #{firstimage2}, #{addr1}, #{contentid},#{mapx},#{mapy},#{contenttypeid})
+	</insert>
+	
+	<delete id="delete">
+		delete from member_wish where contentid = #{contentid} and username=#{username}
+	</delete>
+</mapper>
