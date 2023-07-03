@@ -11,7 +11,7 @@ import com.spring.domain.BoardDTO;
 import com.spring.domain.Criteria;
 
 import com.spring.mapper.BoardMapper;
-import com.spring.mapper.ReplyMapper;
+
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,8 +21,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardMapper mapper;
-	@Autowired
-	private ReplyMapper replyMapper;
+
 	
 	@Override
 	public List<BoardDTO> getList(Criteria cri) {		
@@ -59,9 +58,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public boolean delete(int bno) {
 
-		replyMapper.deleteAll(bno);
-
-		
 		return mapper.delete(bno)==1?true:false;
 	}
 
