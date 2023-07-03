@@ -574,7 +574,9 @@ if (document.querySelector("#btn-reply-save")) {
       },
       body: JSON.stringify(replyDTO),
     });
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 100);
   });
 }
 //====================================================================
