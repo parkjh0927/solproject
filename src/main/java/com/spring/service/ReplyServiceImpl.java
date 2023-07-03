@@ -22,19 +22,19 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public boolean reupdate(DetailsReplyDTO dto) {
+	public boolean reupdate(int rno, String dereply) {
 		// TODO Auto-generated method stub
-		return detailsReplyMapper.reupdate(dto) == 1? true : false;
+		return detailsReplyMapper.reupdate(rno,dereply) == 1? true : false;
 	}
 
 	@Override
-	public boolean redelete(int rno) {
-		return detailsReplyMapper.redelete(rno) == 1 ? true : false;
+	public boolean redelete(int rno, String username) {
+		return detailsReplyMapper.redelete(rno,username) == 1 ? true : false;
 	}
 
 	@Override
-	public DetailsReplyDTO read(int rno) {
-		return detailsReplyMapper.read(rno);
+	public List<DetailsReplyDTO> read(String contentid) {
+		return detailsReplyMapper.read(contentid);
 	}
 
 	@Override

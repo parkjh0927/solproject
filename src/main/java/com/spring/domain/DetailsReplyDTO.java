@@ -1,19 +1,22 @@
 package com.spring.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Date;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor @AllArgsConstructor @ToString @Getter @Setter
 public class DetailsReplyDTO {
 	
 	private int rno;
 	private String contentid;
 	private String dereply;
 	private String username;
-	private Data dereplyDate;
-	private Data deupdateDate;
+	private Date dereplyDate;
+	private Date deupdateDate;
+	private String formattedDate;
 	
 }
