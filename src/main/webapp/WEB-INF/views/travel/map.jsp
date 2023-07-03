@@ -27,6 +27,26 @@
 	손님
 </security:authorize>
 </div>
+
+<!-- 찜목록 제거 모달 -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel1">찜목록에서 제거하시겠습니까?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" id='btn-conform'>찜 제거</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button hidden type="button" class="btn btn-primary" id='open-modal' data-bs-toggle="modal" data-bs-target="#exampleModal1"></button>
+<!-- 찜목록 제거 모달 -->
+
 <!-- 지도 모달 창 시작 -->
 <button type="button" id="btn-modal" class="btn btn-primary"
 	data-bs-toggle="modal" data-bs-target="#exampleModal" hidden></button>
@@ -43,6 +63,7 @@
 			<div class="modal-body" id="modal-content">2</div>
 			<div class="modal-footer">
 				<a style='position: absolute; left: 20px; padding:10px;' id='find-road' href='' target='_blank'>길찾기</a>
+				<button type="button" class="btn btn-danger" id="modal-wish-delete" hidden>찜목록 제거</button>
 				<security:authorize access="isAuthenticated()">
 					<button type="button" class="btn btn-warning" id="modal-wish">찜목록 추가</button>
 				</security:authorize>
