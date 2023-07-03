@@ -15,7 +15,7 @@ public class AccomController {
 
 	@GetMapping("/accommodation")
 	public void feslistGet() {
-		log.info("숙소 화면 진입");
+		log.info("accommodation");
 
 	}
 

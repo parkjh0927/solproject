@@ -10,9 +10,9 @@ import com.spring.domain.DetailsReplyDTO;
 public interface DetailsReplyMapper {
 	
 	public int reinsert(DetailsReplyDTO dto);
-	public int reupdate(DetailsReplyDTO dto);
-	public int redelete(int rno);
-	public DetailsReplyDTO read(int rno);
+	public int reupdate(@Param("rno")int rno, @Param("dereply")String dereply);
+	public int redelete(@Param("rno") int rno,@Param("username")String username);
+	public List<DetailsReplyDTO> read(String contentid);
 	public List<DetailsReplyDTO> listAll(@Param("cri") CriteriaDTO cri, @Param("contentid") String contentid);
 	public int getCountById(String contentid);
 }

@@ -1,0 +1,20 @@
+.scroll_wrap{position: relative; z-index: 3; left:0; top:720px; width: 100%; height: auto; background-color: #fff; -webkit-transform: translateZ(0) }
+header.pos2.fixed{position: fixed; z-index: 99;  background: #fff; transition: 0.4s;}
+.visual{overflow: hidden; position: relative; z-index: 1; left:0; top:0; width: 100%; height: calc(100% - 540px); }
+.visual_height{position: fixed; left:0; top:0; width: 100%; height: 720px;}
+
+
+@media all and (max-width:1008px){
+    .visual_height{position: fixed; left:0; top:0; width: 100%; height: 460px;}
+    .scroll_wrap{top:440px; border-radius: 16px;box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);}
+    .visual .inner_full .visula_bg.mark .mark_content .mark_cotent_bottom{bottom:0px}
+    .main_section.scroll{min-height: auto; height: calc(100% - 700px) !important;}
+    .scroll_type{position: fixed; left: 0; top:0; width: 100%; height: 700px !important;}
+    .scroll_type .main_visual.swiper-container{height: 700px  !important;}
+    .scroll_type .main_section .dim{min-height: 700px !important;}
+    /* .scroll_type .m_visual{height: 700px;} */
+    .scroll_type .video-js{height: 700px;}
+    .main_scroll_wrap{position: relative; top: 712px; height: 770px;}
+    .scroll_header{position: fixed; top:0;}
+    .scroll_header.fixed{background: #000; height:56px;}
+}
