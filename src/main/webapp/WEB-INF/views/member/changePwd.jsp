@@ -90,7 +90,7 @@
                   
           
           <div class="col">
-          	<button class="btn btn-primary btn-lg" type="submit">변경하기</button>
+          	<button class="btn btn-info" type="submit">변경하기</button>
           	<a href="/member/myPage" class="btn btn-primary">취소하기</a>
           </div>
         </form>
