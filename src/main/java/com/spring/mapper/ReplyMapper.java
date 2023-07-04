@@ -13,7 +13,7 @@ public interface ReplyMapper {
 	public List<ReplyDTO> listAll(@Param("cri") Criteria cri,@Param("bno") int bno);
 	public int getCountByBno(int bno);
 	public int update(ReplyDTO dto);
-	public int delete(int rno);
+	public int delete(@Param("rno")int rno,@Param("username") String username);
 	public int deleteAll(int bno);
 }
 

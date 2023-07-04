@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.DetailsReplyMapper">
+	
+	<!-- 댓글 가져오기 -->
+	<select id="read" resultType="com.spring.domain.DetailsReplyDTO">
+		select * from member_reply where contentid=#{contentid}
+	</select>
+	
+	<!-- 댓글 추가 -->
+	<insert id="reinsert">
+		insert into member_reply(rno,contentid,username,dereply,dereplyDate)
+		values(seq_reply1.nextval,#{contentid},#{username},#{dereply},sysdate)
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="redelete">
+		delete from member_reply where rno=#{rno} and username=#{username}
+	</delete>
+	
+	<!-- 댓글 수정 -->
+	<update id="reupdate">
+		update member_reply set dereply=#{dereply}, deupdatedate=sysdate where rno=#{rno}
+	</update>
+	
+	<!-- 댓글 페이징 처리 -->
+	<select id="listAll" resultType="com.spring.domain.ReplyDTO">
+		<![CDATA[
+			select rno, contentid, dereply, dereplydate, deupdatedate
+			from(select /*+INDEX(member_reply idx_reply)*/ rownum rn, rno, contentid, dereply, username, dereplydate, deupdate
+				from member_reply
+				where contentid=#{contentid} and rownum <= #{cri.page}*#{cri.amount})
+			where rn > (#cri.page}-1)*#{cri.amount}
+		]]>
+	</select>
+	
+	<!--원본 글에 달려있는 댓글 전체 개수 -->
+	<select id="getCountById" resultType="String">
+		select count(*) from member_reply where contentid=#{contentid}
+	</select>
+</mapper>

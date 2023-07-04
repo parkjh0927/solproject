@@ -11,6 +11,14 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
+<form action="/board/remove" id="differentForm">
+	<input type="hidden" name="bno" value="${dto.bno}" />
+	<input type="hidden" name="page" value="${cri.page}" />
+	<input type="hidden" name="amount" value="${cri.amount}" />
+	<input type="hidden" name="type" value="${cri.type}" />
+	<input type="hidden" name="keyword" value="${cri.keyword}" />
+	<input type="hidden" name="writer" value="${dto.writer}" />
+</form>
 
 
 <div class="row">
@@ -44,7 +52,7 @@
 				<security:authentication property="principal.username" var="username"/>
 				<c:if test="${username == dto.writer}">					
 					<button type="submit" class="btn btn-info">수정</button>
-					<button type="button" class="btn btn-danger">삭제</button>			
+					<button type="submit" class="btn btn-danger" form="differentForm">삭제</button>			
 				</c:if>
 			</security:authorize>
 			<a class="btn btn-secondary" href="/board/list">목록</a>
@@ -54,14 +62,7 @@
 
 
 
-<form action="" id="differentForm">
-	<input type="hidden" name="bno" value="${dto.bno}" />
-	<input type="hidden" name="page" value="${cri.page}" />
-	<input type="hidden" name="amount" value="${cri.amount}" />
-	<input type="hidden" name="type" value="${cri.type}" />
-	<input type="hidden" name="keyword" value="${cri.keyword}" />
-	<input type="hidden" name="writer" value="${dto.writer}" />
-</form>
+
 <script>
 $(document).ready(function() {
     $('#summernote').summernote({

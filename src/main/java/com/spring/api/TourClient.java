@@ -31,12 +31,10 @@ public class TourClient {
 	
 	public SearchResDTO tourReq(String search) {
 		
-		//서비스 키 (디코딩 상태)
 		String serviceKey = "d/V+XJ2uRRmx8fi1ZLRNYKAIGNw5ZGfsEJvUhgnWEU/STHfhq5E7aMU8BNrPSbm0EzohYFuTUbQ8InQMNB6kaw==";
-		//api 기본 주
+		//api
 		String url = "https://apis.data.go.kr/B551011/KorService1/searchKeyword1";
-		url+= "?numOfRows=1000&MobileOS=ETC&MobileApp=sol&_type=json&listYN=Y&arrange=Q&";
-		//받을 키워드와 디코딩상태인 서비스 키 인코딩작업 
+		url+= "?numOfRows=1000&MobileOS=ETC&MobileApp=sol&_type=json&listYN=Y&arrange=Q&"; 
 		try {
 			url += "keyword="+URLEncoder.encode(search, StandardCharsets.UTF_8.toString());
 		
@@ -53,14 +51,8 @@ public class TourClient {
 			e.printStackTrace();
 		}
 
-		
-
-		
-		//최종 응답 객체 
 		SearchResDTO res = new SearchResDTO();
-		
 
-		// 헤더 추가
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -83,7 +75,7 @@ public class TourClient {
 		
 
 		
-		//json 경로 
+		//json
 		JSONObject response = (JSONObject) jsonObject.get("response");
 		JSONObject body = (JSONObject) response.get("body");
 		
@@ -91,9 +83,6 @@ public class TourClient {
 		
 		JSONArray item = (JSONArray) items.get("item");
 
-		
-		
-		//원하는 정보 불러오기 
 		for (Object object : item) {
 		    JSONObject jsonObj = (JSONObject) object;			
 		    String addr1 = (String) jsonObj.get("addr1");
@@ -104,10 +93,8 @@ public class TourClient {
 		    String title = (String) jsonObj.get("title");
 		    
 		    if (firstimage2 == null || firstimage2.isEmpty()) {
-		        // 이미지가 비어 있는 경우 대체 이미지 경로 설정
 		        firstimage2 = "../resources/img/prepare.png";
 		    }
-		    //가져올 것들 담기 
 		    SearchItemsDTO itemsdto = new SearchItemsDTO(addr1, contentid, contenttypeid, firstimage2, tel, title);
 		    res.getItem().add(itemsdto);
 		}

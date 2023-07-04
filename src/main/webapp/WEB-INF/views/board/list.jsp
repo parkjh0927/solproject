@@ -14,22 +14,19 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700'
 	rel='stylesheet' type='text/css'>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="/resources/board/css/style.css">
-
+<style>
+	
+</style>
 </head>	
 <body>
-	<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<ul>
-			<li>.
-			<li>.
-			<li>.
-			<li>.
-			<li>.
-		</ul>
+	<div class="d-sm-flex align-items-center justify-content-between mb-4 padde">
+
 	</div>
 	<div class="d-flex">
 		<!-- 검색부분  -->
@@ -90,8 +87,8 @@
 				Board</button>
 		</div>
 	</div>
-	<table class="table table-striped table-bordered table-hover">
-		<thead>
+	<table class="table table-bordered table-hover">
+		<thead class="table-light">
 			<tr>
 				<th scope="col">번호</th>
 				<th scope="col">제목</th>
@@ -190,4 +187,3 @@
 
 
 </html>
-
