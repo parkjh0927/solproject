@@ -338,5 +338,6 @@
 
 
 <script src="/resources/js/details.js"></script>
+<script src="/resources/js/reply.js"></script>
 
 <%@include file="../include/footer1.jsp"%>

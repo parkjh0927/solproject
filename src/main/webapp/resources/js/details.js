@@ -497,6 +497,8 @@ if (contenttypeid == 32) {
 
 //====================================================================
 // 댓글 기능
+
+
 let box = document.querySelector("#reply--box");
 let page = 1;
 
@@ -572,17 +574,17 @@ function showList(pageNum) {
 
     let str = "";
     for (let idx = 0; idx < result.length; idx++) {
-      str = "<li id='reply--1' class='list-group-item d-flex justify-content-between'>";
-      str = "<div>" + result[idx].dereply + "</div>";
-      str = "<div class='d-flex'>";
-      str = "<div class=''>";
-      str = "<Storage> " + result[idx].username + " </Storage>";
-      str = "<small> " + replyService.displayTime(result[idx].dereplyDate) + "</small>";
-      str = "</div>";
-      str = "<button class='warning'>수정</button>";
-      str = "<button class='badge'>삭제</button>";
-      str = "</div>";
-			str = "</li>";
+      str += "<li id='reply--1' class='list-group-item d-flex justify-content-between'>";
+      str += "<div>" + result[idx].dereply + "</div>";
+      str += "<div class='d-flex'>";
+      str += "<div class=''>";
+      str += "<Storage> " + result[idx].username + " </Storage>";
+      str += "<small> " + replyService.displayTime(result[idx].dereplyDate) + "</small>";
+      str += "</div>";
+      str += "<button class='warning'>수정</button>";
+      str += "<button class='badge'>삭제</button>";
+      str += "</div>";
+			str += "</li>";
     }
     chat.innerHTML = str;
     showReplyPage(total); //현 게시물에 달린 댓글 총 숫자를 이용한 페이지 나누기 함수 호출
@@ -595,8 +597,8 @@ const form1 = document.querySelector("#replyForm");
 if (form1) {
   form1.addEventListener("submit", (e) => {
     e.preventDefault();
-    const reply = document.querySelector("#dereply");
-    const replyer = document.querySelector("#username");
+    const dereply = document.querySelector("#dereply");
+    const username = document.querySelector("#username");
 
     replyService.add(
       { contentid: contentid, dereply: dereply.value, username: username.value },
