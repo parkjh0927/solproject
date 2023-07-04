@@ -49,6 +49,7 @@
 
   .nav-item > .nav-link {
     position: relative;
+    font-size: 20px;
   }
 
   .nav-item > .nav-link::before {
