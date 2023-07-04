@@ -18,11 +18,10 @@ fetch(url)
     return response.json();
   })
   .then((data) => {
-    console.log(data);
     const item = data.response.body.items.item;
     // 위시리스트 보낼 정보=============
     var userid = document.querySelector("#logintest").value;
-    console.log("userid:", userid);
+
     var wishArr = {
       addr1: item[0].addr1,
       tel: item[0].tel,
@@ -39,7 +38,7 @@ fetch(url)
       // CustomAccessDeniedHandler 디나이 핸들러에 막혀버림
       // csrf 토큰값 가져오기
       var csrfToken = document.querySelector("#csrfToken").value;
-      console.log(wishArr);
+
       fetch("http://localhost:8080/wish/add", {
         method: "POST",
         headers: {
@@ -493,209 +492,92 @@ if (contenttypeid == 32) {
     .catch((error) => console.log(error));
 }
 
-
-
-//====================================================================
-// 댓글 기능
-
-
-// let box = document.querySelector("#reply--box");
-// let page = 1;
-
-// showList(page);
-
-// function showReplyPage(total) {
-//   let endPage = Math.ceil(page / 10.0) * 10;
-//   let startPage = endPage - 9;
-//   let prev = startPage != 1;
-//   let next = false;
-
-//   if (endPage * 10 >= total) {
-//     endPage = Math.ceil(total / 10.0);
-//   }
-//   if (endPage * 10 < total) {
-//     next = true;
-//   }
-//   let str = "<ul class='pagination justify-content-center'>";
-//   str +=
-//     "<li class='page-item'><a class='page-link' href='" +
-//     (startPage - 1) +
-//     "'>이전</a></li>";
-
-//   for (let i = startPage; i <= endPage; i++) {
-//     let active = page == i ? "active" : "";
-//     str +=
-//       "<li class='page-item " +
-//       active +
-//       " '><a class='page-link' href='" +
-//       i +
-//       "'>" +
-//       i +
-//       "</a></li>";
-//   }
-//   if (next) {
-//     str +=
-//       "<li class='page-item'><a class='page-link' href='" +
-//       (endPage + 1) +
-//       "'>다음</a></li>";
-//   }
-//   str += "</ul>";
-//   document.querySelector(".card-page").innerHTML = str;
-// }
-
-// //댓글 페이지 나누기 숫자 클릭시 a태그 동작 중지
-// //href 에 있는 값 가져오기
-// //showList(가져온 값)
-// document.querySelector(".card-pages").addEventListener("click", (e) => {
-//   e.preventDefault();
-//   page = e.target.getAttribute("href");
-//   //console.log(href);
-//   showList(page);
-// });
-
-// function showList(pageNum) {
-//   //현재 게시물에 대한 댓글 가져오기
-//   replyService.getList({ bno: bno, page: page || 1 }, (total, result) => {
-//     console.log(total);
-//     console.log(result);
-
-//     if (pageNum == -1) {
-//       //마지막 페이지 알아내기
-//       page = Math.ceil(total / 10.0);
-//       showList(page);
-//       return;
-//     }
-
-//     //도착한 데이터를 화면에 보여주기
-//     if (result == null || result.length == 0) {
-//       chat.innerHTML = "";
-//       return;
-//     }
-
-//     let str = "";
-//     for (let idx = 0; idx < result.length; idx++) {
-//       str += "<li id='reply--1' class='list-group-item d-flex justify-content-between'>";
-//       str += "<div>" + result[idx].dereply + "</div>";
-//       str += "<div class='d-flex'>";
-//       str += "<div class=''>";
-//       str += "<Storage> " + result[idx].username + " </Storage>";
-//       str += "<small> " + replyService.displayTime(result[idx].dereplyDate) + "</small>";
-//       str += "</div>";
-//       str += "<button class='warning'>수정</button>";
-//       str += "<button class='badge'>삭제</button>";
-//       str += "</div>";
-// 			str += "</li>";
-//     }
-//     chat.innerHTML = str;
-//     showReplyPage(total); //현 게시물에 달린 댓글 총 숫자를 이용한 페이지 나누기 함수 호출
-//   });
-// }
-
-// // 댓글 작업 호출 => 댓글 작성 버튼 클릭 시
-// //submit 중지, reply, replyer 가져오기
-// const form1 = document.querySelector("#replyForm");
-// if (form1) {
-//   form1.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     const dereply = document.querySelector("#dereply");
-//     const username = document.querySelector("#username");
-
-//     replyService.add(
-//       { contentid: contentid, dereply: dereply.value, username: username.value },
-//       (result) => {
-//         //alert(result);
-//         //댓글 작성 부분 지우기
-//         dereply.value = "";
-
-//         showList(-1);
-//       }
-//     );
-//   });
-// }
-
-// //이벤트 전파 : 자식의 이벤트는 부모에게 전달 됨 ==> ul 에 이벤트 작성
-// chat.addEventListener("click", (e) => {
-//   //어느 li에서 이벤트가 발생했느냐?
-//   //e.target : 이벤트 발생 대상
-//   //closest : 이벤트 발생 대상을 감싸고 있는 부모 li 찾기
-//   let li = e.target.closest("li");
-//   console.log("이벤트 발생 ", li);
-
-//   //rno 가져오기 ( data-* 속성값 가져오기 : dataset)
-//   let rno = li.dataset.rno;
-//   console.log("rno", rno);
-
-//   //댓글 작성자 정보 가져오기
-//   let username = li.firstElementChild.firstElementChild.firstElementChild.firstElementChild.innerHTML;
-//   console.log("댓글 작성자 ", username);
-
-//   //로그인 사용자 정보 가져오기
-//   let form_username = document.querySelector("#replyForm #username");
-//   let login_user = "";
-//   if (form_username) {
-//     login_user = form_username.value;
-//   }
-
-//   if (!login_user) {
-//     alert("로그인 한 후 수정 및 삭제가 가능 합니다.");
-//     return;
-//   }
-
-//   //이벤트를 부모가 감지를 하기 때문에
-//   if (e.target.classList.contains("warning")) {
-//     //로그인 사용자와 댓글 작성자가 같은지 확인
-//     if (username != login_user) {
-//       alert("자신의 댓글만 수정이 가능 합니다.");
-//       return;
-//     }
-
-//     //댓글 하나 가져오기
-//     replyService.get(rno, (result) => {
-//       console.log(result);
-
-//       //모달 창 안에 가져온 내용 보여주기
-//       document.querySelector(".modal-body #rno").value = result.rno;
-//       document.querySelector(".modal-body #dereply").value = result.dereply;
-//       document.querySelector(".modal-body #username").value = result.username;
-
-//       $("#replyModal").modal("show");
-//     });
-//   } else if (e.target.classList.contains("badge")) {
-//     //로그인 사용자와 댓글 작성자가 같은지 확인
-//     if (username != login_user) {
-//       alert("자신의 댓글만 삭제가 가능 합니다.");
-//       return;
-//     }
-
-//     //삭제버튼 클릭 시
-//     replyService.remove(rno, username, (result) => {
-//       if (result === "success") {
-//         alert("삭제 성공");
-//         showList(page);
-//       }
-//     });
-//   }
-// });
-
-// //모달 창 수정 버튼이 클릭되면 댓글 수정
-// document
-//   .querySelector(".modal-footer .btn-primary")
-//   .addEventListener("click", () => {
-//     //모달 창안에 있는 rno, reply 가져온 후 자바스크립트 객체 생성
-//     const updateReply = {
-//       rno: document.querySelector(".modal-body #rno").value,
-//       dereply: document.querySelector(".modal-body #dereply").value,
-//       replyer: document.querySelector(".modal-body #username").value,
-//     };
-
-//     //replyService.update 호출
-//     replyService.update(updateReply, (result) => {
-//       alert(result);
-//       //모달창 닫기
-//       if (result === "success") {
-//         $("#replyModal").modal("hide");
-//         showList(page);
-//       }
-//     });
-//   });
-  
+// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글
+// 댓글 삭제
+console.log("---------------------");
+console.log("---------------------");
+console.log("---------------------");
+document.querySelectorAll(".reDelete").forEach((button) => {
+  button.addEventListener("click", function () {
+    var rno = this.closest("li").querySelector(".reRno").value;
+    var username = document.querySelector("#logintest");
+    console.log("username", username);
+    console.log(rno);
+    fetch("http://localhost:8080/replies/delete?rno=" + rno + "&username=" + username.value)
+      .then((response) => response.text())
+      .then((data) => {
+        if (data == "true") {
+          alert("삭제되었습니다.");
+          location.reload();
+        } else {
+          alert("자신의 댓글만 삭제 가능합니다.");
+        }
+      })
+      .catch((error) => console.log(error));
+  });
+});
+// 댓글 수정
+document.querySelectorAll(".reModify").forEach((button) => {
+  button.addEventListener("click", function () {
+    var rno = this.closest("li").querySelector(".reRno").value;
+    var reUser = this.closest("li").querySelector(".reUser").value;
+    var username = document.querySelector("#logintest").value;
+    var reContent = this.closest("li").querySelector(".reContent").value;
+    console.log("username:", username);
+    console.log("reUser:", reUser);
+    console.log(username, reUser);
+    if (reUser.trim() == username.trim()) {
+      document.querySelector("#modal-modify-content").value = reContent;
+      document.querySelector("#modal-btn").click();
+      document.querySelector("#btn-modify").addEventListener("click", () => {
+        console.log("여기까지");
+        console.log("value:", document.querySelector("#modal-modify-content").value);
+        fetch(
+          "http://localhost:8080/replies/modify?rno=" +
+            rno +
+            "&dereply=" +
+            document.querySelector("#modal-modify-content").value
+        )
+          .then((response) => response.text())
+          .then((data) => {
+            if (data == "true") {
+              alert("수정되었습니다.");
+              location.reload();
+            } else {
+              alert("자신의 댓글만 삭제 가능합니다.");
+            }
+          })
+          .catch((error) => console.log(error));
+      });
+    } else {
+      alert("자신의 댓글만 수정 가능합니다.");
+    }
+  });
+});
+if (document.querySelector("#btn-reply-save")) {
+  document.querySelector("#btn-reply-save").addEventListener("click", () => {
+    console.log("댓글버튼클릭");
+    console.log("userid : ", document.querySelector("#replyUserId").value);
+    console.log("댓글 내용 : ", document.querySelector("#dereply").value);
+    console.log("컨텐트아이디 : ", contentid);
+    var csrfToken = document.querySelector("#csrfToken").value;
+    var replyDTO = {
+      dereply: document.querySelector("#dereply").value,
+      username: document.querySelector("#replyUserId").value,
+      contentid: contentid,
+    };
+    document.querySelector("#dereply").value = "";
+    fetch("http://localhost:8080/replies/new", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": csrfToken, // CSRF 토큰을 X-CSRF-TOKEN 헤더에 포함
+      },
+      body: JSON.stringify(replyDTO),
+    });
+    alert("댓글이 등록되었습니다.");
+    setTimeout(() => {
+      location.reload();
+    }, 100);
+  });
+}
