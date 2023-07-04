@@ -49,6 +49,7 @@
 
   .nav-item > .nav-link {
     position: relative;
+    font-size: 20px;
   }
 
   .nav-item > .nav-link::before {
@@ -56,13 +57,14 @@
     position: absolute;
     width: 6px;
     height: 6px;
-    border-radius: 50%;
+    border-radius: 50%;	
     background-color: #000;
     top: -4px;
     right: -4px;
     transform: rotate(45deg);
     opacity: 0;
     transition: opacity 0.3s ease;
+    align-content: center;	
   }
 
   .nav-item:hover > .nav-link::before {
@@ -130,8 +132,9 @@
   	}
 }
 	.navbar-nav{
-	margin-right: 80px;
+	align-content: center;
 	}
+	
 </style>
 
 
@@ -169,15 +172,8 @@
           <li class="nav-item">
             <a class="nav-link" href="/accommodation/accommodation">숙박 정보</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              게시판
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/board/list">공지사항</a></li>
-              <li><a class="dropdown-item" href="#">Q & A</a></li>
-              <li><a class="dropdown-item" href="#">자유 게시판</a></li>
-            </ul>
+          <li class="nav-item ">
+            <a class="nav-link" href="/board/list">공지사항</a>
           </li>
           
         <security:authorize access="isAuthenticated()">          

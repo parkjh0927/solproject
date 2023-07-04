@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
 <body>
+<!-- 사용자 아이디 보여주기 -->
+<div style="position:fixed; z-index:995; right:30px; top:70px;">
+<security:authorize access="isAuthenticated()">
+	<strong><security:authorize access="isAuthenticated()"><security:authentication property="principal.username"/></security:authorize></strong> 님
+</security:authorize>
+<security:authorize access="!isAuthenticated()">
+	손님
+</security:authorize>
+</div>
+
+<!-- 찜목록 제거 모달 -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel1">찜목록에서 제거하시겠습니까?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" id='btn-conform'>찜 제거</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button hidden type="button" class="btn btn-primary" id='open-modal' data-bs-toggle="modal" data-bs-target="#exampleModal1"></button>
+<!-- 찜목록 제거 모달 -->
 
 <!-- 지도 모달 창 시작 -->
 <button type="button" id="btn-modal" class="btn btn-primary"
@@ -34,6 +63,16 @@
 			<div class="modal-body" id="modal-content">2</div>
 			<div class="modal-footer">
 				<a style='position: absolute; left: 20px; padding:10px;' id='find-road' href='' target='_blank'>길찾기</a>
+				<button type="button" class="btn btn-danger" id="modal-wish-delete" hidden>찜목록 제거</button>
+				<security:authorize access="isAuthenticated()">
+					<button type="button" class="btn btn-warning" id="modal-wish">찜목록 추가</button>
+				</security:authorize>
+				<input id='submitaddr1' hidden/>
+				<input id='submittel' hidden/>
+				<input id='submitfirstimage' hidden/>
+				<input id='submittitle' hidden/>
+				<input id='submitmapx' hidden/>
+				<input id='submitmapy' hidden/>
 				<form  id='detailForm' action = "http://localhost:8080/travel/details">
 					<input id='submitid'  name='contentId' hidden/>
 					<input id='submittypeid'  name='contenttypeId' hidden/>
@@ -48,7 +87,7 @@
     <!-- 사이드바	사이드바	사이드바	사이드바		사이드바	사이드바	사이드바	사이드바 -->
 	<div class="left-side-bar">
       <div id='side-title'>
-        <span>여행지 목록</span>
+        <span id='side-span'>여행지 목록</span>
       </div>
 
       <ul id="side-content">
@@ -64,6 +103,9 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <button type='button' class="nav-link active" aria-current="page" id='toggleSidebar'>결과목록보기</button>
+        </li>
+        <li class="nav-item">
+          <button type='button' style='color:#FF1E9D;' class="nav-link active" aria-current="page" id='btn-like'><security:authorize access="isAuthenticated()">찜목록 보기</security:authorize></button>
         </li>
          <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" type='button' role="button" data-bs-toggle="dropdown" aria-expanded="false" id="search-option">
@@ -153,7 +195,12 @@
 	</ul>
 </div>
 
-
+<!-- 로그인된 사용자 id -->
+<input hidden id='csrfToken' name="${_csrf.parameterName}" value="${_csrf.token}" />
+<input hidden id='logintest' name='userid' value=
+    ' <security:authorize access="isAuthenticated()"><security:authentication property="principal.username"/></security:authorize>'/>
+	
+	
 <div id="map"
 	style="width: 100%; height: 100vh; z-index: 1; "></div>
 	<!-- style="stroke: none; stroke-dashoffset: 0.5; transform: translateZ(0px); stroke-linejoin: round; fill: none; width: 100%; height: 100vh; position: absolute; z-index: 1; left: -2804px;"></div> -->

@@ -1,20 +1,17 @@
 package com.spring.controller;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.domain.CriteriaDTO;
 import com.spring.domain.DetailsReplyDTO;
-import com.spring.domain.DetailsReplyPageDTO;
 import com.spring.service.ReplyService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,51 +20,47 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/replies")
 public class ReplyController {
+	
+	@Autowired
+	private ReplyService service;
 
-	private ReplyService replyService;
-	
-	@GetMapping(value = "/{rno}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<DetailsReplyDTO> get(@PathVariable("rno") int rno){
-		log.info("댓글 조회");
-		return new ResponseEntity<DetailsReplyDTO>(replyService.read(rno), HttpStatus.OK);
-	}
-	
 	@PostMapping("/new")
-	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<String> insert(@RequestBody DetailsReplyDTO dto){
+	public void insert(@RequestBody DetailsReplyDTO dto){
 		log.info("댓글 삽입");
-		
-		return replyService.reinsert(dto)?
-				new ResponseEntity<String>("성공", HttpStatus.OK):
-					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		service.reinsert(dto);
+		System.out.println(dto);
+	}
+	@GetMapping("/delete")
+	public ResponseEntity<String> delete(@RequestParam("rno") int rno, @RequestParam("username")String username) {
+		System.out.println("댓글 삭제");
+		System.out.println(username+"username");
+		System.out.println("rno : "+rno);
+		try {
+			if(service.redelete(rno,username.replaceAll("\\s+", ""))) {;
+				return new ResponseEntity<> ("true",HttpStatus.OK);
+			}
+			else 
+				return new ResponseEntity<> ("false",HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<> ("false",HttpStatus.OK);
+		}
+	}
+	@GetMapping("/modify")
+	public ResponseEntity<String> modify(@RequestParam("rno") int rno, @RequestParam("dereply")String dereply) {
+		System.out.println("댓글 수정");
+		System.out.println(rno+"rno");
+		System.out.println("dereply : "+dereply);
+		try {
+			if(service.reupdate(rno,dereply)) {;
+				return new ResponseEntity<> ("true",HttpStatus.OK);
+			}
+			else 
+				return new ResponseEntity<> ("false",HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<> ("false",HttpStatus.OK);
+		}
 	}
 	
-	@GetMapping("/page/{contentid}/{page}")
-	public ResponseEntity<DetailsReplyPageDTO> select(@PathVariable("contentid") String contentid, @PathVariable("page") int page){
-		log.info("댓글 조회"+contentid);
-		
-		CriteriaDTO cri = new CriteriaDTO(page, 10);
-		
-		return new ResponseEntity<DetailsReplyPageDTO>(replyService.listAll(cri, contentid),HttpStatus.OK);
-	}
-	
-	@PutMapping("/{rno}")
-	@PreAuthorize("principal.username == #dto.username")
-	public ResponseEntity<String> update(@RequestBody DetailsReplyDTO dto){
-		log.info("댓글 수정"+dto);
-		
-		return replyService.reupdate(dto)?
-				new ResponseEntity<String>("성공", HttpStatus.OK):
-					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	public ResponseEntity<String> delete(@PathVariable("rno") int rno, @RequestBody DetailsReplyDTO dto){
-		log.info("댓글 삭제"+rno);
-		
-		return replyService.redelete(rno)?
-				new ResponseEntity<String>("성공",HttpStatus.OK):
-					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
 	
 	
 }

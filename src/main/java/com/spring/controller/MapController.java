@@ -7,30 +7,77 @@ import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.domain.WishListDTO;
+import com.spring.service.WishService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller @RequestMapping("/travel") @Slf4j
 public class MapController {
 	
-
+	@Autowired
+	private WishService service;
+	
 	@GetMapping("/map")
 	public void mapGet() {
-		log.info("map¿äÃ»");
+		log.info("mapï¿½ï¿½Ã»");
 		
 	}
-	// °Ë»ö ½Ã Áöµµ ÁÂÇ¥ json ÆÄÀÏ¿¡ ÀúÀå
+	@GetMapping("/like")
+	public ResponseEntity<List<WishListDTO>> wishGet(String username) {
+	    System.out.println("ìœ ì €ì•„ì´ë””: " + username);
+	    List<WishListDTO> list = service.getRow(username.replaceAll("\\s+", ""));
+	    return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(list);
+	}
+	@PostMapping("/map/search")
+	public ResponseEntity<String> mapSearchGet(@RequestBody List<Map<String, Object>> items) {
+	    log.info("mapï¿½Ë»ï¿½ ï¿½ï¿½Ã»");
+
+	    JSONArray positions = new JSONArray();
+	    for (Map<String, Object> item : items) {
+	        double contentid = Double.parseDouble(item.get("contentid").toString());
+	        double contenttypeid = Double.parseDouble(item.get("contenttypeid").toString());
+	        double lat = Double.parseDouble(item.get("mapy").toString());
+	        double lng = Double.parseDouble(item.get("mapx").toString());
+	        JSONObject position = new JSONObject();
+	        position.put("lat", lat);
+	        position.put("lng", lng);
+	        position.put("contentid", contentid);
+	        position.put("contenttypeid", contenttypeid);
+	        positions.put(position);
+	    }
+
+	    JSONObject json = new JSONObject();
+	    json.put("positions", positions);
+
+	    return ResponseEntity.ok().body(json.toString());
+	}
+	//ì°œëª©ë¡ ê°€ì ¸ì˜¤ê¸°
+//	@GetMapping("/like")
+//	public ResponseEntity<String> wishGet(String username,Model model) {
+//		System.out.println("ìœ ì €ì•„ì´ë”” : "+username);
+//		List<WishListDTO> list =service.getRow(username.replaceAll("\\s+", ""));
+//		System.out.println(list);
+//		model.addAttribute("wishList", list);
+//		String wishList=""+list.toString();
+//		return new ResponseEntity<>(wishList,HttpStatus.OK);
+//	}
+	
+	// ï¿½Ë»ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ json ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 //	@PostMapping("/map/search")
 //	public ResponseEntity<String> mapSearchGet(@RequestBody List<Map<String, String>> items) {
-//	    log.info("map°Ë»ö ¿äÃ»");
+//	    log.info("mapï¿½Ë»ï¿½ ï¿½ï¿½Ã»");
 //
 //	    JSONArray positions = new JSONArray();
 //	    for (Map<String, String> item : items) {
@@ -64,42 +111,9 @@ public class MapController {
 //
 //	        return new ResponseEntity<>("success", HttpStatus.OK);
 //	    } catch (Exception e) {
-//	        log.error("ÆÄÀÏ ÀúÀå Áß ¿À·ù ¹ß»ı", e);
+//	        log.error("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½", e);
 //	        return new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
 //	    }
 //	}
-	@PostMapping("/map/search")
-	public ResponseEntity<String> mapSearchGet(@RequestBody List<Map<String, Object>> items) {
-	    log.info("map°Ë»ö ¿äÃ»");
-
-	    JSONArray positions = new JSONArray();
-	    for (Map<String, Object> item : items) {
-	        double contentid = Double.parseDouble(item.get("contentid").toString());
-	        double contenttypeid = Double.parseDouble(item.get("contenttypeid").toString());
-	        double lat = Double.parseDouble(item.get("mapy").toString());
-	        double lng = Double.parseDouble(item.get("mapx").toString());
-	        JSONObject position = new JSONObject();
-	        position.put("lat", lat);
-	        position.put("lng", lng);
-	        position.put("contentid", contentid);
-	        position.put("contenttypeid", contenttypeid);
-	        positions.put(position);
-	    }
-
-	    JSONObject json = new JSONObject();
-	    json.put("positions", positions);
-
-	    return ResponseEntity.ok().body(json.toString());
-	}
 	
-	@GetMapping("/tetetet")
-	public void getttt() {
-		log.info("ddd");
-	}
-	
-	@GetMapping("/map/wishlist")
-	public void mapWishlistGet(List<WishListDTO> dto) {
-		
-	}
-
 }

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../include/header2.jsp"%>
-
-<script src="/resources/js/details.js"></script>
+<link rel="stylesheet" href="/resources/board/css/style.css">
 
 <html>
 <style>
@@ -253,40 +252,48 @@
 
 <div class="reply1">
 	<div class="card">
-	<security:authorize access="isAuthenticated()">
-     <form id="replyForm">
-     <input type="text" name="username" class="rep" id="username" readonly
-     			value='<security:authentication property="principal.username"/>'>
-		<div class="card-body">
-			<textarea id="dereply" name="dereply" class="form-control" rows="2"></textarea>
-		</div>
-		<div class="card-footer">
-			<button type="button" id="btn-reply-save" class="btn btn-primary">등록</button>
-		</div>
+		<security:authorize access="isAuthenticated()">
+	    	 <form id="replyForm">
+    			 <input hidden type="text" name="username" class="rep" id="replyUserId" readonly
+     					value='<security:authentication property="principal.username"/>'>
+			<div class="card-body">
+				<textarea id="dereply" name="dereply" class="form-control" rows="2"></textarea>
+			</div>
+			<div class="card-footer">
+				<button type="button" id="btn-reply-save" class="btn btn-primary">등록</button>
+			</div>
 		</form>
 	</security:authorize>
-	</div>
-    
-    
-<div class="card" id="card1">
-		<div class="card-header">댓글 리스트</div>
-		<ul id="reply--box" class="list-group">
-			
-			<li id="reply--1" class="list-group-item d-flex justify-content-between" data-rno='1'>
-				<div>댓글내용</div>
-				<div class="d-flex">
-					<div class="">
-						<strong id="username">작성자</strong>
-						<small>2023-06-30 00:00</small>
-					</div>
-					<button class="warning">수정</button>
-					<button class="badge">삭제</button>
-				</div>
-			</li>
-
-		</ul>
-	</div>
 </div>
+    <!-- ////////댓글리스트/////////////////////////////////// -->
+          
+		<div class="card" id="card1">
+				<div class="card-header">댓글 리스트</div>
+				<ul id="reply--box" class="list-group">
+				
+ <c:forEach items="${replyList}" var="e">
+					
+					<li id="reply--1" class="list-group-item d-flex justify-content-between" data-rno='1'>
+						<input hidden class='reRno' value = '${e.rno}'></input>
+						<input hidden class='reUser' value = '${e.username}'></input>
+						<input hidden class='reContent' value='${e.dereply }'></input>
+						<strong style="margin-right:10px;" id="replyUsername">작성자 :    ${e.username }<!-- 작성자 --></strong>
+						<div style="text-align: left; margin-left:-20px; padding-left:-20px;"id = "replyContent">${e.dereply }<!-- 댓글내용 --></div>
+						<div></div><div></div><div></div><div></div><div></div>
+						<div class="d-flex">
+							<div class="">
+								<small style="margin-right:10px;" > ${e.formattedDate}<!-- 2023-06-30 00:00 --></small>
+							</div>
+							<button style="margin-right:10px; padding-right:10px" class="btn btn-success reModify">수정</button>
+							<button style="margin-right:10px; padding-right:10px" class="btn btn-danger reDelete">삭제</button>
+						</div>
+					</li>
+ </c:forEach>
+		
+				</ul>
+			</div>
+		</div>
+	 <!-- ////////댓글리스트/////////////////////////////////// -->
 
 
 <div class="card-page">
@@ -295,27 +302,22 @@
 
 
 <!-- 댓글 수정 폼 -->
-<div class="modal" tabindex="-1" id="replyModal">
+<button hidden id='modal-btn' type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">댓글 수정</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">댓글 수정</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <input type="hidden" name="rno" id="rno" />
-      <div class="form-group">
-      	<textarea name="dereply" id="dereply" rows="4" class="form-control"></textarea>
-      </div>
-      <div class="form-group">
-      	<input type="text" name="username" id="username" class="form-control" readonly/>
-      </div>
-      </div>
+    <div class="input-group">
+	  <textarea id='modal-modify-content' style="height: 400px; resize: none;" class="form-control" aria-label="Text input with radio button"></textarea>
+	</div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">수정</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btn-modify">수정</button>
       </div>
     </div>
   </div>
@@ -325,19 +327,19 @@
 
 </html>
 
+<script src="/resources/js/details.js"></script>
+
 <form action="" id="operForm">
 	<input type="hidden" name="contentid" value="${dto.contentid}">
 	<input type="hidden" name="page" value="${cri.page}">
 	<input type="hidden" name="amount" value="${cri.amount}">
 </form>
-<script>
-	const contentid = ${dto.contentid}
-	const csrfToken = '${_csrf.token}';
-</script>
+
 
 
 
 <script src="/resources/js/details.js"></script>
 <script src="/resources/js/reply.js"></script>
+
 
 <%@include file="../include/footer1.jsp"%>

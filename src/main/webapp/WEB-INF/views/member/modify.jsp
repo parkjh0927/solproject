@@ -11,6 +11,11 @@
 
 
 </head>
+<style>
+	.mb-3 > div{
+		
+	}
+</style>
 	
 
 <body>
@@ -20,7 +25,7 @@
       
 	    <form class="modifyForm" method="post" action="/member/modify" >
 	       <div class="col">	        
-	         <h4 class="mb-3 center">마이페이지</h4>
+	         <h4 class="mb-3 center">내 정보</h4>
 	       </div>
 	        
 	        <br>
