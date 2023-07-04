@@ -34,6 +34,35 @@ public class MapController {
 		log.info("map��û");
 		
 	}
+	@GetMapping("/like")
+	public ResponseEntity<List<WishListDTO>> wishGet(String username) {
+	    System.out.println("유저아이디: " + username);
+	    List<WishListDTO> list = service.getRow(username.replaceAll("\\s+", ""));
+	    return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(list);
+	}
+	@PostMapping("/map/search")
+	public ResponseEntity<String> mapSearchGet(@RequestBody List<Map<String, Object>> items) {
+	    log.info("map�˻� ��û");
+
+	    JSONArray positions = new JSONArray();
+	    for (Map<String, Object> item : items) {
+	        double contentid = Double.parseDouble(item.get("contentid").toString());
+	        double contenttypeid = Double.parseDouble(item.get("contenttypeid").toString());
+	        double lat = Double.parseDouble(item.get("mapy").toString());
+	        double lng = Double.parseDouble(item.get("mapx").toString());
+	        JSONObject position = new JSONObject();
+	        position.put("lat", lat);
+	        position.put("lng", lng);
+	        position.put("contentid", contentid);
+	        position.put("contenttypeid", contenttypeid);
+	        positions.put(position);
+	    }
+
+	    JSONObject json = new JSONObject();
+	    json.put("positions", positions);
+
+	    return ResponseEntity.ok().body(json.toString());
+	}
 	//찜목록 가져오기
 //	@GetMapping("/like")
 //	public ResponseEntity<String> wishGet(String username,Model model) {
@@ -44,12 +73,7 @@ public class MapController {
 //		String wishList=""+list.toString();
 //		return new ResponseEntity<>(wishList,HttpStatus.OK);
 //	}
-	@GetMapping("/like")
-	public ResponseEntity<List<WishListDTO>> wishGet(String username) {
-	    System.out.println("유저아이디: " + username);
-	    List<WishListDTO> list = service.getRow(username.replaceAll("\\s+", ""));
-	    return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(list);
-	}
+	
 	// �˻� �� ���� ��ǥ json ���Ͽ� ����
 //	@PostMapping("/map/search")
 //	public ResponseEntity<String> mapSearchGet(@RequestBody List<Map<String, String>> items) {
@@ -91,38 +115,5 @@ public class MapController {
 //	        return new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
 //	    }
 //	}
-	@PostMapping("/map/search")
-	public ResponseEntity<String> mapSearchGet(@RequestBody List<Map<String, Object>> items) {
-	    log.info("map�˻� ��û");
-
-	    JSONArray positions = new JSONArray();
-	    for (Map<String, Object> item : items) {
-	        double contentid = Double.parseDouble(item.get("contentid").toString());
-	        double contenttypeid = Double.parseDouble(item.get("contenttypeid").toString());
-	        double lat = Double.parseDouble(item.get("mapy").toString());
-	        double lng = Double.parseDouble(item.get("mapx").toString());
-	        JSONObject position = new JSONObject();
-	        position.put("lat", lat);
-	        position.put("lng", lng);
-	        position.put("contentid", contentid);
-	        position.put("contenttypeid", contenttypeid);
-	        positions.put(position);
-	    }
-
-	    JSONObject json = new JSONObject();
-	    json.put("positions", positions);
-
-	    return ResponseEntity.ok().body(json.toString());
-	}
 	
-	@GetMapping("/tetetet")
-	public void getttt() {
-		log.info("ddd");
-	}
-	
-	@GetMapping("/map/wishlist")
-	public void mapWishlistGet(List<WishListDTO> dto) {
-		
-	}
-
 }
