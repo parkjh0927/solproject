@@ -105,7 +105,7 @@
           <button type='button' class="nav-link active" aria-current="page" id='toggleSidebar'>결과목록보기</button>
         </li>
         <li class="nav-item">
-          <button type='button' class="nav-link active" aria-current="page" id='btn-like'><security:authorize access="isAuthenticated()">찜목록 보기</security:authorize></button>
+          <button type='button' style='color:#FF1E9D;' class="nav-link active" aria-current="page" id='btn-like'><security:authorize access="isAuthenticated()">찜목록 보기</security:authorize></button>
         </li>
          <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" type='button' role="button" data-bs-toggle="dropdown" aria-expanded="false" id="search-option">
