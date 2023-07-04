@@ -537,7 +537,7 @@ document.querySelectorAll(".reModify").forEach((button) => {
             "&dereply=" +
             document.querySelector("#modal-modify-content").value
         )
-          .then((response) => response.text())
+          .then((response) => response.json())
           .then((data) => {
             if (data == "true") {
               alert("수정되었습니다.");
