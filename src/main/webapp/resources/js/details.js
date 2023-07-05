@@ -493,9 +493,7 @@ if (contenttypeid == 32) {
 }
 // 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글// 댓글
 // 댓글 삭제
-console.log("---------------------");
-console.log("---------------------");
-console.log("---------------------");
+
 document.querySelectorAll(".reDelete").forEach((button) => {
   button.addEventListener("click", function () {
     var rno = this.closest("li").querySelector(".reRno").value;
@@ -553,9 +551,15 @@ document.querySelectorAll(".reModify").forEach((button) => {
     }
   });
 });
+// 댓글 등록
 if (document.querySelector("#btn-reply-save")) {
   document.querySelector("#btn-reply-save").addEventListener("click", () => {
+    if (!document.querySelector("#modal-modify-content").value) {
+      alert("댓글을 입력해주세요");
+      return;
+    }
     console.log("댓글버튼클릭");
+
     console.log("userid : ", document.querySelector("#replyUserId").value);
     console.log("댓글 내용 : ", document.querySelector("#dereply").value);
     console.log("컨텐트아이디 : ", contentid);
@@ -580,6 +584,7 @@ if (document.querySelector("#btn-reply-save")) {
     }, 100);
   });
 }
+
 //====================================================================
 // 댓글 삭제// 댓글 삭제// 댓글 삭제// 댓글 삭제// 댓글 삭제// 댓글 삭제// 댓글 삭제// 댓글 삭제
 // let box = document.querySelector("#reply--box");
