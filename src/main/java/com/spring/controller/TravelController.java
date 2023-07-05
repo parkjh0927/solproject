@@ -30,7 +30,7 @@ public class TravelController {
 	@Autowired
 	private TravelService service;
 	@Autowired
-	private ReplyService Reservice;
+	private ReplyService reservice;
 	
 	@GetMapping("/destination")
 	public void destination() {
@@ -49,10 +49,11 @@ public class TravelController {
 	@GetMapping("/details")
 	public void getReply(@RequestParam("contentId") String contentId, Model model) {
 		log.info("get상세페이지 댓글 목록");
-		List<DetailsReplyDTO> list =Reservice.read(contentId);
+		List<DetailsReplyDTO> list =reservice.read(contentId);
 		System.out.println(list);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
+		String count = reservice.getReCount(contentId);
+		model.addAttribute("count",count);
 		for (DetailsReplyDTO dto : list) {
 		    String formattedDate = sdf.format(dto.getDereplyDate());
 		    dto.setFormattedDate(formattedDate);

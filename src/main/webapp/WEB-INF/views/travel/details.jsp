@@ -268,7 +268,7 @@
     <!-- ////////댓글리스트/////////////////////////////////// -->
           
 		<div class="card" id="card1">
-				<div class="card-header">댓글 리스트</div>
+				<div class="card-header">댓글 리스트${count }</div>
 				<ul id="reply--box" class="list-group">
 				
  <c:forEach items="${replyList}" var="e">

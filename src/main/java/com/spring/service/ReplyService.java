@@ -15,5 +15,6 @@ public interface ReplyService {
 	public boolean redelete(@Param("rno")int rno,@Param("username")String username);
 	public List<DetailsReplyDTO> read(String contentid);
 	public DetailsReplyPageDTO listAll(CriteriaDTO cri, String contentid);
+	public String getReCount(String contentid);
 
 }

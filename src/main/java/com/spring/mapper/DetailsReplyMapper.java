@@ -14,5 +14,5 @@ public interface DetailsReplyMapper {
 	public int redelete(@Param("rno") int rno,@Param("username")String username);
 	public List<DetailsReplyDTO> read(String contentid);
 	public List<DetailsReplyDTO> listAll(@Param("cri") CriteriaDTO cri, @Param("contentid") String contentid);
-	public int getCountById(String contentid);
+	public String getReCount(String contentid);
 }
