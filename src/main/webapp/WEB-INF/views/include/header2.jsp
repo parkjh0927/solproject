@@ -81,6 +81,7 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
+    margin-left: 20px;
   }
   .logout-btn {
     display: inline-block;
@@ -196,6 +197,7 @@
 					    <button type="submit" class="dropdown-item">찜 목록</button>
 					  </li>
 				  </form>
+				  <li><a class="dropdown-item" href="/chat/roomlist">채팅하기</a></li>
 	            </ul>
           </li>          
         </security:authorize>
