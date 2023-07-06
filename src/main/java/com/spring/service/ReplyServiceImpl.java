@@ -39,9 +39,12 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Override
 	public DetailsReplyPageDTO listAll(CriteriaDTO cri, String contentid) {
-		List<DetailsReplyDTO> list = detailsReplyMapper.listAll(cri, contentid);
-		int replyCnt = detailsReplyMapper.getCountById(contentid);
-		return new DetailsReplyPageDTO(replyCnt, list);
+		return null;
+	}
+
+	@Override
+	public String getReCount(String contentid) {
+		return detailsReplyMapper.getReCount(contentid);
 	}
 
 }

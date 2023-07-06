@@ -268,7 +268,7 @@
     <!-- ////////댓글리스트/////////////////////////////////// -->
           
 		<div class="card" id="card1">
-				<div class="card-header">댓글 리스트</div>
+				<div class="card-header">댓글 리스트${count }</div>
 				<ul id="reply--box" class="list-group">
 				
  <c:forEach items="${replyList}" var="e">
@@ -334,6 +334,12 @@
 	<input type="hidden" name="page" value="${cri.page}">
 	<input type="hidden" name="amount" value="${cri.amount}">
 </form>
+
+
+
+
+<script src="/resources/js/details.js"></script>
+<script src="/resources/js/reply.js"></script>
 
 
 <%@include file="../include/footer1.jsp"%>

@@ -45,10 +45,7 @@
 					</div>
 				</div>
 				
-			</div>
-		
-		     
-		           
+			</div>   
 		   
 		<!-- 숙소  -->
 		<div class="main_curation_area area">
