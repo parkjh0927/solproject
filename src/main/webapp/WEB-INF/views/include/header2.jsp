@@ -49,6 +49,7 @@
 
   .nav-item > .nav-link {
     position: relative;
+    font-size: 20px;
   }
 
   .nav-item > .nav-link::before {
@@ -56,13 +57,14 @@
     position: absolute;
     width: 6px;
     height: 6px;
-    border-radius: 50%;
+    border-radius: 50%;	
     background-color: #000;
     top: -4px;
     right: -4px;
     transform: rotate(45deg);
     opacity: 0;
     transition: opacity 0.3s ease;
+    align-content: center;	
   }
 
   .nav-item:hover > .nav-link::before {
@@ -79,6 +81,7 @@
     background-size: cover;
     background-position: 50% 50% !important;
     border-radius: 100%;
+    margin-left: 20px;
   }
   .logout-btn {
     display: inline-block;
@@ -130,15 +133,9 @@
   	}
 }
 	.navbar-nav{
-	margin-right: 80px;
+	align-content: center;
 	}
 	
-	.row{
-	margin-top: 150px;
-	margin-left: 80px;
-	margin-right: 150px;
-
-	}
 </style>
 
 
@@ -194,6 +191,7 @@
 					    <button type="submit" class="dropdown-item">찜 목록</button>
 					  </li>
 				  </form>
+				  <li><a class="dropdown-item" href="/chat/roomlist">채팅하기</a></li>
 	            </ul>
           </li>          
         </security:authorize>

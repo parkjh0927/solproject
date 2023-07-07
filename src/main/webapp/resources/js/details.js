@@ -574,7 +574,10 @@ if (document.querySelector("#btn-reply-save")) {
       },
       body: JSON.stringify(replyDTO),
     });
-    location.reload();
+    alert("댓글이 등록되었습니다.");
+    setTimeout(() => {
+      location.reload();
+    }, 100);
   });
 }
 //====================================================================

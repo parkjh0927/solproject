@@ -155,7 +155,9 @@ html, body {
 }
 
 #content {
-	height: 400px;
+	height: 800px;
+	width: 1000px;
+	overflow: scroll;
 }
 
 .article-detail > table tr.article-title > td {

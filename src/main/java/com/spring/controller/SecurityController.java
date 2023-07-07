@@ -85,7 +85,7 @@ public class SecurityController {
 	
 	// 중복 아이디 점검
 	@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST) // /member/memberIdChk에 대한 POST 메서드를 처리
-	@ResponseBody //컨트롤러 작업이 완료될때 결과값으로 리턴시킴 (뷰 리졸버를 동작시키지 않음) 
+	@ResponseBody  
 	public String memberIdChkPost(String username) throws Exception {	
 		log.info("memberIdChk() 진입");	
 		

@@ -53,7 +53,7 @@
             <div class="col-md-8 mb-3">
               <label for="currentPassword">기존 비밀번호</label>
 	              <input type="password" class="form-control" id="currentPassword" placeholder="기존 비밀번호를 입력해주세요" 
-	              	name="currentPassword" required pattern="^(?=.*[A-za-z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{5,12}$">
+	              	name="currentPassword" required>
 	              <div class="invalid-feedback"></div>
             </div>
             
@@ -90,7 +90,8 @@
                   
           
           <div class="col">
-          	<button class="btn btn-primary btn-lg" type="submit">변경하기</button>
+          	<button class="btn btn-info" type="submit">변경하기</button>
+          	<a href="/member/myPage" class="btn btn-primary">취소하기</a>
           </div>
         </form>
       </div>
@@ -103,7 +104,6 @@
 	
 
 <script src="../resources/js/memChPwd.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 <%@ include file="../include/footer1.jsp" %>

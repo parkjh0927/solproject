@@ -2,10 +2,12 @@
 
 <%@include file="include/header2.jsp"%>
 
+<link rel="stylesheet" href="/resources/board/css/style.css">
 <style>
 	.main_curation_area{
 	margin-top: 50px;
 	}
+	
 </style>        
 		<!-- 관광 -->
 		<div class="main_curation_area" >
@@ -43,10 +45,7 @@
 					</div>
 				</div>
 				
-			</div>
-		
-		     
-		           
+			</div>   
 		   
 		<!-- 숙소  -->
 		<div class="main_curation_area area">

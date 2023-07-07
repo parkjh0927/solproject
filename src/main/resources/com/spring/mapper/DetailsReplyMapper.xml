@@ -35,7 +35,7 @@
 	</select>
 	
 	<!--원본 글에 달려있는 댓글 전체 개수 -->
-	<select id="getCountById" resultType="String">
+	<select id="getReCount" resultType="String">
 		select count(*) from member_reply where contentid=#{contentid}
 	</select>
 </mapper>

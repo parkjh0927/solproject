@@ -21,14 +21,18 @@
 
 <link rel="stylesheet" href="/resources/board/css/style.css">
 <style>
-	
+	#tableRow, #searchRow{
+		margin-left: 100px;
+		margin-right: 100px;
+		width: 90%
+	}
 </style>
 </head>	
 <body>
 	<div class="d-sm-flex align-items-center justify-content-between mb-4 padde">
 
 	</div>
-	<div class="d-flex">
+	<div class="d-flex" id="searchRow">
 		<!-- 검색부분  -->
 		<div class="flex-grow-1 pb-2 justify-content-between">
 			<form action="" id="searchForm">
@@ -87,7 +91,7 @@
 				Board</button>
 		</div>
 	</div>
-	<table class="table table-bordered table-hover">
+	<table class="table table-bordered table-hover" id="tableRow">
 		<thead class="table-light">
 			<tr>
 				<th scope="col">번호</th>
