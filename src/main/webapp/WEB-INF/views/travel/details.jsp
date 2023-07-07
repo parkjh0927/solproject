@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="../include/header2.jsp"%>
 <link rel="stylesheet" href="/resources/board/css/style.css">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <html>
 <style>
     /* 전체 스타일 */
@@ -249,9 +249,24 @@
     
   </main>
 </body>
-
+<!-- 댓글등록창///////////////////////////// -->
 <div class="reply1">
 	<div class="card">
+	<span type = "button" class="material-symbols-outlined i1">
+grade
+</span>
+	<span type = "button" class="material-symbols-outlined i2">
+grade
+</span>
+	<span type = "button" class="material-symbols-outlined i3">
+grade
+</span>
+	<span type = "button" class="material-symbols-outlined i4">
+grade
+</span>
+	<span type = "button" class="material-symbols-outlined i5">
+grade
+</span>
 		<security:authorize access="isAuthenticated()">
 	    	 <form id="replyForm">
     			 <input hidden type="text" name="username" class="rep" id="replyUserId" readonly

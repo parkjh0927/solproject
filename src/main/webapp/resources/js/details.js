@@ -586,6 +586,54 @@ if (document.querySelector("#btn-reply-save")) {
 }
 
 //====================================================================
+var star1 = document.querySelector(".i1").innerHTML;
+var star2 = document.querySelector(".i2").innerHTML;
+var star3 = document.querySelector(".i3").innerHTML;
+var star4 = document.querySelector(".i4").innerHTML;
+var star5 = document.querySelector(".i5").innerHTML;
+console.log("-------------------");
+console.log(star1);
+document.querySelector(".i1").addEventListener("click", () => {
+  console.log("아이콘1");
+  star1 = "클릭";
+  star2 = "grade";
+  star3 = "grade";
+  star4 = "grade";
+  star5 = "grade";
+});
+document.querySelector(".i2").addEventListener("click", () => {
+  console.log("아이콘2");
+  star1 = "★";
+  star2 = "★";
+  star3 = "grade";
+  star4 = "grade";
+  star5 = "grade";
+});
+document.querySelector(".i3").addEventListener("click", () => {
+  console.log("아이콘3");
+  star1 = "★";
+  star2 = "★";
+  star3 = "★";
+  star4 = "grade";
+  star5 = "grade";
+});
+document.querySelector(".i4").addEventListener("click", () => {
+  console.log("아이콘4");
+  star1 = "★";
+  star2 = "★";
+  star3 = "★";
+  star4 = "★";
+  star5 = "grade";
+});
+document.querySelector(".i5").addEventListener("click", () => {
+  console.log("아이콘5");
+  star1 = "★";
+  star2 = "★";
+  star3 = "★";
+  star4 = "★";
+  star5 = "★";
+});
+
 // 댓글 삭제// 댓글 삭제// 댓글 삭제// 댓글 삭제// 댓글 삭제// 댓글 삭제// 댓글 삭제// 댓글 삭제
 // let box = document.querySelector("#reply--box");
 // let page = 1;
